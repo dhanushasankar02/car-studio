@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>404 - Page Not Found | Car Studio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="alternate icon" href="images/favicon.svg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+
+    <!-- Google Fonts & Font Awesome 6 Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ---------- RESET & DESIGN TOKENS ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --surface-glass: rgba(255, 255, 255, 0.94);
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #ff6a1a;
+            --accent-hover: #e5590c;
+            --accent-glow: rgba(255, 106, 26, 0.25);
+            --border-light: rgba(15, 23, 42, 0.12);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.12);
+            --transition-smooth: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+        }
+
+        body.dark-mode {
+            --bg-primary: #080a0f;
+            --bg-secondary: #0e121b;
+            --surface-glass: rgba(14, 18, 27, 0.94);
+            --card-bg: #141a26;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.65);
+        }
+
+        /* Universal RTL Icon Horizontal Flip */
+        [dir="rtl"] .fa-arrow-left,
+        [dir="rtl"] .fa-chevron-right,
+        [dir="rtl"] .fa-chevron-left,
+        [dir="rtl"] .fa-angle-right,
+        [dir="rtl"] .fa-angle-left,
+        [dir="rtl"] .fa-rotate-left,
+        [dir="rtl"] .back-home-btn i {
+            transform: scaleX(-1) !important;
+            display: inline-block !important;
+        }
+
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        body {
+            font-family: var(--font-main);
+            font-size: 1rem;
+            line-height: 1.6;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Glows */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.35;
+            transition: var(--transition-smooth);
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        }
+
+        .blob-2 {
+            bottom: -15%;
+            right: -10%;
+            width: 55vw;
+            height: 55vw;
+            background: radial-gradient(circle, #ef4444 0%, transparent 70%);
+            opacity: 0.25;
+        }
+
+        .blob-3 {
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35vw;
+            height: 35vw;
+            background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+            opacity: 0.15;
+        }
+
+        /* ---------- TOP UTILITY CONTROLS BAR (NO NAVBAR / NO FOOTER) ---------- */
+        .top-utility-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            pointer-events: none;
+        }
+
+        [dir="rtl"] .top-utility-bar {
+            justify-content: flex-start;
+        }
+
+        .top-utility-bar * {
+            pointer-events: auto;
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.65rem 1.35rem;
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .back-home-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        .brand-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            background: var(--surface-glass);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .brand-pill i {
+            color: var(--accent);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 0.92rem;
+            font-weight: 600;
+            font-family: inherit;
+            padding: 0.55rem 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .action-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--accent-glow);
+        }
+
+        .lang-select-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-globe-icon {
+            position: absolute;
+            left: 0.95rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        [dir="rtl"] .lang-globe-icon {
+            left: auto;
+            right: 0.95rem;
+        }
+
+        .lang-select {
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: inherit;
+            padding: 0.55rem 1rem 0.55rem 2.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            outline: none;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        [dir="rtl"] .lang-select {
+            padding: 0.55rem 2.4rem 0.55rem 1rem;
+        }
+
+        .lang-select:hover {
+            border-color: var(--accent);
+            box-shadow: 0 6px 16px var(--accent-glow);
+        }
+
+        .lang-select option {
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        /* ---------- MAIN 404 LAYOUT ---------- */
+        .error-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7rem 1.5rem 3rem 1.5rem;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .error-card {
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 3.5rem 3rem;
+            max-width: 820px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: var(--shadow-lg);
+            animation: fadeInCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* 404 Tachometer & Visual Graphic */
+        .visual-404-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            user-select: none;
+        }
+
+        .big-404-text {
+            font-family: var(--font-heading);
+            font-size: clamp(6.5rem, 15vw, 11rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent) 70%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(255, 106, 26, 0.15);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tachometer Gauge Overlay Icon */
+        .gauge-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110px;
+            height: 110px;
+            background: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 35px var(--accent-glow), var(--shadow-sm);
+            animation: pulseGauge 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseGauge {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 25px var(--accent-glow);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.06);
+                box-shadow: 0 0 45px rgba(255, 106, 26, 0.45);
+            }
+        }
+
+        .gauge-badge i {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .gauge-badge span {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Status Pill */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.45rem 1.1rem;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-radius: 50px;
+            color: #ef4444;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.25rem;
+        }
+
+        body.dark-mode .status-pill {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #f87171;
+        }
+
+        .status-pill i {
+            animation: blinker 1.5s infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0.3; }
+        }
+
+        /* Headlines */
+        .error-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .error-title span {
+            color: var(--accent);
+        }
+
+        .error-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 620px;
+            margin: 0 auto 2.25rem auto;
+            line-height: 1.65;
+        }
+
+        /* Action Buttons Row */
+        .btn-group-404 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.75rem;
+        }
+
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.98rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+        }
+
+        .btn-primary-accent {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        .btn-primary-accent:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(255, 106, 26, 0.4);
+            color: #ffffff;
+        }
+
+        .btn-secondary-outline {
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            backdrop-filter: blur(12px);
+        }
+
+        .btn-secondary-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Interactive Search Section */
+        .search-box-wrap {
+            max-width: 520px;
+            margin: 0 auto 2.75rem auto;
+            position: relative;
+        }
+
+        .search-box-wrap input {
+            width: 100%;
+            padding: 0.95rem 1.25rem 0.95rem 3rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        [dir="rtl"] .search-box-wrap input {
+            padding: 0.95rem 3rem 0.95rem 1.25rem;
+        }
+
+        .search-box-wrap input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .search-icon-btn {
+            position: absolute;
+            left: 1.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        [dir="rtl"] .search-icon-btn {
+            left: auto;
+            right: 1.1rem;
+        }
+
+        /* Quick Navigation Grid */
+        .quick-links-title {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .quick-links-title::before,
+        .quick-links-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-light);
+            max-width: 80px;
+        }
+
+        .quick-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .nav-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            padding: 1.25rem 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px var(--accent-glow);
+        }
+
+        .nav-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(255, 106, 26, 0.1);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-card:hover .nav-card-icon {
+            background: var(--accent);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .nav-card span {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Footer Copyright Tag (No Main Site Footer) */
+        .mini-copyright {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.85;
+        }
+
+        /* ---------- RESPONSIVE DESIGN ---------- */
+        @media (max-width: 768px) {
+            .top-utility-bar {
+                padding: 1rem;
+            }
+            .brand-pill {
+                display: none; /* Hide brand pill on small mobile to give room */
+            }
+            .error-card {
+                padding: 2.5rem 1.5rem;
+                border-radius: 20px;
+            }
+            .gauge-badge {
+                width: 90px;
+                height: 90px;
+            }
+            .gauge-badge i {
+                font-size: 1.8rem;
+            }
+            .gauge-badge span {
+                font-size: 0.55rem;
+            }
+            .btn-group-404 {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-main {
+                width: 100%;
+            }
+            .quick-nav-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quick-nav-grid {
+                grid-template-columns: 1fr;
+            }
+            .action-btn span {
+                display: none; /* Hide "Dark" text on extra small screen */
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <!-- Ambient Gradient Blobs -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- TOP UTILITY HEADER (NO NAVBAR / NO FOOTER) -->
+    <header class="top-utility-bar">
+        <div class="header-controls">
+            <button class="action-btn" id="darkModeBtn" aria-label="Toggle Dark/Light Theme">
+                <i class="fa-solid fa-sun" id="themeIcon"></i>
+                <span id="themeLabel">Light</span>
+            </button>
+
+            <div class="lang-select-wrap">
+                <i class="fa-solid fa-globe lang-globe-icon"></i>
+                <select id="langSwitcher" class="lang-select" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="hi">हिन्दी</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN 404 CONTENT -->
+    <main class="error-wrapper">
+        <article class="error-card">
+            
+            <!-- Dynamic 404 Speedometer Visual -->
+            <div class="visual-404-container">
+                <h1 class="big-404-text">404</h1>
+                <div class="gauge-badge" title="Track Out of Bounds">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>OUT OF BOUNDS</span>
+                </div>
+            </div>
+
+            <!-- Warning Badge -->
+            <div>
+                <div class="status-pill">
+                    <i class="fa-solid fa-circle"></i>
+                    <span id="statusText">Check Engine: Track Route Not Found</span>
+                </div>
+            </div>
+
+            <!-- Main Heading & Paragraph -->
+            <h2 class="error-title" id="errorTitle">
+                Whoops! You've <span>Off-Roaded.</span>
+            </h2>
+            <p class="error-desc" id="errorDesc">
+                The page or detailing route you are looking for has been moved, renamed, or temporarily parked in another garage section.
+            </p>
+
+            <!-- Primary Action Buttons -->
+            <div class="btn-group-404">
+                <a href="index.html" class="btn-main btn-primary-accent" id="btnReturnHome">
+                    <i class="fa-solid fa-house"></i>
+                    <span id="txtReturnHome">Return to Showroom</span>
+                </a>
+                <button onclick="window.history.back()" class="btn-main btn-secondary-outline" id="btnGoBack">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span id="txtGoBack">Go Back Previous Page</span>
+                </button>
+            </div>
+
+            <!-- Quick Search Bar -->
+            <div class="search-box-wrap">
+                <form id="searchForm" action="services.html" method="GET">
+                    <button type="submit" class="search-icon-btn" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <input type="text" name="q" id="searchInput" placeholder="Search Car Studio services, packages, or gallery..." autocomplete="off">
+                </form>
+            </div>
+
+            <!-- Helpful Navigation Grid -->
+            <div class="quick-links-title" id="quickLinksTitle">Or Explore Featured Destinations</div>
+            <nav class="quick-nav-grid">
+                <a href="services.html" class="nav-card">
+                    <div class="nav-card-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+                    <span id="cardServices">Our Services</span>
+                </a>
+                <a href="packages.html" class="nav-card">
+                    <div class="nav-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span id="cardPackages">PPF & Ceramic</span>
+                </a>
+                <a href="gallery.html" class="nav-card">
+                    <div class="nav-card-icon"><i class="fa-solid fa-images"></i></div>
+                    <span id="cardGallery">Studio Gallery</span>
+                </a>
+                <a href="contact.html" class="nav-card">
+                    <div class="nav-card-icon"><i class="fa-solid fa-headset"></i></div>
+                    <span id="cardContact">Contact Support</span>
+                </a>
+            </nav>
+
+            <div class="mini-copyright">
+                &copy; 2026 Car Studio Performance & Detailing Lab. All Rights Reserved.
+            </div>
+        </article>
+    </main>
+
+    <!-- SCRIPT FOR THEME & MULTI-LANGUAGE I18N ENFORCEMENT -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // ---------- 1. THEME TOGGLER LOGIC (MATCHING SITE ENGINE) ----------
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeLabel = document.getElementById('themeLabel');
+
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                if (themeIcon) themeIcon.className = 'fa-solid fa-sun';
+                if (themeLabel) themeLabel.textContent = getThemeText(true);
+                localStorage.setItem('carstudio_theme', 'dark');
+                localStorage.setItem('car_studio_theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (themeIcon) themeIcon.className = 'fa-solid fa-moon';
+                if (themeLabel) themeLabel.textContent = getThemeText(false);
+                localStorage.setItem('carstudio_theme', 'light');
+                localStorage.setItem('car_studio_theme', 'light');
+            }
+        }
+
+        function getThemeText(isDark) {
+            const currentLang = localStorage.getItem('carstudio_lang') || 'en';
+            if (currentLang === 'ar') {
+                return isDark ? 'مضيء' : 'داكن';
+            } else if (currentLang === 'hi') {
+                return isDark ? 'लाइट' : 'डार्क';
+            }
+            return isDark ? 'Light' : 'Dark';
+        }
+
+        function toggleTheme() {
+            const isDarkNow = document.body.classList.contains('dark-mode');
+            updateThemeUI(!isDarkNow);
+        }
+
+        // Initialize Theme from localStorage (defaults to dark)
+        const savedTheme = localStorage.getItem('carstudio_theme') || localStorage.getItem('car_studio_theme');
+        if (savedTheme === 'light') {
+            updateThemeUI(false);
+        } else {
+            updateThemeUI(true);
+        }
+
+        if (darkModeBtn) {
+            darkModeBtn.addEventListener('click', toggleTheme);
+        }
+
+        // ---------- 2. MULTI-LANGUAGE DICTIONARY & RTL LOGIC ----------
+        const langSwitcher = document.getElementById('langSwitcher');
+
+        const translations = {
+            en: {
+                dir: 'ltr',
+                txtBackHome: 'Back to Showroom',
+                statusText: 'Check Engine: Track Route Not Found',
+                errorTitle: 'Whoops! You\'ve <span>Off-Roaded.</span>',
+                errorDesc: 'The page or detailing route you are looking for has been moved, renamed, or temporarily parked in another garage section.',
+                txtReturnHome: 'Return to Showroom',
+                txtGoBack: 'Go Back Previous Page',
+                searchPlaceholder: 'Search Car Studio services, packages, or gallery...',
+                quickLinksTitle: 'Or Explore Featured Destinations',
+                cardServices: 'Our Services',
+                cardPackages: 'PPF & Ceramic',
+                cardGallery: 'Studio Gallery',
+                cardContact: 'Contact Support'
+            },
+            ar: {
+                dir: 'rtl',
+                txtBackHome: 'العودة للرئيسية',
+                statusText: 'تنبيه المحرك: مسار الصفحة غير موجود',
+                errorTitle: 'عفواً! لقد <span>خرجت عن المسار.</span>',
+                errorDesc: 'الصفحة أو الخدمة التي تبحث عنها قد تم نقلها، أو تغيير اسمها، أو حجزها مؤقتاً في قسم آخر من الاستوديو.',
+                txtReturnHome: 'العودة للمعرض الرئيسي',
+                txtGoBack: 'الرجوع للصفحة السابقة',
+                searchPlaceholder: 'ابحث عن خدمات كار استوديو، باقات العناية، المعرض...',
+                quickLinksTitle: 'أو استكشف الوجهات الأكثر زيارة',
+                cardServices: 'خدماتنا المميزة',
+                cardPackages: 'باقات الحماية والسيراميك',
+                cardGallery: 'معرض الأعمال',
+                cardContact: 'الدعم والتواصل'
+            },
+            hi: {
+                dir: 'ltr',
+                txtBackHome: 'मुख्य शोरूम पर लौटें',
+                statusText: 'इंजन चेतावनी: ट्रैक मार्ग नहीं मिला',
+                errorTitle: 'अरे! आप <span>गलत रास्ते पर आ गए हैं।</span>',
+                errorDesc: 'आप जिस पृष्ठ या डिटेलिंग सेवा की तलाश कर रहे हैं, उसे स्थानांतरित कर दिया गया है या अस्थायी रूप से अनुपलब्ध है।',
+                txtReturnHome: 'मुख्य पृष्ठ पर लौटें',
+                txtGoBack: 'पिछले पृष्ठ पर जाएं',
+                searchPlaceholder: 'कार स्टूडियो सेवाओं, पैकेजों की खोज करें...',
+                quickLinksTitle: 'या प्रमुख अनुभागों को देखें',
+                cardServices: 'हमारी सेवाएं',
+                cardPackages: 'पीपीएफ और सिरेमिक',
+                cardGallery: 'स्टूडियो गैलरी',
+                cardContact: 'सहायता और संपर्क'
+            }
+        };
+
+        function applyLanguage(lang) {
+            const dict = translations[lang] || translations.en;
+            
+            document.documentElement.setAttribute('dir', dict.dir);
+            document.body.setAttribute('dir', dict.dir);
+            localStorage.setItem('carstudio_rtl', dict.dir);
+            localStorage.setItem('car_studio_rtl', dict.dir);
+            localStorage.setItem('carstudio_lang', lang);
+
+            if (langSwitcher) langSwitcher.value = lang;
+
+            // DOM Updates
+            if (document.getElementById('txtBackHome')) document.getElementById('txtBackHome').textContent = dict.txtBackHome;
+            if (document.getElementById('statusText')) document.getElementById('statusText').textContent = dict.statusText;
+            if (document.getElementById('errorTitle')) document.getElementById('errorTitle').innerHTML = dict.errorTitle;
+            if (document.getElementById('errorDesc')) document.getElementById('errorDesc').textContent = dict.errorDesc;
+            if (document.getElementById('txtReturnHome')) document.getElementById('txtReturnHome').textContent = dict.txtReturnHome;
+            if (document.getElementById('txtGoBack')) document.getElementById('txtGoBack').textContent = dict.txtGoBack;
+            if (document.getElementById('searchInput')) document.getElementById('searchInput').placeholder = dict.searchPlaceholder;
+            if (document.getElementById('quickLinksTitle')) document.getElementById('quickLinksTitle').textContent = dict.quickLinksTitle;
+            if (document.getElementById('cardServices')) document.getElementById('cardServices').textContent = dict.cardServices;
+            if (document.getElementById('cardPackages')) document.getElementById('cardPackages').textContent = dict.cardPackages;
+            if (document.getElementById('cardGallery')) document.getElementById('cardGallery').textContent = dict.cardGallery;
+            if (document.getElementById('cardContact')) document.getElementById('cardContact').textContent = dict.cardContact;
+
+            // Update Theme button text
+            const isDarkNow = document.body.classList.contains('dark-mode');
+            if (themeLabel) themeLabel.textContent = getThemeText(isDarkNow);
+        }
+
+        // Init language setting
+        const savedRtl = localStorage.getItem('carstudio_rtl') || localStorage.getItem('car_studio_rtl');
+        const savedLang = localStorage.getItem('carstudio_lang') || (savedRtl === 'rtl' ? 'ar' : 'en');
+        applyLanguage(savedLang);
+
+        if (langSwitcher) {
+            langSwitcher.addEventListener('change', (e) => {
+                applyLanguage(e.target.value);
+            });
+        }
+    });
+    </script>
+</body>
+</html>
