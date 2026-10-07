@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="infoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e131f"/>
+      <stop offset="100%" stop-color="#1a2336"/>
+    </linearGradient>
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#4facfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="24" fill="url(#infoBg)" stroke="rgba(0, 242, 254, 0.25)" stroke-width="2"/>
+  <!-- Phone, Email, Encrypted Shield Badge -->
+  <g transform="translate(400, 230)">
+    <circle cx="0" cy="0" r="120" fill="rgba(0, 242, 254, 0.1)" stroke="url(#cyanGlow)" stroke-width="4"/>
+    <!-- Headset/Phone Icon -->
+    <path d="M -50 -10 C -50 -50 50 -50 50 -10 L 50 30 C 50 45 35 55 20 55 L -20 55 C -35 55 -50 45 -50 30 Z" fill="none" stroke="#ffffff" stroke-width="4"/>
+    <rect x="-60" y="-10" width="20" height="40" rx="6" fill="url(#cyanGlow)"/>
+    <rect x="40" y="-10" width="20" height="40" rx="6" fill="url(#cyanGlow)"/>
+  </g>
+  <text x="400" y="490" text-anchor="middle" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" letter-spacing="2">VIP CONCIERGE HOTLINE</text>
+  <text x="400" y="530" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-weight="500" font-size="16">+1 (800) 555-CARE | concierge@carstudio.com</text>
+</svg>

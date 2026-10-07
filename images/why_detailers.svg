@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141a26"/>
+      <stop offset="100%" stop-color="#0a0d14"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a1a"/>
+      <stop offset="100%" stop-color="#ffb800"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" rx="24" fill="url(#cardBg)" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+  
+  <!-- Master Detailer Shield Emblem -->
+  <g transform="translate(400, 240)">
+    <path d="M 0 -120 L 100 -50 L 100 70 Q 0 160 -100 70 L -100 -50 Z" fill="none" stroke="url(#goldGlow)" stroke-width="6"/>
+    <path d="M 0 -100 L 80 -40 L 80 55 Q 0 130 -80 55 L -80 -40 Z" fill="rgba(255, 106, 26, 0.1)"/>
+    
+    <!-- Crown Icon -->
+    <path d="M -40 20 L -50 -30 L -20 -10 L 0 -40 L 20 -10 L 50 -30 L 40 20 Z" fill="url(#goldGlow)"/>
+    <circle cx="0" cy="45" r="12" fill="#ffffff"/>
+  </g>
+
+  <!-- Stars -->
+  <g fill="#ffb800" transform="translate(400, 440)">
+    <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" transform="translate(-80, 0) scale(1.5)"/>
+    <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" transform="translate(-40, 0) scale(1.5)"/>
+    <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" transform="translate(0, 0) scale(1.8)"/>
+    <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" transform="translate(40, 0) scale(1.5)"/>
+    <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" transform="translate(80, 0) scale(1.5)"/>
+  </g>
+
+  <!-- Text -->
+  <text x="400" y="520" text-anchor="middle" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" letter-spacing="2">MASTER CERTIFIED DETAILERS</text>
+  <text x="400" y="555" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-weight="500" font-size="16">IDA Board Certified &amp; Swissvax Authorized Technicians</text>
+</svg>

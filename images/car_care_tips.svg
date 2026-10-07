@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgTips" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#141d2d"/>
+    </linearGradient>
+
+    <linearGradient id="tipGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bgTips)" rx="24"/>
+
+  <!-- Expert Car Care Tips Graphic Matrix -->
+  <!-- Tip 1: Two-Bucket Wash Method -->
+  <g transform="translate(80, 120)">
+    <rect width="300" height="170" rx="16" fill="rgba(255,255,255,0.04)" stroke="rgba(255,106,26,0.3)" stroke-width="1.5"/>
+    <circle cx="50" cy="45" r="22" fill="#ff6a1a"/>
+    <text x="50" y="52" font-family="'Outfit', sans-serif" font-size="16" font-weight="900" fill="#ffffff" text-anchor="middle">01</text>
+    <text x="90" y="50" font-family="'Outfit', sans-serif" font-size="16" font-weight="800" fill="#ffffff">Two-Bucket Wash</text>
+    <text x="30" y="100" font-family="'Inter', sans-serif" font-size="12" fill="#94a3b8">Always use grit guards &amp; separate rinse buckets to prevent swirl re-introduction.</text>
+    <rect x="30" y="130" width="120" height="24" rx="12" fill="rgba(255,106,26,0.15)"/>
+    <text x="90" y="146" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#ff6a1a" text-anchor="middle">Swirl Prevention</text>
+  </g>
+
+  <!-- Tip 2: pH Neutral Snow Foam -->
+  <g transform="translate(420, 120)">
+    <rect width="300" height="170" rx="16" fill="rgba(255,255,255,0.04)" stroke="rgba(56,189,248,0.3)" stroke-width="1.5"/>
+    <circle cx="50" cy="45" r="22" fill="#38bdf8"/>
+    <text x="50" y="52" font-family="'Outfit', sans-serif" font-size="16" font-weight="900" fill="#ffffff" text-anchor="middle">02</text>
+    <text x="90" y="50" font-family="'Outfit', sans-serif" font-size="16" font-weight="800" fill="#ffffff">pH-Neutral Snow Foam</text>
+    <text x="30" y="100" font-family="'Inter', sans-serif" font-size="12" fill="#94a3b8">Avoid harsh alkaline soaps that strip ceramic sealants or wax layers.</text>
+    <rect x="30" y="130" width="120" height="24" rx="12" fill="rgba(56,189,248,0.15)"/>
+    <text x="90" y="146" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">pH 7.0 Safe</text>
+  </g>
+
+  <!-- Tip 3: Microfiber Towel Care -->
+  <g transform="translate(80, 320)">
+    <rect width="300" height="170" rx="16" fill="rgba(255,255,255,0.04)" stroke="rgba(74,222,128,0.3)" stroke-width="1.5"/>
+    <circle cx="50" cy="45" r="22" fill="#4ade80"/>
+    <text x="50" y="52" font-family="'Outfit', sans-serif" font-size="16" font-weight="900" fill="#ffffff" text-anchor="middle">03</text>
+    <text x="90" y="50" font-family="'Outfit', sans-serif" font-size="16" font-weight="800" fill="#ffffff">70/30 Microfiber GSM</text>
+    <text x="30" y="100" font-family="'Inter', sans-serif" font-size="12" fill="#94a3b8">Use 500+ GSM edgeless microfiber towels for drying to avoid paint clear coat scratches.</text>
+    <rect x="30" y="130" width="120" height="24" rx="12" fill="rgba(74,222,128,0.15)"/>
+    <text x="90" y="146" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#4ade80" text-anchor="middle">500 GSM Plush</text>
+  </g>
+
+  <!-- Tip 4: De-ionized Spot-Free Water -->
+  <g transform="translate(420, 320)">
+    <rect width="300" height="170" rx="16" fill="rgba(255,255,255,0.04)" stroke="rgba(245,158,11,0.3)" stroke-width="1.5"/>
+    <circle cx="50" cy="45" r="22" fill="#f59e0b"/>
+    <text x="50" y="52" font-family="'Outfit', sans-serif" font-size="16" font-weight="900" fill="#ffffff" text-anchor="middle">04</text>
+    <text x="90" y="50" font-family="'Outfit', sans-serif" font-size="16" font-weight="800" fill="#ffffff">Spot-Free DI Water</text>
+    <text x="30" y="100" font-family="'Inter', sans-serif" font-size="12" fill="#94a3b8">Filter calcium and mineral deposits to prevent stubborn water spot etching.</text>
+    <rect x="30" y="130" width="120" height="24" rx="12" fill="rgba(245,158,11,0.15)"/>
+    <text x="90" y="146" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#f59e0b" text-anchor="middle">0 PPM Minerals</text>
+  </g>
+
+  <text x="400" y="70" font-family="'Outfit', sans-serif" font-weight="900" font-size="20" fill="#ffffff" text-anchor="middle" letter-spacing="3">EXPERT AUTOMOTIVE CARE MASTERCLASS TIPS</text>
+</svg>

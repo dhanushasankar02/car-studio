@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="enqBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1b1d15"/>
+      <stop offset="100%" stop-color="#0c0e09"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="24" fill="url(#enqBg)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="2"/>
+  <!-- Department Cards Matrix -->
+  <g transform="translate(400, 230)">
+    <rect x="-140" y="-80" width="80" height="160" rx="12" fill="rgba(245, 158, 11, 0.15)" stroke="url(#goldGlow)" stroke-width="2"/>
+    <rect x="-40" y="-100" width="80" height="200" rx="12" fill="url(#goldGlow)"/>
+    <rect x="60" y="-80" width="80" height="160" rx="12" fill="rgba(245, 158, 11, 0.15)" stroke="url(#goldGlow)" stroke-width="2"/>
+    <path d="M -15 -20 L 0 0 L 15 -20" stroke="#ffffff" stroke-width="4" fill="none"/>
+  </g>
+  <text x="400" y="490" text-anchor="middle" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" letter-spacing="2">DEPARTMENT ENQUIRY DESKS</text>
+  <text x="400" y="530" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-weight="500" font-size="16">General, Technical Service &amp; VIP Slot Booking Desks</text>
+</svg>

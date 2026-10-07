@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="flaskBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e131f"/>
+      <stop offset="100%" stop-color="#1a2336"/>
+    </linearGradient>
+    <linearGradient id="nanoGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="100%" stop-color="#4facfe"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" rx="24" fill="url(#flaskBg)" stroke="rgba(0, 242, 254, 0.2)" stroke-width="2"/>
+  
+  <!-- Nano Chemical Bottle & Hexagonal Matrix -->
+  <g transform="translate(400, 230)">
+    <!-- Hexagon Array -->
+    <g stroke="rgba(0, 242, 254, 0.3)" fill="none" stroke-width="2">
+      <polygon points="0,-90 52,-60 52,0 0,30 -52,0 -52,-60" transform="translate(0, -60)"/>
+      <polygon points="0,-90 52,-60 52,0 0,30 -52,0 -52,-60" transform="translate(90, 0)"/>
+      <polygon points="0,-90 52,-60 52,0 0,30 -52,0 -52,-60" transform="translate(-90, 0)"/>
+      <polygon points="0,-90 52,-60 52,0 0,30 -52,0 -52,-60" transform="translate(0, 60)"/>
+    </g>
+
+    <!-- Flask Shape -->
+    <path d="M -30 -110 L 30 -110 L 30 -60 L 70 40 Q 80 70 50 80 L -50 80 Q -80 70 -70 40 L -30 -60 Z" fill="rgba(0, 242, 254, 0.15)" stroke="url(#nanoGlow)" stroke-width="4"/>
+    <path d="M -60 30 Q 0 10 60 30 L 50 75 L -50 75 Z" fill="url(#nanoGlow)" opacity="0.8"/>
+    
+    <!-- Hydrophobic Bubbles -->
+    <circle cx="-20" cy="0" r="6" fill="#ffffff" opacity="0.9"/>
+    <circle cx="25" cy="-20" r="10" fill="#ffffff" opacity="0.7"/>
+    <circle cx="10" cy="40" r="8" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- Text -->
+  <text x="400" y="490" text-anchor="middle" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" letter-spacing="2">9H NANO CERAMIC &amp; PH-NEUTRAL FORMULAS</text>
+  <text x="400" y="530" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-weight="500" font-size="16">100% German-Engineered Compounds &amp; Hydrophobic Polymers</text>
+</svg>

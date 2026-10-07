@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dbBg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="dbOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a1a"/>
+      <stop offset="100%" stop-color="#d94600"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="24" fill="url(#dbBg1)"/>
+  <rect x="40" y="40" width="720" height="90" rx="16" fill="#141a26" stroke="#ff6a1a" stroke-width="2"/>
+  <circle cx="90" cy="85" r="28" fill="url(#dbOrange)"/>
+  <text x="90" y="92" font-family="'Outfit', sans-serif" font-weight="800" font-size="22" fill="#ffffff" text-anchor="middle">CS</text>
+  <text x="140" y="78" font-family="'Outfit', sans-serif" font-weight="800" font-size="22" fill="#ffffff">VIP Member Dashboard</text>
+  <text x="140" y="105" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Tier Status: Gold Ceramic Club (4,850 Points)</text>
+
+  <rect x="40" y="160" width="220" height="130" rx="16" fill="#141a26" stroke="rgba(255,255,255,0.1)"/>
+  <text x="60" y="195" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Active Detailing</text>
+  <text x="60" y="240" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" fill="#ff6a1a">1 Active</text>
+
+  <rect x="290" y="160" width="220" height="130" rx="16" fill="#141a26" stroke="rgba(255,255,255,0.1)"/>
+  <text x="310" y="195" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Completed Jobs</text>
+  <text x="310" y="240" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" fill="#10b981">14 Total</text>
+
+  <rect x="540" y="160" width="220" height="130" rx="16" fill="#141a26" stroke="rgba(255,255,255,0.1)"/>
+  <text x="560" y="195" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Loyalty Balance</text>
+  <text x="555" y="238" font-family="'Outfit', sans-serif" font-weight="800" font-size="23" fill="#3b82f6">$485 Credits</text>
+
+  <rect x="40" y="310" width="720" height="150" rx="16" fill="#141a26" stroke="rgba(255,255,255,0.1)"/>
+  <text x="60" y="345" font-family="'Outfit', sans-serif" font-weight="800" font-size="18" fill="#ffffff">Current Vehicle in Cleanroom Bay 2</text>
+  <text x="60" y="375" font-family="'Inter', sans-serif" font-size="15" fill="#ff6a1a">Porsche 911 GT3 RS - Stage 4 Curing Chamber</text>
+  <rect x="60" y="395" width="680" height="16" rx="8" fill="#0f172a"/>
+  <rect x="60" y="395" width="510" height="16" rx="8" fill="url(#dbOrange)"/>
+  <text x="60" y="440" font-family="'Inter', sans-serif" font-size="13" fill="#94a3b8">Estimated Completion: Today at 5:30 PM EST</text>
+</svg>

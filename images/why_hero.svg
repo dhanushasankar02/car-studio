@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080a0f"/>
+      <stop offset="50%" stop-color="#111726"/>
+      <stop offset="100%" stop-color="#05070a"/>
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff6a1a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff9e66" stop-opacity="0.2"/>
+    </linearGradient>
+    <radialGradient id="centerLight" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#ff6a1a" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+  <circle cx="960" cy="450" r="600" fill="url(#centerLight)"/>
+
+  <!-- LED Light Tunnel Bars -->
+  <g stroke="#ff6a1a" stroke-width="3" opacity="0.3" fill="none">
+    <path d="M 200 100 L 960 300 L 1720 100" />
+    <path d="M 150 250 L 960 420 L 1770 250" />
+    <path d="M 100 400 L 960 540 L 1820 400" />
+  </g>
+
+  <!-- Perspective Floor Grid -->
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1.5">
+    <line x1="0" y1="750" x2="1920" y2="750"/>
+    <line x1="0" y1="850" x2="1920" y2="850"/>
+    <line x1="0" y1="960" x2="1920" y2="960"/>
+    <line x1="300" y1="650" x2="0" y2="1080"/>
+    <line x1="600" y1="650" x2="350" y2="1080"/>
+    <line x1="960" y1="650" x2="960" y2="1080"/>
+    <line x1="1320" y1="650" x2="1570" y2="1080"/>
+    <line x1="1620" y1="650" x2="1920" y2="1080"/>
+  </g>
+
+  <!-- Stylized Supercar Silhouette -->
+  <path d="M 400 720 Q 650 680 960 670 Q 1270 680 1520 720 Q 1600 740 1680 770 L 240 770 Q 320 740 400 720 Z" fill="#0d111a" stroke="#ff6a1a" stroke-width="2"/>
+  <path d="M 680 680 Q 820 600 960 595 Q 1100 600 1240 680 Z" fill="none" stroke="url(#accentGlow)" stroke-width="3"/>
+  <ellipse cx="960" cy="740" rx="450" ry="15" fill="#ff6a1a" opacity="0.4" filter="blur(10px)"/>
+</svg>

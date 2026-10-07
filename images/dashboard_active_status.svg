@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" rx="24" fill="#0f172a"/>
+  <rect x="40" y="40" width="720" height="420" rx="20" fill="#141a26" stroke="#ff6a1a" stroke-width="2"/>
+  <text x="70" y="85" font-family="'Outfit', sans-serif" font-weight="800" font-size="24" fill="#ffffff">Live Detailing Progress Tracker</text>
+  <text x="70" y="115" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Porsche 911 GT3 RS - Job #CS-9982</text>
+
+  <circle cx="100" cy="200" r="24" fill="#10b981"/>
+  <path d="M92 200 L98 206 L110 194" stroke="#ffffff" stroke-width="3" fill="none"/>
+  <text x="100" y="245" font-family="'Inter', sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Inspection</text>
+  <line x1="124" y1="200" x2="256" y2="200" stroke="#10b981" stroke-width="4"/>
+
+  <circle cx="280" cy="200" r="24" fill="#10b981"/>
+  <path d="M272 200 L278 206 L290 194" stroke="#ffffff" stroke-width="3" fill="none"/>
+  <text x="280" y="245" font-family="'Inter', sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Decontam</text>
+  <line x1="304" y1="200" x2="436" y2="200" stroke="#10b981" stroke-width="4"/>
+
+  <circle cx="460" cy="200" r="24" fill="#10b981"/>
+  <path d="M452 200 L458 206 L470 194" stroke="#ffffff" stroke-width="3" fill="none"/>
+  <text x="460" y="245" font-family="'Inter', sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Polish</text>
+  <line x1="484" y1="200" x2="616" y2="200" stroke="#ff6a1a" stroke-width="4" stroke-dasharray="6 4"/>
+
+  <circle cx="640" cy="200" r="24" fill="#ff6a1a"/>
+  <text x="640" y="206" font-family="'Outfit', sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">4</text>
+  <text x="640" y="245" font-family="'Outfit', sans-serif" font-weight="700" font-size="12" fill="#ff6a1a" text-anchor="middle">Curing Chamber</text>
+
+  <rect x="70" y="290" width="660" height="140" rx="16" fill="#0f172a" stroke="rgba(255,255,255,0.1)"/>
+  <text x="100" y="330" font-family="'Outfit', sans-serif" font-weight="700" font-size="16" fill="#ffffff">Assigned Master Technician: Marcus Vance</text>
+  <text x="100" y="360" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Infrared Curing Chamber 2: 68 C Bake Cycle Active</text>
+  <rect x="100" y="380" width="160" height="34" rx="6" fill="#ff6a1a"/>
+  <text x="180" y="402" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle">View Live Feed</text>
+</svg>

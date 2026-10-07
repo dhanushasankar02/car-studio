@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" rx="24" fill="#0f172a"/>
+  <rect x="40" y="40" width="720" height="420" rx="20" fill="#141a26" stroke="#ff6a1a" stroke-width="2"/>
+  <text x="70" y="85" font-family="'Outfit', sans-serif" font-weight="800" font-size="24" fill="#ffffff">Package &amp; Pricing Tier Builder</text>
+  <rect x="70" y="130" width="660" height="280" rx="14" fill="#1e293b" stroke="rgba(255,255,255,0.1)"/>
+  <text x="100" y="175" font-family="'Outfit', sans-serif" font-weight="700" font-size="18" fill="#ff6a1a">Bronze, Silver, Gold &amp; Platinum Master Tiers</text>
+  <text x="100" y="210" font-family="'Inter', sans-serif" font-size="14" fill="#ffffff">Configure package inclusion features, coating warranties &amp; curing chamber times</text>
+  <rect x="100" y="240" width="160" height="36" rx="8" fill="#ff6a1a"/>
+  <text x="180" y="263" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#ffffff" text-anchor="middle">Add New Package</text>
+</svg>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="adminBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="adminAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a1a"/>
+      <stop offset="100%" stop-color="#d94600"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="24" fill="url(#adminBg)"/>
+  <rect x="40" y="40" width="720" height="90" rx="16" fill="#141a26" stroke="#ff6a1a" stroke-width="2"/>
+  <circle cx="90" cy="85" r="28" fill="url(#adminAccent)"/>
+  <text x="90" y="92" font-family="'Outfit', sans-serif" font-weight="800" font-size="22" fill="#ffffff" text-anchor="middle">AD</text>
+  <text x="140" y="78" font-family="'Outfit', sans-serif" font-weight="800" font-size="22" fill="#ffffff">Car Studio Master Admin Control</text>
+  <text x="140" y="105" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Cleanroom Bays: 4/4 Active | Revenue YTD: $384,200</text>
+
+  <rect x="40" y="160" width="220" height="130" rx="16" fill="#141a26" stroke="rgba(255,255,255,0.1)"/>
+  <text x="60" y="195" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Monthly Revenue</text>
+  <text x="60" y="240" font-family="'Outfit', sans-serif" font-weight="800" font-size="25" fill="#ff6a1a">$48,920</text>
+
+  <rect x="290" y="160" width="220" height="130" rx="16" fill="#141a26" stroke="rgba(255,255,255,0.1)"/>
+  <text x="310" y="195" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Pending Bookings</text>
+  <text x="310" y="240" font-family="'Outfit', sans-serif" font-weight="800" font-size="25" fill="#10b981">8 Active</text>
+
+  <rect x="540" y="160" width="220" height="130" rx="16" fill="#141a26" stroke="rgba(255,255,255,0.1)"/>
+  <text x="560" y="195" font-family="'Inter', sans-serif" font-size="14" fill="#94a3b8">Total VIP Clients</text>
+  <text x="560" y="240" font-family="'Outfit', sans-serif" font-weight="800" font-size="25" fill="#3b82f6">342 Members</text>
+
+  <rect x="40" y="310" width="720" height="150" rx="16" fill="#141a26" stroke="rgba(255,255,255,0.1)"/>
+  <text x="60" y="345" font-family="'Outfit', sans-serif" font-weight="800" font-size="18" fill="#ffffff">Live Cleanroom Monitoring Matrix</text>
+  <rect x="60" y="370" width="150" height="70" rx="10" fill="#1e293b" stroke="#ff6a1a"/>
+  <text x="135" y="400" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#ff6a1a" text-anchor="middle">Bay 1: Active</text>
+  <text x="135" y="420" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Porsche GT3 RS</text>
+
+  <rect x="230" y="370" width="150" height="70" rx="10" fill="#1e293b" stroke="#10b981"/>
+  <text x="305" y="400" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#10b981" text-anchor="middle">Bay 2: Curing</text>
+  <text x="305" y="420" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Mercedes G63</text>
+
+  <rect x="400" y="370" width="150" height="70" rx="10" fill="#1e293b" stroke="#3b82f6"/>
+  <text x="475" y="400" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#3b82f6" text-anchor="middle">Bay 3: Wash Spa</text>
+  <text x="475" y="420" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">BMW M4 CSL</text>
+
+  <rect x="570" y="370" width="170" height="70" rx="10" fill="#1e293b" stroke="rgba(255,255,255,0.2)"/>
+  <text x="655" y="400" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#94a3b8" text-anchor="middle">Bay 4: Ready</text>
+  <text x="655" y="420" font-family="'Inter', sans-serif" font-size="11" fill="#ffffff" text-anchor="middle">Ferrari F8</text>
+</svg>

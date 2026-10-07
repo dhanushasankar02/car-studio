@@ -1,0 +1,2593 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Services | Car Studio Precision Detailing & Surface Armor</title>
+    
+    <!-- Google Fonts & Font Awesome 6 Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ---------- RESET & SYSTEM DESIGN TOKENS ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --surface-glass: rgba(255, 255, 255, 0.92);
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #ff6a1a;
+            --accent-hover: #e5590c;
+            --accent-glow: rgba(255, 106, 26, 0.25);
+            --border-light: rgba(15, 23, 42, 0.12);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.12);
+            --transition-smooth: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+        }
+
+        body.dark-mode {
+            --bg-primary: #080a0f;
+            --bg-secondary: #0e121b;
+            --surface-glass: rgba(14, 18, 27, 0.92);
+            --card-bg: #141a26;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.65);
+        }
+
+        /* RTL Icon Flipping & Layout Fixes */
+        body[dir="rtl"] .fa-angle-right,
+        body[dir="rtl"] .fa-arrow-right,
+        body[dir="rtl"] .fa-chevron-right,
+        body[dir="rtl"] .fa-chevron-left,
+        body[dir="rtl"] .fa-angle-double-right {
+            transform: scaleX(-1);
+            display: inline-block;
+        }
+
+        body {
+            font-family: var(--font-main);
+            font-size: 1rem;
+            line-height: 1.6;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- STICKY GLASS NAVBAR ---------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: var(--surface-glass);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .logo-svg {
+            height: 58px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 2px 8px var(--accent-glow));
+            transition: var(--transition-smooth);
+        }
+
+        .mobile-header .logo-svg {
+            height: 44px;
+        }
+
+        .logo-area:hover .logo-svg {
+            transform: scale(1.04);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.55rem 1rem;
+            color: var(--text-primary);
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: var(--transition-smooth);
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 8px;
+            min-width: 210px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 0.6rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition-smooth);
+            z-index: 1000;
+            list-style: none;
+        }
+
+        body[dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.65rem 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .dropdown-item i {
+            color: var(--accent);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 0.92rem;
+            font-weight: 600;
+            font-family: inherit;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .action-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--accent-glow);
+        }
+
+        .btn-login {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        /* ---------- MOBILE PANEL ---------- */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-panel {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100%;
+            background: var(--card-bg);
+            z-index: 10001;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            transition: right 0.3s ease;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        body[dir="rtl"] .mobile-panel {
+            right: auto;
+            left: -320px;
+            transition: left 0.3s ease;
+        }
+
+        .mobile-panel.active {
+            right: 0;
+        }
+
+        body[dir="rtl"] .mobile-panel.active {
+            left: 0;
+            right: auto;
+        }
+
+        .mobile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1rem;
+        }
+
+        .mobile-close {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .mobile-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mobile-link-item {
+            width: 100%;
+        }
+
+        .mobile-link {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .mobile-link:hover, .mobile-link.active {
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+        }
+
+        .mobile-accordion-content {
+            display: none;
+            list-style: none;
+            padding-left: 1.5rem;
+            margin-top: 0.4rem;
+        }
+
+        .mobile-accordion-content.show {
+            display: block;
+        }
+
+        .mobile-sublink {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.5rem 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .mobile-actions {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        /* ---------- UNIQUE FRAMER MOTION ANIMATION DEFINITIONS ---------- */
+        [data-framer-section] {
+            opacity: 0;
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Section 1: 3D Curtain Rise */
+        [data-framer-section="srv-sec1-curtain-rise"] {
+            transform: perspective(1200px) rotateX(-18deg) translateY(60px) scale(0.95);
+        }
+        [data-framer-section="srv-sec1-curtain-rise"].framer-animated {
+            opacity: 1;
+            transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1);
+        }
+
+        /* Section 2: Hexagon Blur Pop */
+        [data-framer-section="srv-sec2-hexagon-pop"] {
+            transform: scale(0.88) translateY(45px);
+            filter: blur(8px);
+        }
+        [data-framer-section="srv-sec2-hexagon-pop"].framer-animated {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+        }
+
+        /* Section 3: Asymmetric Split Slide */
+        [data-framer-section="srv-sec3-split-slide"] {
+            transform: translateX(-50px) translateY(30px);
+        }
+        [data-framer-section="srv-sec3-split-slide"].framer-animated {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        /* Section 4: Radial Radar Sweep */
+        [data-framer-section="srv-sec4-radar-sweep"] {
+            transform: perspective(1000px) rotateY(-15deg) scale(0.92);
+        }
+        [data-framer-section="srv-sec4-radar-sweep"].framer-animated {
+            opacity: 1;
+            transform: perspective(1000px) rotateY(0deg) scale(1);
+        }
+
+        /* Section 5: 3D Flip Stagger */
+        [data-framer-section="srv-sec5-flip-stagger"] {
+            transform: perspective(1000px) rotateY(20deg) translateY(50px);
+        }
+        [data-framer-section="srv-sec5-flip-stagger"].framer-animated {
+            opacity: 1;
+            transform: perspective(1000px) rotateY(0deg) translateY(0);
+        }
+
+        /* Section 6: Shield Glow Burst */
+        [data-framer-section="srv-sec6-shield-glow-burst"] {
+            transform: scale(0.9) translateY(40px);
+        }
+        [data-framer-section="srv-sec6-shield-glow-burst"].framer-animated {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* ---------- PAGE SECTIONS LAYOUT & STYLES ---------- */
+        .services-main {
+            margin-top: 80px;
+            flex: 1;
+        }
+
+        .section-padding {
+            padding: 5.5rem 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+            padding: 0.45rem 1.3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 106, 26, 0.25);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        /* ---------- SECTION 1: HERO SHOWCASE ---------- */
+        .srv-hero-wrap {
+            position: relative;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-light);
+            padding: 4rem 2rem 5rem 2rem;
+        }
+
+        .srv-hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .hero-text-box h1 {
+            font-family: var(--font-heading);
+            font-size: 3.4rem;
+            font-weight: 900;
+            line-height: 1.15;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-text-box p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            padding: 1.2rem 1.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .stat-card-pill:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card-num {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-card-lbl {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .hero-media-wrapper {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--border-light);
+        }
+
+        .hero-media-img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ---------- SECTION 2: NANOTECH PROTECTION MATRIX ---------- */
+        .srv-matrix-sec {
+            background: var(--bg-secondary);
+        }
+
+        .matrix-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .matrix-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .matrix-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .matrix-card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .matrix-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .matrix-card-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .matrix-card-banner {
+            border-radius: 16px;
+            overflow: hidden;
+            height: 180px;
+            margin-bottom: 1.2rem;
+        }
+
+        .matrix-card-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ---------- SECTION 3: CLEAN-ROOM PROTOCOL ---------- */
+        .srv-protocol-sec {
+            background: var(--bg-primary);
+        }
+
+        .protocol-stage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3.5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .protocol-steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .protocol-step-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            padding: 1.4rem 1.6rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .protocol-step-item:hover, .protocol-step-item.active {
+            border-color: var(--accent);
+            background: rgba(255, 106, 26, 0.08);
+            transform: translateX(8px);
+        }
+
+        body[dir="rtl"] .protocol-step-item:hover, body[dir="rtl"] .protocol-step-item.active {
+            transform: translateX(-8px);
+        }
+
+        .protocol-step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .protocol-step-item.active .protocol-step-num {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .protocol-step-text h4 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .protocol-step-text p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .protocol-display-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .protocol-display-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ---------- SECTION 4: EXECUTIVE INTERIOR SPA ---------- */
+        .srv-interior-sec {
+            background: var(--bg-secondary);
+        }
+
+        .interior-layout-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .interior-feature-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .interior-feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .interior-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .interior-feature-item i {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-top: 0.2rem;
+        }
+
+        .interior-feature-item h4 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .interior-feature-item p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .interior-media-card {
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--border-light);
+        }
+
+        .interior-media-img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ---------- SECTION 5: BESPOKE COLOR STYLING HUB ---------- */
+        .srv-styling-sec {
+            background: var(--bg-primary);
+        }
+
+        .styling-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3.5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .styling-media-card {
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--border-light);
+        }
+
+        .styling-media-img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .finish-picker-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .finish-card-option {
+            background: var(--card-bg);
+            border: 2px solid var(--border-light);
+            border-radius: 20px;
+            padding: 1.4rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .finish-card-option:hover, .finish-card-option.active {
+            border-color: var(--accent);
+            background: rgba(255, 106, 26, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .finish-card-option h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .finish-card-option p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ---------- SECTION 6: CONCIERGE HANDOVER & GUARANTEE ---------- */
+        .srv-concierge-sec {
+            background: var(--bg-secondary);
+        }
+
+        .concierge-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3.5rem;
+            align-items: start;
+            margin-top: 3rem;
+        }
+
+        .guarantee-shield-box {
+            background: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: 28px;
+            padding: 2.8rem;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .guarantee-icon-lg {
+            font-size: 4.2rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            filter: drop-shadow(0 6px 20px var(--accent-glow));
+        }
+
+        .guarantee-shield-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .guarantee-shield-box p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .faq-accordion-box {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-card-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .faq-card-trigger {
+            width: 100%;
+            padding: 1.4rem 1.6rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        body[dir="rtl"] .faq-card-trigger {
+            text-align: right;
+        }
+
+        .faq-card-trigger i {
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-card-item.active .faq-card-trigger i {
+            transform: rotate(180deg);
+        }
+
+        .faq-card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding: 0 1.6rem;
+        }
+
+        .faq-card-item.active .faq-card-body {
+            max-height: 250px;
+            padding: 0 1.6rem 1.6rem 1.6rem;
+        }
+
+        /* ---------- FOOTER STYLING ---------- */
+        .footer {
+            background: #080A0F;
+            color: #F8FAFC;
+            padding: 5rem 2rem 2rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .footer-desc {
+            color: #94A3B8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 1.2rem;
+            margin-bottom: 1.5rem;
+            max-width: 360px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #F8FAFC;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-link {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-link i {
+            font-size: 0.75rem;
+            color: var(--accent);
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.06);
+            color: #FFFFFF;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .newsletter-btn {
+            background: var(--accent);
+            color: #FFFFFF;
+            font-weight: 700;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .newsletter-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+
+        /* ---------- LOGIN MODAL ---------- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 10005;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 440px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        body[dir="rtl"] .modal-close {
+            right: auto;
+            left: 20px;
+        }
+
+        .login-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .login-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            outline: none;
+            font-family: inherit;
+        }
+
+        .login-submit {
+            width: 100%;
+            background: var(--accent);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 0.85rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            margin-top: 0.6rem;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            transition: var(--transition-smooth);
+        }
+
+        .login-submit:hover {
+            background: var(--accent-hover);
+        }
+
+        /* RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 992px) {
+            .nav-links, .nav-actions .action-btn, .nav-actions .btn-login {
+                display: none !important;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .srv-hero-grid, .protocol-stage-grid, .interior-layout-grid, .styling-grid-layout, .concierge-grid-layout, .footer-container {
+                grid-template-columns: 1fr;
+            }
+            .hero-text-box h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    
+
+/* ==========================================================================
+   UNIFIED SITE-WIDE FOOTER STYLING (MATCHING EXACT CAR STUDIO DESIGN)
+   ========================================================================== */
+.footer {
+    background: #080a0f !important;
+    color: #f8fafc !important;
+    padding: 4.5rem 2rem 2rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin-top: auto !important;
+}
+
+body:not(.dark-mode) .footer {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+.footer-container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
+    gap: 3.5rem !important;
+    margin-bottom: 3.5rem !important;
+}
+
+.footer-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+}
+
+.footer-desc {
+    color: #94a3b8 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1rem !important;
+    max-width: 380px !important;
+}
+
+.social-links {
+    display: flex !important;
+    gap: 0.8rem !important;
+}
+
+.social-btn {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #f8fafc !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.social-btn i {
+    color: #f8fafc !important;
+}
+
+.social-btn:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #ffffff !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 15px var(--accent-glow) !important;
+}
+
+.social-btn:hover i {
+    color: #ffffff !important;
+}
+
+.footer-col h4 {
+    font-family: var(--font-heading) !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.footer-links {
+    list-style: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+}
+
+.footer-link {
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    font-size: 0.95rem !important;
+    transition: var(--transition-smooth) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.footer-link i {
+    font-size: 0.75rem !important;
+    color: var(--accent) !important;
+}
+
+.footer-link:hover {
+    color: var(--accent) !important;
+    transform: translateX(4px) !important;
+}
+
+body[dir="rtl"] .footer-link:hover {
+    transform: translateX(-4px) !important;
+}
+
+.newsletter-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+}
+
+.newsletter-input {
+    width: 100% !important;
+    padding: 0.85rem 1.2rem !important;
+    border-radius: 50px !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
+    outline: none !important;
+    font-family: inherit !important;
+    font-size: 0.9rem !important;
+}
+
+.newsletter-btn {
+    background: var(--accent) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    border: none !important;
+    padding: 0.85rem 1.5rem !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    transition: var(--transition-smooth) !important;
+    box-shadow: 0 4px 15px var(--accent-glow) !important;
+}
+
+.newsletter-btn:hover {
+    background: var(--accent-hover) !important;
+}
+
+.footer-bottom {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-top: 1.8rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+}
+
+@media (max-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2.5rem !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .footer-container {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   ULTRA-PRECISION RTL & DARK MODE ICON & LAYOUT ENGINE (SITE-WIDE)
+   ========================================================================== */
+/* 1. Universal RTL Icon Horizontal Flip */
+[dir="rtl"] .fa-angle-right,
+[dir="rtl"] .fa-arrow-right,
+[dir="rtl"] .fa-chevron-right,
+[dir="rtl"] .fa-chevron-left,
+[dir="rtl"] .fa-angle-double-right,
+[dir="rtl"] .fa-arrow-left,
+[dir="rtl"] .fa-angle-left,
+[dir="rtl"] .fa-arrow-right-long,
+[dir="rtl"] .fa-arrow-left-long,
+[dir="rtl"] .fa-long-arrow-alt-right,
+[dir="rtl"] .fa-long-arrow-alt-left,
+[dir="rtl"] .fa-caret-right,
+[dir="rtl"] .fa-caret-left,
+[dir="rtl"] .fa-arrow-circle-right,
+[dir="rtl"] .fa-arrow-circle-left,
+[dir="rtl"] .fa-paper-plane,
+[dir="rtl"] .fa-right-to-bracket,
+[dir="rtl"] .fa-left-to-bracket,
+[dir="rtl"] .fa-external-link-alt,
+[dir="rtl"] .fa-arrow-up-right-from-square,
+[dir="rtl"] .footer-link i.fa-chevron-right,
+html[dir="rtl"] .fa-angle-right,
+html[dir="rtl"] .fa-arrow-right,
+html[dir="rtl"] .fa-chevron-right,
+html[dir="rtl"] .fa-chevron-left,
+html[dir="rtl"] .fa-angle-double-right,
+html[dir="rtl"] .fa-arrow-left,
+html[dir="rtl"] .fa-angle-left,
+html[dir="rtl"] .footer-link i.fa-chevron-right,
+body[dir="rtl"] .fa-angle-right,
+body[dir="rtl"] .fa-arrow-right,
+body[dir="rtl"] .fa-chevron-right,
+body[dir="rtl"] .fa-chevron-left,
+body[dir="rtl"] .fa-angle-double-right,
+body[dir="rtl"] .fa-arrow-left,
+body[dir="rtl"] .fa-angle-left,
+body[dir="rtl"] .footer-link i.fa-chevron-right {
+    transform: scaleX(-1) !important;
+    display: inline-block !important;
+}
+
+/* 2. RTL Text Alignment & Layout Adjustments */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .navbar,
+[dir="rtl"] .nav-container,
+[dir="rtl"] .footer,
+[dir="rtl"] .footer-container,
+[dir="rtl"] .section-header,
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-desc,
+[dir="rtl"] .hero-text-box,
+[dir="rtl"] .footer-bottom {
+    text-align: right;
+}
+
+[dir="rtl"] .dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+}
+
+[dir="rtl"] .dropdown-item:hover,
+[dir="rtl"] .footer-link:hover,
+[dir="rtl"] .protocol-step-item:hover,
+[dir="rtl"] .step-nav-card:hover {
+    transform: translateX(-4px) !important;
+}
+
+[dir="rtl"] .mobile-panel {
+    right: auto !important;
+    left: -380px !important;
+    border-left: none !important;
+    border-right: 1px solid var(--border-light) !important;
+    transition: left 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+}
+
+[dir="rtl"] .mobile-panel.active {
+    left: 0 !important;
+    right: auto !important;
+}
+
+[dir="rtl"] .modal-close,
+[dir="rtl"] .close-drawer-btn,
+[dir="rtl"] .modal-close-btn {
+    right: auto !important;
+    left: 20px !important;
+}
+
+[dir="rtl"] .step-num,
+[dir="rtl"] .service-card-badge {
+    right: auto !important;
+    left: 1.2rem !important;
+}
+
+/* 3. RTL Icons in Dark Mode Explicit Inversion & High Contrast Fix */
+body.dark-mode[dir="rtl"] i,
+body.dark-mode [dir="rtl"] i,
+html[dir="rtl"] body.dark-mode i,
+.dark-mode[dir="rtl"] .social-btn i,
+.dark-mode[dir="rtl"] .footer-link i,
+.dark-mode[dir="rtl"] .action-btn i,
+.dark-mode[dir="rtl"] .btn-login i,
+.dark-mode[dir="rtl"] .dropdown-item i {
+    opacity: 1 !important;
+}
+
+/* 4. RTL Button & Input Flex Direction & Icon Margins */
+[dir="rtl"] .action-btn,
+[dir="rtl"] .btn-login,
+[dir="rtl"] .dropdown-item,
+[dir="rtl"] .footer-link,
+[dir="rtl"] .mobile-nav-link,
+[dir="rtl"] .mobile-sublink {
+    flex-direction: row;
+}
+
+[dir="rtl"] .action-btn i,
+[dir="rtl"] .btn-login i,
+[dir="rtl"] .dropdown-item i,
+[dir="rtl"] .footer-link i {
+    margin-right: 0;
+    margin-left: 6px;
+}
+
+
+
+/* ==========================================================================
+   RTL / LTR TOGGLE BUTTON STYLING (DARK MODE & LIGHT MODE COMPATIBLE)
+   ========================================================================== */
+#rtlBtn, #mobileRtlBtn {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-light) !important;
+    color: var(--text-primary) !important;
+    font-size: 0.92rem !important;
+    font-weight: 600 !important;
+    font-family: inherit !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: var(--transition-smooth) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+#rtlBtn i, #mobileRtlBtn i {
+    color: var(--accent) !important;
+    font-size: 0.95rem !important;
+}
+
+#rtlBtn:hover, #mobileRtlBtn:hover {
+    border-color: var(--accent) !important;
+    background: rgba(255, 106, 26, 0.12) !important;
+    color: var(--accent) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px var(--accent-glow) !important;
+}
+
+body.dark-mode #rtlBtn, body.dark-mode #mobileRtlBtn {
+    background: var(--card-bg) !important;
+    border-color: var(--border-light) !important;
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
+    color: var(--accent) !important;
+}
+
+
+
+/* ==========================================================================
+   NAVBAR ONE-LINE SINGLE HORIZONTAL ROW & NO-WRAP FIX (SITE-WIDE)
+   ========================================================================== */
+.navbar, .nav-container, .nav-links, .nav-actions {
+    flex-wrap: nowrap !important;
+}
+
+.nav-container {
+    max-width: 1440px !important;
+    padding: 0.65rem 1.5rem !important;
+    gap: 0.8rem !important;
+}
+
+.nav-links {
+    gap: 0.25rem !important;
+}
+
+.nav-link, .dropdown-item, .action-btn, .logo-area {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+}
+
+.nav-link {
+    font-size: 0.92rem !important;
+    padding: 0.5rem 0.85rem !important;
+}
+
+.nav-actions {
+    gap: 0.5rem !important;
+}
+
+.action-btn {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.88rem !important;
+}
+
+@media (max-width: 1200px) {
+    .nav-link {
+        font-size: 0.88rem !important;
+        padding: 0.45rem 0.65rem !important;
+    }
+    .nav-container {
+        padding: 0.6rem 1rem !important;
+        gap: 0.5rem !important;
+    }
+}
+
+/* FORCE HIDE FLOATING RTL & NAVBAR ACTION BUTTONS ON MOBILE VIEW (LTR & RTL COMPATIBLE) */
+@media (max-width: 1100px) {
+    .nav-actions .action-btn,
+    .nav-actions #rtlBtn,
+    .nav-actions #darkModeBtn,
+    .nav-actions #loginModalBtn,
+    .top-controls-floating #rtlBtn,
+    [dir="rtl"] .nav-actions .action-btn,
+    body[dir="rtl"] .nav-actions .action-btn,
+    [dir="rtl"] .top-controls-floating #rtlBtn,
+    body[dir="rtl"] .top-controls-floating #rtlBtn,
+    html[dir="rtl"] .nav-actions .action-btn,
+    html[dir="rtl"] .top-controls-floating #rtlBtn {
+        display: none !important;
+    }
+}
+/* COMPREHENSIVE MOBILE LAYOUT & ALIGNMENT OVERFLOW FIXES */
+@media (max-width: 768px) {
+    .turntable-angles-grid, [class*="-angles-grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    .angle-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        white-space: normal !important;
+        text-align: center !important;
+    }
+    .sec-badge, .section-badge, .hero-badge-tag, .sec-title-box span, [class*="-badge"] {
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        display: inline-block !important;
+    }
+    h1, .hero-main-title, .hero-title, .page-title, .section-title {
+        font-size: clamp(1.5rem, 6vw, 2.2rem) !important;
+        line-height: 1.25 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+    }
+    .hero-stats-banner, .stats-grid-3col, .stats-grid, [class*="-stats-banner"] {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 1rem !important;
+    }
+    .stat-banner-box, .stat-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .hours-row {
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        gap: 0.4rem 0.5rem !important;
+        padding: 0.85rem 0 !important;
+        align-items: center !important;
+    }
+    .hours-row .time-slot {
+        grid-column: 1 / -1 !important;
+        color: var(--accent) !important;
+        font-weight: 700 !important;
+        font-size: 0.88rem !important;
+        padding-left: 1.8rem !important;
+    }
+    body[dir="rtl"] .hours-row .time-slot {
+        padding-left: 0 !important;
+        padding-right: 1.8rem !important;
+    }
+}
+/* COMPREHENSIVE MOBILE HERO & BUTTON ALIGNMENT FIXES */
+@media (max-width: 768px) {
+    .sec-badge, .section-badge, .hero-badge-tag, .sec-title-box span, [class*="-badge"] {
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        display: inline-block !important;
+        line-height: 1.4 !important;
+        padding: 0.5rem 1rem !important;
+    }
+    h1, .hero-main-title, .hero-title, .page-title, .section-title {
+        font-size: clamp(1.6rem, 7vw, 2.3rem) !important;
+        line-height: 1.25 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+        padding: 0 0.5rem !important;
+    }
+    .package-sec p, #pkg-sec1-hero p, .hero-text-box p {
+        font-size: 0.95rem !important;
+        padding: 0 0.5rem !important;
+        line-height: 1.5 !important;
+    }
+    .pkg-cycle-wrap, [class*="-cycle-wrap"] {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.75rem !important;
+        align-items: center !important;
+    }
+    .cycle-btn, .pkg-cycle-wrap .action-btn {
+        width: 100% !important;
+        max-width: 320px !important;
+        justify-content: center !important;
+        white-space: normal !important;
+        text-align: center !important;
+    }
+}
+</style>
+</head>
+<body>
+
+    <!-- ==================== STICKY GLASS NAVBAR ==================== -->
+        <!-- ==================== STICKY GLASS NAVBAR ==================== -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo Area -->
+            <a href="index.html" class="logo-area" aria-label="Car Studio Home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" class="logo-svg" height="58">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FF3800"/>
+                        </linearGradient>
+                        <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FFA066"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(10, 10)">
+                        <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGrad)"/>
+                        <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
+                        <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
+                        <circle cx="28" cy="54" r="5" fill="#12151C"/>
+                        <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                    </g>
+                    <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGrad)" letter-spacing="2">CAR STUDIO</text>
+                    <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
+                </svg>
+            </a>
+
+            <!-- Navigation Links (One Line Horizontal Order) -->
+            <ul class="nav-links">
+                <li class="nav-item dropdown">
+                    <a href="index.html" class="nav-link ">
+                        Home <i class="fas fa-chevron-down chevron"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item"><i class="fas fa-layer-group"></i> Home 1</a></li>
+                        <li><a href="home2.html" class="dropdown-item"><i class="fas fa-desktop"></i> Home 2</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link ">Gallery</a></li>
+                <li class="nav-item"><a href="packages.html" class="nav-link ">Packages</a></li>
+                <li class="nav-item"><a href="why-choose-us.html" class="nav-link ">Why Choose Us</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link ">Contact</a></li>
+                <li class="nav-item dropdown">
+                    <a href="dashboard.html" class="nav-link ">
+                        Dashboard <i class="fas fa-chevron-down chevron"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="dashboard.html" class="dropdown-item"><i class="fas fa-user-circle"></i> User Dashboard</a></li>
+                        <li><a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-shield-alt"></i> Admin Dashboard</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Right Side Controls (Dark Mode -> RTL -> Login -> Menu Toggle) -->
+            <div class="nav-actions">
+                <button class="action-btn" id="darkModeBtn" aria-label="Toggle Theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                    <span id="themeLabel">Dark</span>
+                </button>
+
+                <button class="action-btn" id="rtlBtn" aria-label="Toggle Layout Direction">
+                    <i class="fas fa-right-left" id="rtlIcon"></i>
+                    <span id="rtlLabel">RTL</span>
+                </button>
+
+                <a href="login.html" class="action-btn btn-login" id="loginModalBtn">
+                    <i class="fas fa-lock"></i>
+                    <span>Login</span>
+                </a>
+
+                <button class="menu-toggle" id="mobileToggleBtn" aria-label="Open Mobile Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MOBILE SLIDE-OUT PANEL ==================== -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-panel" id="mobilePanel">
+        <div class="mobile-header">
+            <a href="index.html" class="logo-area">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" class="logo-svg" height="44">
+                    <defs>
+                        <linearGradient id="logoGradMob" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FF3800"/>
+                        </linearGradient>
+                        <linearGradient id="textGradMob" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FFA066"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(10, 10)">
+                        <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGradMob)"/>
+                        <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
+                        <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
+                        <circle cx="28" cy="54" r="5" fill="#12151C"/>
+                        <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                    </g>
+                    <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGradMob)" letter-spacing="2">CAR STUDIO</text>
+                    <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
+                </svg>
+            </a>
+            <button class="mobile-close" id="mobileCloseBtn"><i class="fas fa-times"></i></button>
+        </div>
+
+        <ul class="mobile-links">
+            <li class="mobile-link-item">
+                <div class="mobile-link" id="mobileHomeAcc">
+                    <span>Home</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-accordion-content" id="mobileHomeContent">
+                    <li><a href="index.html" class="mobile-sublink"><i class="fas fa-layer-group"></i> Home 1</a></li>
+                    <li><a href="home2.html" class="mobile-sublink"><i class="fas fa-desktop"></i> Home 2</a></li>
+                </ul>
+            </li>
+            <li class="mobile-link-item"><a href="services.html" class="mobile-link active">Services</a></li>
+            <li class="mobile-link-item"><a href="gallery.html" class="mobile-link">Gallery</a></li>
+            <li class="mobile-link-item"><a href="packages.html" class="mobile-link">Packages</a></li>
+            <li class="mobile-link-item"><a href="why-choose-us.html" class="mobile-link">Why Choose Us</a></li>
+            <li class="mobile-link-item"><a href="contact.html" class="mobile-link">Contact</a></li>
+            <li class="mobile-link-item">
+                <div class="mobile-link" id="mobileDashAcc">
+                    <span>Dashboard</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-accordion-content" id="mobileDashContent">
+                    <li><a href="dashboard.html" class="mobile-sublink"><i class="fas fa-user-circle"></i> User Dashboard</a></li>
+                    <li><a href="admin-dashboard.html" class="mobile-sublink"><i class="fas fa-shield-alt"></i> Admin Dashboard</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="mobile-actions">
+            <button class="action-btn" id="mobileDarkBtn">
+                <i class="fas fa-moon" id="mobileThemeIcon"></i>
+                <span id="mobileThemeLabel">Dark Mode</span>
+            </button>
+            <button class="action-btn" id="mobileRtlBtn">
+                <i class="fas fa-right-left" id="mobileRtlIcon"></i>
+                <span id="mobileRtlLabel">RTL Layout</span>
+            </button>
+            <a href="login.html" class="action-btn btn-login" id="mobileLoginModalBtn">
+                <i class="fas fa-lock"></i>
+                <span>Login</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN SERVICES PAGE CONTENT (6 UNIQUE SECTIONS) ==================== -->
+    <main class="services-main">
+
+        <!-- SECTION 1: AERO-TECH STUDIO SHOWCASE (Hero Section) -->
+        <section class="srv-hero-wrap" id="srv-sec1-hero" data-framer-section="srv-sec1-curtain-rise">
+            <div class="container">
+                <div class="srv-hero-grid">
+                    <div class="hero-text-box">
+                        <div class="section-badge"><i class="fas fa-shield-alt"></i> Master Studio Vault</div>
+                        <h1>Surgical Detailing &amp; Precision Surface Engineering</h1>
+                        <p>Welcome to Car Studio's flagship engineering laboratory. We synthesize nanotechnology 9H ceramic matrixes, laser paint depth profiling, self-healing PPF armor, and bespoke luxury interior restoration.</p>
+                        
+                        <div class="hero-stats-row">
+                            <div class="stat-card-pill">
+                                <div class="stat-card-num">15,000+</div>
+                                <div class="stat-card-lbl">Vehicles Serviced</div>
+                            </div>
+                            <div class="stat-card-pill">
+                                <div class="stat-card-num">99.8%</div>
+                                <div class="stat-card-lbl">Mirror Gloss Index</div>
+                            </div>
+                            <div class="stat-card-pill">
+                                <div class="stat-card-num">10-Yr</div>
+                                <div class="stat-card-lbl">Self-Heal Armor</div>
+                            </div>
+                            <div class="stat-card-pill">
+                                <div class="stat-card-num">5000K</div>
+                                <div class="stat-card-lbl">Daylight Audit</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="#srv-sec2-matrix" class="action-btn btn-login" style="padding: 0.85rem 1.8rem; font-size: 1rem;">
+                                <i class="fas fa-cubes"></i> Explore 6 Services
+                            </a>
+                            <a href="contact.html" class="action-btn" style="padding: 0.85rem 1.8rem; font-size: 1rem;">
+                                <i class="fas fa-calendar-check"></i> Book Studio Slot
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-media-wrapper">
+                        <img src="images/services_sec1_gemini.jpg" alt="Car Studio High-Tech Detailing Cleanroom" class="hero-media-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 3D NANOTECHNOLOGY SURFACE ARMOR & CERAMIC MATRIX -->
+        <section class="srv-matrix-sec section-padding" id="srv-sec2-matrix" data-framer-section="srv-sec2-hexagon-pop">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3.5rem;">
+                    <div class="section-badge"><i class="fas fa-atom"></i> Molecular Armor</div>
+                    <h2 class="section-title">SiO2 Nano-Ceramic &amp; Self-Healing PPF Shielding</h2>
+                    <p class="section-desc" style="margin: 0 auto;">Formulated with aerospace-grade silicon dioxide and graphene matrixes to create an impenetrable hydrophobic barrier against environmental contaminants.</p>
+                </div>
+
+                <div class="matrix-cards-container">
+                    <div class="matrix-card">
+                        <div class="matrix-card-banner">
+                            <img src="images/services_sec2_gemini.jpg" alt="9H Nano Ceramic Coating Droplets">
+                        </div>
+                        <div class="matrix-card-icon"><i class="fas fa-gem"></i></div>
+                        <h3 class="matrix-card-title">9H Covalent SiO2 Shield</h3>
+                        <p class="matrix-card-desc">Covalently bonds to clear coats forming an ultradurable glass layer rated 9H Mohs hardness to defend against oxidation, bird drop etching, and UV rays.</p>
+                        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.9rem; color: var(--accent);">
+                            <span>Durability: 5 Years</span>
+                            <span>Gloss: +65%</span>
+                        </div>
+                    </div>
+
+                    <div class="matrix-card">
+                        <div class="matrix-card-banner">
+                            <img src="images/services_sec3_gemini.jpg" alt="Self-Healing Paint Protection Film">
+                        </div>
+                        <div class="matrix-card-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="matrix-card-title">Self-Healing PPF Armor</h3>
+                        <p class="matrix-card-desc">8mil high-clarity thermoplastic polyurethane (TPU) film engineered with elastomeric memory that heat-heals swirl marks under ambient sunlight.</p>
+                        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.9rem; color: var(--accent);">
+                            <span>Armor: 10 Years</span>
+                            <span>Thickness: 8 mil</span>
+                        </div>
+                    </div>
+
+                    <div class="matrix-card">
+                        <div class="matrix-card-banner">
+                            <img src="images/services_sec1_gemini.jpg" alt="Superhydrophobic Water Beading">
+                        </div>
+                        <div class="matrix-card-icon"><i class="fas fa-droplet"></i></div>
+                        <h3 class="matrix-card-title">Superhydrophobic Optics</h3>
+                        <p class="matrix-card-desc">Water contact angle exceeding 115 degrees repels rain, mud, and road grime so water beads instantly slide off vehicle glass and paint bodywork.</p>
+                        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.9rem; color: var(--accent);">
+                            <span>Angle: &gt; 115°</span>
+                            <span>Carfax Logged</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SURGICAL CLEAN-ROOM DECONTAMINATION & RESTORATION PROTOCOL -->
+        <section class="srv-protocol-sec section-padding" id="srv-sec3-protocol" data-framer-section="srv-sec3-split-slide">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3.5rem;">
+                    <div class="section-badge"><i class="fas fa-cogs"></i> Clean-Room Standard</div>
+                    <h2 class="section-title">5-Stage Precision Surface Decontamination Protocol</h2>
+                    <p class="section-desc" style="margin: 0 auto;">Every vehicle processed at Car Studio passes through our dust-free clean room environment to achieve flawless optical clarity.</p>
+                </div>
+
+                <div class="protocol-stage-grid">
+                    <div class="protocol-steps-list" id="protocolSteps">
+                        <div class="protocol-step-item active" data-step="1">
+                            <div class="protocol-step-num">01</div>
+                            <div class="protocol-step-text">
+                                <h4>pH-Neutral Snow Foam Bath</h4>
+                                <p>Chemical iron dissolution &amp; clay bar decontamination.</p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step-item" data-step="2">
+                            <div class="protocol-step-num">02</div>
+                            <div class="protocol-step-text">
+                                <h4>Laser Micron Depth Profiling</h4>
+                                <p>50-point ultrasonic clear coat measurement audit.</p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step-item" data-step="3">
+                            <div class="protocol-step-num">03</div>
+                            <div class="protocol-step-text">
+                                <h4>Rotary Dual-Action Leveling</h4>
+                                <p>Multi-stage micro-abrasive compound defect removal.</p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step-item" data-step="4">
+                            <div class="protocol-step-num">04</div>
+                            <div class="protocol-step-text">
+                                <h4>60°C Infrared Curing Lamp</h4>
+                                <p>Accelerated silica cross-linking bake cycle.</p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step-item" data-step="5">
+                            <div class="protocol-step-num">05</div>
+                            <div class="protocol-step-text">
+                                <h4>5000K Daylight Audit</h4>
+                                <p>100-point inspection &amp; Digital Passport issuance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="protocol-display-card">
+                        <img src="images/services_sec3_gemini.jpg" alt="Studio Protocol Stage" class="protocol-display-img" id="protocolImg">
+                        <h3 id="protocolTitle" style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.6rem;">01. pH-Neutral Snow Foam Bath &amp; Iron Dissolve</h3>
+                        <p id="protocolDesc" style="font-size: 0.98rem; color: var(--text-secondary); line-height: 1.7;">Our technicians initialize with a high-lubricity pH-neutral foam bath followed by a specialized acid-free chemical iron fall-out treatment to dissolve metallic brake dust safely.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: EXECUTIVE INTERIOR SPA & ERGONOMIC CHAMBER -->
+        <section class="srv-interior-sec section-padding" id="srv-sec4-interior" data-framer-section="srv-sec4-radar-sweep">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3.5rem;">
+                    <div class="section-badge"><i class="fas fa-couch"></i> Interior Concierge</div>
+                    <h2 class="section-title">180°C Dry-Vapor Sanitization &amp; Luxury Leather Spa</h2>
+                    <p class="section-desc" style="margin: 0 auto;">Deep thermal steam extraction and pH-balanced nutrient feeding engineered for fine Nappa, Merino leather, Alcantara, and forged carbon cabin trims.</p>
+                </div>
+
+                <div class="interior-layout-grid">
+                    <div class="interior-feature-box">
+                        <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.8rem;">Surgical Cabin Sanitization</h3>
+                        <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7;">We eliminate 99.9% of bacteria, allergens, and odors without soaking sensitive vehicle electronics or audio speaker grilles.</p>
+
+                        <ul class="interior-feature-list">
+                            <li class="interior-feature-item">
+                                <i class="fas fa-fire"></i>
+                                <div>
+                                    <h4>180°C Dry Steam Extraction</h4>
+                                    <p>Deep cleans fabric fibers and leather pores at high heat without moisture saturation.</p>
+                                </div>
+                            </li>
+                            <li class="interior-feature-item">
+                                <i class="fas fa-leaf"></i>
+                                <div>
+                                    <h4>pH-Balanced Organic Feeders</h4>
+                                    <p>Restores OEM matte finish and natural oils to prevent leather cracking and drying.</p>
+                                </div>
+                            </li>
+                            <li class="interior-feature-item">
+                                <i class="fas fa-wind"></i>
+                                <div>
+                                    <h4>Cabin Ozone Air Purification</h4>
+                                    <p>Destroys deep-seated HVAC bacterial spores and leaves fresh zero-chemical cabin air.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="interior-media-card">
+                        <img src="images/services_sec4_gemini.jpg" alt="Luxury Car Interior Spa" class="interior-media-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: BESPOKE COLOR TRANSFORMATION & VINYL STYLING HUB -->
+        <section class="srv-styling-sec section-padding" id="srv-sec5-styling" data-framer-section="srv-sec5-flip-stagger">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3.5rem;">
+                    <div class="section-badge"><i class="fas fa-paint-roller"></i> Bespoke Customization</div>
+                    <h2 class="section-title">Bespoke Color Vinyl Wraps &amp; Architectural Styling</h2>
+                    <p class="section-desc" style="margin: 0 auto;">Transform your supercar's aesthetic with premium 3M and Avery Dennison cast vinyl films while preserving factory paint integrity.</p>
+                </div>
+
+                <div class="styling-grid-layout">
+                    <div class="styling-media-card">
+                        <img src="images/services_sec5_gemini.jpg" alt="Bespoke Vinyl Color Wrap Installation" class="styling-media-img">
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem;">Architectural Styling Options</h3>
+                        <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">Our wrap technicians utilize seamless corner-tucking methods to ensure zero paint exposure and 100% reversible protection.</p>
+
+                        <div class="finish-picker-list">
+                            <div class="finish-card-option active">
+                                <h4>Satin Obsidian Matte</h4>
+                                <p>Non-reflective stealth visual depth.</p>
+                            </div>
+                            <div class="finish-card-option">
+                                <h4>Gloss Liquid Metallic</h4>
+                                <p>Deep high-refraction metal flake shine.</p>
+                            </div>
+                            <div class="finish-card-option">
+                                <h4>Chameleon Flip Shift</h4>
+                                <p>Multi-angle color shifting spectrum.</p>
+                            </div>
+                            <div class="finish-card-option">
+                                <h4>Forged Carbon Weave</h4>
+                                <p>3D tactile carbon accent trim.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: CONCIERGE HANDOVER, DIGITAL PASSPORT & WARRANTY HUB -->
+        <section class="srv-concierge-sec section-padding" id="srv-sec6-concierge" data-framer-section="srv-sec6-shield-glow-burst">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3.5rem;">
+                    <div class="section-badge"><i class="fas fa-award"></i> Quality Assurance</div>
+                    <h2 class="section-title">White-Glove Concierge Handover &amp; Digital Passport</h2>
+                    <p class="section-desc" style="margin: 0 auto;">Every vehicle serviced receives a verified digital warranty certificate and complete Carfax history registry upload.</p>
+                </div>
+
+                <div class="concierge-grid-layout">
+                    <div class="guarantee-shield-box">
+                        <div class="guarantee-icon-lg"><i class="fas fa-certificate"></i></div>
+                        <h3>100% Master Quality Guarantee</h3>
+                        <p>If you discover any haze, swirl, or defect in our craftsmanship within 30 days, bring your vehicle back for immediate zero-cost studio correction.</p>
+                        <a href="contact.html" class="action-btn btn-login" style="padding: 0.85rem 1.8rem;">
+                            <i class="fas fa-calendar-check"></i> Book Concierge Slot
+                        </a>
+                    </div>
+
+                    <div class="faq-accordion-box">
+                        <div class="faq-card-item active">
+                            <button class="faq-card-trigger">
+                                <span>How long do 9H ceramic coatings and PPF armor last?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-card-body">
+                                Our Paint Protection Film (PPF) carries a 10-year manufacturer warranty against yellowing and bubbling. Our 9H ceramic coatings provide 5 years of superhydrophobic protection.
+                            </div>
+                        </div>
+
+                        <div class="faq-card-item">
+                            <button class="faq-card-trigger">
+                                <span>Will paint correction remove original clear coat thickness?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-card-body">
+                                No. We utilize ultrasonic paint gauges to audit clear coat thickness down to the micron before starting, removing only 2-3 microns of clear coat to safely clear 95%+ defects.
+                            </div>
+                        </div>
+
+                        <div class="faq-card-item">
+                            <button class="faq-card-trigger">
+                                <span>Is my service recorded in an official vehicle passport?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-card-body">
+                                Yes! Every service completed is registered in our Digital Service Passport database and submitted to Carfax to preserve your vehicle's resale value.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+        <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <a href="index.html" class="logo-area" aria-label="Car Studio Footer Logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" class="logo-svg" height="58">
+                        <defs>
+                            <linearGradient id="logoGradFoot" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FF6A1A"/>
+                                <stop offset="100%" stop-color="#FF3800"/>
+                            </linearGradient>
+                            <linearGradient id="textGradFoot" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#FF6A1A"/>
+                                <stop offset="100%" stop-color="#FFA066"/>
+                            </linearGradient>
+                        </defs>
+                        <g transform="translate(10, 10)">
+                            <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGradFoot)"/>
+                            <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
+                            <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
+                            <circle cx="28" cy="54" r="5" fill="#12151C"/>
+                            <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                        </g>
+                        <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGradFoot)" letter-spacing="2">CAR STUDIO</text>
+                        <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
+                    </svg>
+                </a>
+                <p class="footer-desc">
+                    Premium automotive detailing, custom wrapping, ceramic coating, and precision tuning studio for luxury vehicles.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home 1</a></li>
+                    <li><a href="home2.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home 2</a></li>
+                    <li><a href="services.html" class="footer-link"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="gallery.html" class="footer-link"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                    <li><a href="packages.html" class="footer-link"><i class="fas fa-chevron-right"></i> Packages</a></li>
+                </ul>
+            </div>
+
+            <!-- Dashboards & Info -->
+            <div class="footer-col">
+                <h4>Dashboards &amp; Info</h4>
+                <ul class="footer-links">
+                    <li><a href="dashboard.html" class="footer-link"><i class="fas fa-chevron-right"></i> User Dashboard</a></li>
+                    <li><a href="admin-dashboard.html" class="footer-link"><i class="fas fa-chevron-right"></i> Admin Dashboard</a></li>
+                    <li><a href="why-choose-us.html" class="footer-link"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
+                    <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    <li><a href="#" class="footer-link" id="footerLoginTrigger"><i class="fas fa-chevron-right"></i> Login Portal</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.8rem;">
+                    Subscribe for exclusive detailing packages and car care tips.
+                </p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Car Studio. All rights reserved.</p>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#" class="footer-link" style="font-size: 0.88rem;">Privacy Policy</a>
+                <a href="#" class="footer-link" style="font-size: 0.88rem;">Terms of Service</a>
+                <a href="#" class="footer-link" style="font-size: 0.88rem;">Cookie Preferences</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== LOGIN MODAL ==================== -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-card">
+            <button class="modal-close" id="modalCloseBtn"><i class="fas fa-times"></i></button>
+            <h3>Welcome Back</h3>
+            <p>Sign in to access your Car Studio account and service history.</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="emailInput">Email Address</label>
+                    <input type="email" id="emailInput" class="form-input" placeholder="name@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <input type="password" id="passwordInput" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="login-submit">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+
+            // DOM Elements
+            const darkModeBtn = document.getElementById('darkModeBtn');
+            const mobileDarkBtn = document.getElementById('mobileDarkBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            const mobileThemeLabel = document.getElementById('mobileThemeLabel');
+
+            const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+            const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const mobilePanel = document.getElementById('mobilePanel');
+
+            const mobileHomeAcc = document.getElementById('mobileHomeAcc');
+            const mobileHomeContent = document.getElementById('mobileHomeContent');
+            const mobileDashAcc = document.getElementById('mobileDashAcc');
+            const mobileDashContent = document.getElementById('mobileDashContent');
+
+            const loginModalBtn = document.getElementById('loginModalBtn');
+            const mobileLoginModalBtn = document.getElementById('mobileLoginModalBtn');
+            const footerLoginTrigger = document.getElementById('footerLoginTrigger');
+            const loginModal = document.getElementById('loginModal');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const loginForm = document.getElementById('loginForm');
+            const newsletterForm = document.getElementById('newsletterForm');
+
+            // 1. Dark/Light Mode Switcher
+            function updateThemeUI(isDark) {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                    if (themeIcon) themeIcon.className = 'fas fa-sun';
+                    if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-sun';
+                    if (themeLabel) themeLabel.textContent = 'Light';
+                    if (mobileThemeLabel) mobileThemeLabel.textContent = 'Light Mode';
+                    localStorage.setItem('carstudio_theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (themeIcon) themeIcon.className = 'fas fa-moon';
+                    if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-moon';
+                    if (themeLabel) themeLabel.textContent = 'Dark';
+                    if (mobileThemeLabel) mobileThemeLabel.textContent = 'Dark Mode';
+                    localStorage.setItem('carstudio_theme', 'light');
+                }
+            }
+
+            function toggleTheme() {
+                const isDark = !body.classList.contains('dark-mode');
+                updateThemeUI(isDark);
+            }
+
+            const savedTheme = localStorage.getItem('carstudio_theme');
+            if (savedTheme === 'light') {
+                updateThemeUI(false);
+            } else {
+                updateThemeUI(true);
+            }
+
+            if (darkModeBtn) darkModeBtn.addEventListener('click', toggleTheme);
+            if (mobileDarkBtn) mobileDarkBtn.addEventListener('click', toggleTheme);
+
+            // 2. Mobile Drawer Controls
+            function openMobileDrawer() {
+                mobileOverlay.classList.add('active');
+                mobilePanel.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
+
+            function closeMobileDrawer() {
+                mobileOverlay.classList.remove('active');
+                mobilePanel.classList.remove('active');
+                body.style.overflow = '';
+            }
+
+            if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', openMobileDrawer);
+            if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', closeMobileDrawer);
+            if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileDrawer);
+
+            if (mobileHomeAcc) {
+                mobileHomeAcc.addEventListener('click', () => {
+                    mobileHomeContent.classList.toggle('show');
+                });
+            }
+            if (mobileDashAcc) {
+                mobileDashAcc.addEventListener('click', () => {
+                    mobileDashContent.classList.toggle('show');
+                });
+            }
+
+            // 3. Login Modal
+            function openLoginModal() {
+                loginModal.classList.add('active');
+                closeMobileDrawer();
+            }
+            function closeLoginModal() {
+                loginModal.classList.remove('active');
+            }
+
+            if (loginModalBtn) loginModalBtn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
+            if (mobileLoginModalBtn) mobileLoginModalBtn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
+            if (footerLoginTrigger) footerLoginTrigger.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
+            if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeLoginModal);
+            if (loginModal) {
+                loginModal.addEventListener('click', (e) => {
+                    if (e.target === loginModal) closeLoginModal();
+                });
+            }
+
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Successfully logged into Car Studio!');
+                    closeLoginModal();
+                });
+            }
+
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to Car Studio newsletter!');
+                    newsletterForm.reset();
+                });
+            }
+
+            // 4. Section 3 Protocol Interactive Steps Handler
+            const protocolSteps = [
+                {
+                    title: "01. pH-Neutral Snow Foam Bath & Iron Dissolve",
+                    desc: "Our technicians initialize with a high-lubricity pH-neutral foam bath followed by a specialized acid-free chemical iron fall-out treatment to dissolve metallic brake dust safely.",
+                    img: "images/services_sec3_gemini.jpg"
+                },
+                {
+                    title: "02. Laser Micron Depth Profiling & Audit",
+                    desc: "Using ultrasonic gauges, we take 50+ surface depth readings to measure precise clear coat micrometer thickness before applying any polish compound.",
+                    img: "images/services_sec2_gemini.jpg"
+                },
+                {
+                    title: "03. Rotary Dual-Action Defect Leveling",
+                    desc: "Multi-stage random orbital leveling with diminishing micro-abrasives removes 95%+ swirl marks, haze, and scratches while preserving factory paint integrity.",
+                    img: "images/services_sec1_gemini.jpg"
+                },
+                {
+                    title: "04. 60°C Infrared Curing Bake Cycle",
+                    desc: "Silica and graphene nanotech coatings are cured under shortwave IR heat lamps at 60°C to lock in covalent bonding hardness in minutes.",
+                    img: "images/services_sec4_gemini.jpg"
+                },
+                {
+                    title: "05. 5000K Daylight Audit & Passport Issuance",
+                    desc: "Final 100-point inspection under 5000K daylight lighting tunnel. Your vehicle warranty is logged into the Car Studio Digital Passport registry.",
+                    img: "images/services_sec6_gemini.jpg"
+                }
+            ];
+
+            const stepItems = document.querySelectorAll('.protocol-step-item');
+            const protocolImg = document.getElementById('protocolImg');
+            const protocolTitle = document.getElementById('protocolTitle');
+            const protocolDesc = document.getElementById('protocolDesc');
+
+            stepItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    stepItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+
+                    const idx = parseInt(item.getAttribute('data-step')) - 1;
+                    const data = protocolSteps[idx];
+                    if (data) {
+                        if (protocolImg) protocolImg.src = data.img;
+                        if (protocolTitle) protocolTitle.textContent = data.title;
+                        if (protocolDesc) protocolDesc.textContent = data.desc;
+                    }
+                });
+            });
+
+            // 5. Section 5 Finish Picker Logic
+            const finishOptions = document.querySelectorAll('.finish-card-option');
+            finishOptions.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    finishOptions.forEach(o => o.classList.remove('active'));
+                    opt.classList.add('active');
+                });
+            });
+
+            // 6. Section 6 FAQ Accordion Logic
+            const faqCards = document.querySelectorAll('.faq-card-item');
+            faqCards.forEach(card => {
+                const btn = card.querySelector('.faq-card-trigger');
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        const isActive = card.classList.contains('active');
+                        faqCards.forEach(c => c.classList.remove('active'));
+                        if (!isActive) card.classList.add('active');
+                    });
+                }
+            });
+
+            // 7. Framer Motion Scroll IntersectionObserver Logic
+            function checkInViewSections() {
+                document.querySelectorAll('[data-framer-section]').forEach(sec => {
+                    const rect = sec.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight * 0.9 && rect.bottom >= 0) {
+                        sec.classList.add('framer-animated');
+                    }
+                });
+            }
+
+            const heroSec = document.getElementById('srv-sec1-hero');
+            if (heroSec) heroSec.classList.add('framer-animated');
+
+            checkInViewSections();
+
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px 50px 0px'
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('framer-animated');
+                        sectionObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('[data-framer-section]').forEach(sec => {
+                sectionObserver.observe(sec);
+            });
+        });
+    
+            // --- RTL / LTR TOGGLE HANDLER ---
+            const rtlBtn = document.getElementById('rtlBtn');
+            const mobileRtlBtn = document.getElementById('mobileRtlBtn');
+            const rtlLabel = document.getElementById('rtlLabel');
+            const mobileRtlLabel = document.getElementById('mobileRtlLabel');
+
+            function updateRTLUI(isRtl) {
+                const dir = isRtl ? 'rtl' : 'ltr';
+                document.body.setAttribute('dir', dir);
+                document.documentElement.setAttribute('dir', dir);
+                if (rtlLabel) rtlLabel.textContent = isRtl ? 'LTR' : 'RTL';
+                if (mobileRtlLabel) mobileRtlLabel.textContent = isRtl ? 'LTR Layout' : 'RTL Layout';
+                localStorage.setItem('carstudio_rtl', dir);
+            }
+
+            function toggleRTL() {
+                const isRtl = (document.body.getAttribute('dir') || 'ltr') === 'ltr';
+                updateRTLUI(isRtl);
+            }
+
+            const savedRtl = localStorage.getItem('carstudio_rtl');
+            if (savedRtl === 'rtl') {
+                updateRTLUI(true);
+            } else {
+                updateRTLUI(false);
+            }
+
+            if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+            if (mobileRtlBtn) mobileRtlBtn.addEventListener('click', toggleRTL);
+
+    </script>
+</body>
+</html>
+
+
+
+

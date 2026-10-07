@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080a0f"/>
+      <stop offset="100%" stop-color="#141a26"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff6a1a"/>
+      <stop offset="100%" stop-color="#ff924d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bgGrad)"/>
+  <rect x="40" y="40" width="1120" height="595" rx="24" fill="none" stroke="#283246" stroke-width="2"/>
+  <rect x="70" y="70" width="240" height="40" rx="20" fill="url(#accentGrad)"/>
+  <text x="90" y="96" fill="#ffffff" font-family="Outfit, sans-serif" font-weight="700" font-size="16">CAR STUDIO SERVICES</text>
+  <text x="70" y="160" fill="#f8fafc" font-family="Outfit, sans-serif" font-weight="800" font-size="34">Wheel & Caliper Refinishing</text>
+  <text x="70" y="210" fill="#94a3b8" font-family="Inter, sans-serif" font-weight="500" font-size="20">High-Temp Ceramic Coat & Rim Restoration</text>
+  <g transform="translate(900, 340)">
+    <circle cx="0" cy="0" r="110" fill="rgba(255, 106, 26, 0.15)" stroke="#ff6a1a" stroke-width="4"/>
+    <path d="M-30 0 L-10 25 L40 -30" fill="none" stroke="#ff6a1a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

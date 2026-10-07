@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Login & Access Portal | Car Studio</title>
+
+    <!-- Google Fonts & Font Awesome 6 Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ---------- RESET & SYSTEM DESIGN TOKENS ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --surface-glass: rgba(255, 255, 255, 0.94);
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #ff6a1a;
+            --accent-hover: #e5590c;
+            --accent-glow: rgba(255, 106, 26, 0.25);
+            --border-light: rgba(15, 23, 42, 0.12);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.12);
+            --transition-smooth: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+        }
+
+        body.dark-mode {
+            --bg-primary: #080a0f;
+            --bg-secondary: #0e121b;
+            --surface-glass: rgba(14, 18, 27, 0.94);
+            --card-bg: #141a26;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.65);
+        }
+
+        /* ==========================================================================
+           ULTRA-PRECISION RTL & DARK MODE ICON & LAYOUT ENGINE (SITE-WIDE)
+           ========================================================================== */
+        /* 1. Universal RTL Icon Horizontal Flip */
+        [dir="rtl"] .fa-angle-right,
+        [dir="rtl"] .fa-arrow-right,
+        [dir="rtl"] .fa-chevron-right,
+        [dir="rtl"] .fa-chevron-left,
+        [dir="rtl"] .fa-angle-double-right,
+        [dir="rtl"] .fa-arrow-left,
+        [dir="rtl"] .fa-angle-left,
+        [dir="rtl"] .fa-arrow-right-long,
+        [dir="rtl"] .fa-arrow-left-long,
+        [dir="rtl"] .fa-long-arrow-alt-right,
+        [dir="rtl"] .fa-long-arrow-alt-left,
+        [dir="rtl"] .fa-caret-right,
+        [dir="rtl"] .fa-caret-left,
+        [dir="rtl"] .fa-arrow-circle-right,
+        [dir="rtl"] .fa-arrow-circle-left,
+        [dir="rtl"] .fa-paper-plane,
+        [dir="rtl"] .fa-right-to-bracket,
+        [dir="rtl"] .fa-left-to-bracket,
+        [dir="rtl"] .fa-user-plus,
+        [dir="rtl"] .fa-mobile-screen,
+        [dir="rtl"] .fa-external-link-alt,
+        [dir="rtl"] .fa-arrow-up-right-from-square,
+        [dir="rtl"] .floating-back-btn i,
+        [dir="rtl"] .submit-btn i,
+        [dir="rtl"] .btn-login i,
+        html[dir="rtl"] .fa-angle-right,
+        html[dir="rtl"] .fa-arrow-right,
+        html[dir="rtl"] .fa-chevron-right,
+        html[dir="rtl"] .fa-chevron-left,
+        html[dir="rtl"] .fa-angle-double-right,
+        html[dir="rtl"] .fa-arrow-left,
+        html[dir="rtl"] .fa-angle-left,
+        body[dir="rtl"] .fa-angle-right,
+        body[dir="rtl"] .fa-arrow-right,
+        body[dir="rtl"] .fa-chevron-right,
+        body[dir="rtl"] .fa-chevron-left,
+        body[dir="rtl"] .fa-angle-double-right,
+        body[dir="rtl"] .fa-arrow-left,
+        body[dir="rtl"] .fa-angle-left,
+        body[dir="rtl"] .floating-back-btn i,
+        body[dir="rtl"] .submit-btn i {
+            transform: scaleX(-1) !important;
+            display: inline-block !important;
+        }
+
+        /* 2. RTL Text Alignment & Layout Adjustments */
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        /* 3. RTL Icons in Dark Mode Explicit Inversion & High Contrast Fix */
+        body.dark-mode[dir="rtl"] i,
+        body.dark-mode [dir="rtl"] i,
+        html[dir="rtl"] body.dark-mode i,
+        .dark-mode[dir="rtl"] .social-btn i,
+        .dark-mode[dir="rtl"] .action-btn i,
+        .dark-mode[dir="rtl"] .btn-login i,
+        .dark-mode[dir="rtl"] .submit-btn i {
+            opacity: 1 !important;
+        }
+
+        /* 4. RTL Button & Input Flex Direction & Icon Margins */
+        [dir="rtl"] .submit-btn,
+        [dir="rtl"] .floating-back-btn,
+        [dir="rtl"] .role-btn,
+        [dir="rtl"] .social-btn {
+            flex-direction: row;
+        }
+
+        [dir="rtl"] .submit-btn i,
+        [dir="rtl"] .floating-back-btn i,
+        [dir="rtl"] .role-btn i,
+        [dir="rtl"] .social-btn i {
+            margin-right: 0;
+            margin-left: 6px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            font-size: 1rem;
+            line-height: 1.6;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Decorative Blobs */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+            transition: var(--transition-smooth);
+        }
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        }
+        .blob-2 {
+            bottom: -15%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, #ff3800 0%, transparent 70%);
+            opacity: 0.2;
+        }
+
+        /* FLOATING UTILITY HEADER (NO NAVBAR / NO FOOTER) */
+        .utility-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .utility-header * {
+            pointer-events: auto;
+        }
+
+        .floating-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.65rem 1.25rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+        .floating-back-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .control-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+        /* FLOATING DARK MODE & RTL CONTROLS (MATCHING INDEX.HTML) */
+        .top-controls-floating {
+            position: fixed;
+            top: 1.25rem;
+            right: 2rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        [dir="rtl"] .top-controls-floating,
+        body[dir="rtl"] .top-controls-floating {
+            right: auto;
+            left: 2rem;
+        }
+
+        .action-btn {
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 0.92rem;
+            font-weight: 600;
+            font-family: inherit;
+            padding: 0.55rem 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .action-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--accent-glow);
+        }
+
+        .lang-select-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-globe-icon {
+            position: absolute;
+            left: 0.95rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: 0.9rem;
+            color: var(--accent);
+            z-index: 2;
+            transition: var(--transition-smooth);
+        }
+        [dir="rtl"] .lang-globe-icon,
+        body[dir="rtl"] .lang-globe-icon {
+            left: auto;
+            right: 0.95rem;
+        }
+
+        .lang-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background: var(--surface-glass);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            padding: 0.65rem 2.2rem 0.65rem 2.4rem;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            outline: none;
+        }
+        [dir="rtl"] .lang-select,
+        body[dir="rtl"] .lang-select {
+            padding: 0.65rem 2.4rem 0.65rem 2.2rem;
+        }
+        .lang-select:hover {
+            border-color: var(--accent);
+        }
+        .lang-icon-arrow {
+            position: absolute;
+            right: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            z-index: 2;
+            transition: var(--transition-smooth);
+        }
+        [dir="rtl"] .lang-icon-arrow,
+        body[dir="rtl"] .lang-icon-arrow {
+            right: auto;
+            left: 0.85rem;
+        }
+
+        /* MAIN WRAPPER */
+        .auth-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.75rem 1.5rem;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+        }
+
+        .auth-card-container {
+            width: 100%;
+            max-width: 740px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            box-shadow: var(--shadow-lg);
+            display: block;
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            margin: 0 auto;
+        }
+
+        /* LEFT SIDE: BRAND SHOWCASE PANEL */
+        .showcase-panel {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(8, 10, 15, 0.96) 100%), url('images/home2_hero.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 3.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #ffffff;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [dir="rtl"] .showcase-panel,
+        body[dir="rtl"] .showcase-panel {
+            border-right: none;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .showcase-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255, 106, 26, 0.25), transparent 60%);
+            pointer-events: none;
+        }
+
+        .brand-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            position: relative;
+            z-index: 2;
+        }
+        .brand-logo-img {
+            height: 52px;
+            width: auto;
+            filter: drop-shadow(0 2px 10px rgba(255, 106, 26, 0.4));
+        }
+
+        .showcase-content {
+            position: relative;
+            z-index: 2;
+            margin: 2rem 0;
+        }
+
+        .showcase-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 106, 26, 0.16);
+            border: 1px solid rgba(255, 106, 26, 0.35);
+            color: #ff9e66;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.2rem;
+        }
+
+        .showcase-title {
+            font-family: var(--font-heading);
+            font-size: 2.3rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        .showcase-title span {
+            color: var(--accent);
+            background: linear-gradient(135deg, #ff6a1a 0%, #ff9e66 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .showcase-desc {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .feature-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature-bullet-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.92rem;
+            color: #f1f5f9;
+            font-weight: 500;
+        }
+
+        .feature-bullet-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .showcase-footer {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            padding: 1.2rem 1.4rem;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .rating-stars {
+            color: #fbbf24;
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+        }
+
+        .stat-text {
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            line-height: 1.4;
+        }
+        .stat-text strong {
+            color: #ffffff;
+        }
+
+        /* RIGHT SIDE: FORM PANEL */
+        .form-panel {
+            padding: 2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background: var(--card-bg);
+        }
+
+        /* ROLE SELECTOR TABS */
+        .role-selector-wrap {
+            margin-bottom: 1.25rem;
+        }
+        .role-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 5px;
+            gap: 5px;
+        }
+        .role-btn {
+            background: transparent;
+            border: none;
+            padding: 0.65rem 1rem;
+            border-radius: 12px;
+            font-family: var(--font-main);
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .role-btn.active {
+            background: var(--card-bg);
+            color: var(--accent);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        /* FORM HEADINGS */
+        .form-header {
+            margin-bottom: 1rem;
+        }
+        .form-title {
+            font-family: var(--font-heading);
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ROLE INDICATOR BADGE */
+        .role-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 106, 26, 0.1);
+            color: var(--accent);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* FORM GROUPS & INPUTS */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .auth-form.hidden {
+            display: none !important;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .form-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1.1rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+        [dir="rtl"] .input-icon,
+        body[dir="rtl"] .input-icon {
+            left: auto;
+            right: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.65rem 2.6rem 0.65rem 2.6rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+            background: var(--card-bg);
+        }
+
+        .input-wrapper:focus-within .input-icon {
+            color: var(--accent);
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+        [dir="rtl"] .toggle-password-btn,
+        body[dir="rtl"] .toggle-password-btn {
+            right: auto;
+            left: 1rem;
+        }
+        .toggle-password-btn:hover {
+            color: var(--accent);
+        }
+
+        /* FORM OPTIONS ROW */
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-top: -0.2rem;
+        }
+
+        .checkbox-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            user-select: none;
+        }
+
+        .checkbox-wrap input[type="checkbox"] {
+            accent-color: var(--accent);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .forgot-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+        .forgot-link:hover {
+            text-decoration: underline;
+            color: var(--accent-hover);
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            width: 100%;
+            padding: 0.7rem 1.25rem;
+            background: linear-gradient(135deg, #ff6a1a 0%, #e5590c 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 24px var(--accent-glow);
+            transition: var(--transition-smooth);
+            margin-top: 0.3rem;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(255, 106, 26, 0.4);
+        }
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* DIVIDER */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.75rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .divider span {
+            padding: 0 0.85rem;
+        }
+
+        /* SOCIAL LOGIN BUTTONS */
+        .social-login-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        .social-btn {
+            white-space: nowrap !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.65rem 0.35rem; font-size: 0.82rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+        .social-btn:hover {
+            border-color: var(--accent);
+            background: var(--card-bg);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* SWITCHER FOOTER */
+        .form-footer-text {
+            text-align: center;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: 1.5rem;
+        }
+        .form-footer-text a {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .form-footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* OTP INPUT BOXES */
+        .otp-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .otp-box {
+            width: 52px;
+            height: 56px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            border-radius: 14px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+        .otp-box:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+            background: var(--card-bg);
+        }
+
+        /* TOAST ALERT NOTIFICATION */
+        .toast-notification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.4rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 400px;
+        }
+        [dir="rtl"] .toast-notification,
+        body[dir="rtl"] .toast-notification {
+            right: auto;
+            left: 2rem;
+            border-left: 1px solid var(--border-light);
+            border-right: 4px solid var(--accent);
+        }
+        .toast-notification.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast-icon {
+            font-size: 1.25rem;
+            color: var(--accent);
+        }
+        .toast-content {
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+        .toast-title {
+            font-weight: 700;
+            font-family: var(--font-heading);
+        }
+
+        /* RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 992px) {
+            .auth-card-container {
+                grid-template-columns: 1fr;
+                max-width: 680px;
+            }
+            .showcase-panel {
+                display: none;
+            }
+            .form-panel {
+                padding: 2rem 1.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            
+            .top-controls-floating {
+                top: 0.85rem;
+                right: 1rem;
+            }
+            body[dir="rtl"] .top-controls-floating {
+                right: auto;
+                left: 1rem;
+            }
+            .action-btn {
+                width: auto !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .utility-header {
+                padding: 1rem 1.2rem;
+            }
+            .auth-wrapper {
+                padding: 3rem 1rem 1.5rem;
+            }
+            .form-panel {
+                padding: 1.5rem 1.2rem;
+            }
+            .social-login-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-title {
+                font-size: 1.5rem;
+            }
+        }
+    /* NAVBAR ACTION BUTTONS ADJUSTMENT ON MOBILE VIEW */
+@media (max-width: 1100px) {
+    .nav-actions .action-btn:not(#rtlBtn):not(#darkModeBtn) {
+        display: none !important;
+    }
+}
+/* COMPREHENSIVE MOBILE LAYOUT & ALIGNMENT OVERFLOW FIXES */
+@media (max-width: 768px) {
+    .turntable-angles-grid, [class*="-angles-grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    .angle-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        white-space: normal !important;
+        text-align: center !important;
+    }
+    .sec-badge, .section-badge, .hero-badge-tag, .sec-title-box span, [class*="-badge"] {
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        display: inline-block !important;
+    }
+    h1, .hero-main-title, .hero-title, .page-title, .section-title {
+        font-size: clamp(1.5rem, 6vw, 2.2rem) !important;
+        line-height: 1.25 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+    }
+    .hero-stats-banner, .stats-grid-3col, .stats-grid, [class*="-stats-banner"] {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 1rem !important;
+    }
+    .stat-banner-box, .stat-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .hours-row {
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        gap: 0.4rem 0.5rem !important;
+        padding: 0.85rem 0 !important;
+        align-items: center !important;
+    }
+    .hours-row .time-slot {
+        grid-column: 1 / -1 !important;
+        color: var(--accent) !important;
+        font-weight: 700 !important;
+        font-size: 0.88rem !important;
+        padding-left: 1.8rem !important;
+    }
+    body[dir="rtl"] .hours-row .time-slot {
+        padding-left: 0 !important;
+        padding-right: 1.8rem !important;
+    }
+}
+/* COMPREHENSIVE MOBILE HERO & BUTTON ALIGNMENT FIXES */
+@media (max-width: 768px) {
+    .sec-badge, .section-badge, .hero-badge-tag, .sec-title-box span, [class*="-badge"] {
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        display: inline-block !important;
+        line-height: 1.4 !important;
+        padding: 0.5rem 1rem !important;
+    }
+    h1, .hero-main-title, .hero-title, .page-title, .section-title {
+        font-size: clamp(1.6rem, 7vw, 2.3rem) !important;
+        line-height: 1.25 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+        padding: 0 0.5rem !important;
+    }
+    .package-sec p, #pkg-sec1-hero p, .hero-text-box p {
+        font-size: 0.95rem !important;
+        padding: 0 0.5rem !important;
+        line-height: 1.5 !important;
+    }
+    .pkg-cycle-wrap, [class*="-cycle-wrap"] {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.75rem !important;
+        align-items: center !important;
+    }
+    .cycle-btn, .pkg-cycle-wrap .action-btn {
+        width: 100% !important;
+        max-width: 320px !important;
+        justify-content: center !important;
+        white-space: normal !important;
+        text-align: center !important;
+    }
+}
+
+        /* ==========================================================================
+           MOBILE VIEW RTL ICON & FLOATING CONTROLS FULL VISIBILITY ENGINE
+           ========================================================================== */
+        .top-controls-floating {
+            position: fixed !important;
+            top: 1rem !important;
+            right: 1rem !important;
+            left: auto !important;
+            z-index: 9999 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+        }
+
+        [dir="rtl"] .top-controls-floating,
+        body[dir="rtl"] .top-controls-floating,
+        html[dir="rtl"] .top-controls-floating {
+            right: auto !important;
+            left: 1rem !important;
+        }
+
+        .top-controls-floating #rtlBtn,
+        .top-controls-floating #darkModeBtn,
+        #rtlBtn,
+        #darkModeBtn {
+            display: inline-flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        .top-controls-floating .action-btn {
+            padding: 0.45rem 0.85rem !important;
+            font-size: 0.8rem !important;
+            border-radius: 50px !important;
+        }
+
+        [dir="rtl"] .input-wrapper,
+        body[dir="rtl"] .input-wrapper {
+            position: relative !important;
+            display: flex !important;
+            align-items: center !important;
+            direction: rtl !important;
+        }
+
+        [dir="rtl"] .input-icon,
+        body[dir="rtl"] .input-icon {
+            position: absolute !important;
+            right: 1.1rem !important;
+            left: auto !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            color: var(--text-secondary) !important;
+            font-size: 0.95rem !important;
+            pointer-events: none !important;
+            z-index: 5 !important;
+            display: inline-block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        [dir="rtl"] .form-input,
+        body[dir="rtl"] .form-input {
+            padding-right: 2.7rem !important;
+            padding-left: 2.7rem !important;
+            text-align: right !important;
+            direction: rtl !important;
+        }
+
+        [dir="rtl"] .toggle-password-btn,
+        body[dir="rtl"] .toggle-password-btn {
+            position: absolute !important;
+            left: 1rem !important;
+            right: auto !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            z-index: 5 !important;
+        }
+
+        @media (max-width: 768px) {
+            .utility-header {
+                padding: 0.75rem 1rem !important;
+            }
+            .floating-back-btn {
+                padding: 0.45rem 0.85rem !important;
+                font-size: 0.8rem !important;
+            }
+            .auth-wrapper {
+                padding-top: 4.2rem !important;
+            }
+            .form-input {
+                font-size: 0.88rem !important;
+                padding-top: 0.7rem !important;
+                padding-bottom: 0.7rem !important;
+            }
+        }
+    
+</style>
+</head>
+<body class="dark-mode">
+
+    <!-- Ambient Glowing Background Effect -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Floating Dark Mode & RTL Controls (Matching index.html) -->
+    <div class="top-controls-floating">
+        <button class="action-btn" id="darkModeBtn" aria-label="Toggle Theme">
+            <i class="fas fa-moon" id="themeIcon"></i>
+            <span id="themeLabel">Dark</span>
+        </button>
+
+        <button class="action-btn" id="rtlBtn" aria-label="Toggle Layout Direction">
+            <i class="fas fa-right-left" id="rtlIcon"></i>
+            <span id="rtlLabel">RTL</span>
+        </button>
+    </div>
+
+
+    <!-- MAIN AUTHENTICATION CARD CONTAINER -->
+    <main class="auth-wrapper">
+        <div class="auth-card-container">
+            
+            <!-- INTERACTIVE FORM CONTAINER -->
+            <div class="form-panel">
+                
+                <!-- BRAND LOGO HEADER -->
+                <div class="brand-logo-header" style="text-align: center; margin-bottom: 1.5rem;">
+                    <a href="index.html" class="brand-logo-area" style="display: inline-flex; justify-content: center; text-decoration: none;">
+                        <img src="images/logo.svg" alt="Car Studio Logo" class="brand-logo-img" style="height: 54px; filter: drop-shadow(0 2px 8px var(--accent-glow));">
+                    </a>
+                </div>
+                
+                <!-- 1. SIGN IN FORM -->
+                <form class="auth-form" id="signinForm">
+                    <div class="form-header">
+                        <h2 class="form-title" id="signinTitle">Welcome Back</h2>
+                        <p class="form-subtitle" id="signinSubtitle">Enter your credentials to access your Car Studio account.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" id="lblEmailPhone">Email or Mobile Number</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope input-icon"></i>
+                            <input type="text" class="form-input" id="signinIdentifier" placeholder="alex@example.com or +1 234 567 890" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <span id="lblPassword">Password</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock input-icon"></i>
+                            <input type="password" class="form-input" id="signinPassword" placeholder="••••••••••••" required>
+                            <button type="button" class="toggle-password-btn" id="toggleSigninPass" title="Toggle password view">
+                                <i class="fa-solid fa-eye" id="eyeSigninIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-wrap">
+                            <input type="checkbox" id="rememberMe" checked>
+                            <span id="txtRemember">Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link" id="gotoForgotLink">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="btnSigninSubmit">
+                        <span class="btn-spinner" id="signinSpinner"></span>
+                        <span id="btnSigninText">Sign In to Account</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <div class="divider">
+                        <span id="txtOrSocial">or continue with</span>
+                    </div>
+
+                    <div class="social-login-grid">
+                        <button type="button" class="social-btn" id="btnGoogleLogin">
+                            <i class="fa-brands fa-google" style="color: #ea4335;"></i> Google
+                        </button>
+                        <button type="button" class="social-btn" id="btnAppleLogin">
+                            <i class="fa-brands fa-apple"></i> Apple
+                        </button>
+                        <button type="button" class="social-btn" id="gotoOtpLink">
+                            <i class="fa-solid fa-mobile-screen-button" style="color: var(--accent);"></i> SMS OTP
+                        </button>
+                    </div>
+
+                    <p class="form-footer-text">
+                        <span id="txtNoAccount">Don't have an account yet?</span>
+                        <a href="register.html" id="gotoSignupLink">Register Now</a>
+                    </p>
+                </form>
+
+                <!-- 2. CREATE ACCOUNT FORM (SIGN UP) -->
+                <form class="auth-form hidden" id="signupForm">
+                    <div class="form-header">
+                        <h2 class="form-title" id="signupTitle">Create Account</h2>
+                        <p class="form-subtitle" id="signupSubtitle">Join the VIP detailing membership for exclusive perks.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" id="lblFullName">Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-user input-icon"></i>
+                            <input type="text" class="form-input" id="signupName" placeholder="Alex Morgan" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" id="lblRegEmail">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope input-icon"></i>
+                            <input type="email" class="form-input" id="signupEmail" placeholder="alex@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" id="lblVehicleType">Vehicle / Car Model</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-car input-icon"></i>
+                            <input type="text" class="form-input" id="signupVehicle" placeholder="e.g. Porsche 911 GT3 / BMW M4">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" id="lblRegPass">Create Password</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock input-icon"></i>
+                            <input type="password" class="form-input" id="signupPassword" placeholder="••••••••••••" required>
+                            <button type="button" class="toggle-password-btn" id="toggleSignupPass">
+                                <i class="fa-solid fa-eye" id="eyeSignupIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-wrap">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span id="txtAgreeTerms">I agree to the Terms & Conditions</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="btnSignupSubmit">
+                        <span class="btn-spinner" id="signupSpinner"></span>
+                        <span id="btnSignupText">Complete Registration</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <p class="form-footer-text">
+                        <span id="txtHasAccount">Already have an account?</span>
+                        <a href="#" id="gotoSigninFromSignup">Sign In</a>
+                    </p>
+                </form>
+
+                <!-- 3. FORGOT PASSWORD FORM -->
+                <form class="auth-form hidden" id="forgotForm">
+                    <div class="form-header">
+                        <h2 class="form-title" id="forgotTitle">Reset Password</h2>
+                        <p class="form-subtitle" id="forgotSubtitle">Enter your registered email address to receive password reset instructions.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" id="lblForgotEmail">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope input-icon"></i>
+                            <input type="email" class="form-input" id="forgotEmail" placeholder="alex@example.com" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="btnForgotSubmit">
+                        <span class="btn-spinner" id="forgotSpinner"></span>
+                        <span id="btnForgotText">Send Reset Link</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+
+                    <p class="form-footer-text">
+                        <a href="#" id="gotoSigninFromForgot">
+                            <i class="fa-solid fa-arrow-left"></i> <span id="txtBackToSignin1">Back to Sign In</span>
+                        </a>
+                    </p>
+                </form>
+
+                <!-- 4. PHONE OTP LOGIN FORM -->
+                <form class="auth-form hidden" id="otpForm">
+                    <div class="form-header">
+                        <h2 class="form-title" id="otpTitle">Instant OTP Login</h2>
+                        <p class="form-subtitle" id="otpSubtitle">Verify your mobile phone to receive a 4-digit code.</p>
+                    </div>
+
+                    <div class="form-group" id="phoneInputGroup">
+                        <label class="form-label" id="lblPhoneNum">Mobile Phone Number</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-phone input-icon"></i>
+                            <input type="tel" class="form-input" id="otpPhone" placeholder="+1 (555) 019-2834" required>
+                        </div>
+                    </div>
+
+                    <div id="otpCodeGroup" style="display: none;">
+                        <label class="form-label" style="text-align: center; display: block;" id="lblEnterOtp">Enter 4-Digit Code</label>
+                        <div class="otp-inputs">
+                            <input type="text" maxlength="1" class="otp-box" id="otp1">
+                            <input type="text" maxlength="1" class="otp-box" id="otp2">
+                            <input type="text" maxlength="1" class="otp-box" id="otp3">
+                            <input type="text" maxlength="1" class="otp-box" id="otp4">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="btnOtpSubmit">
+                        <span class="btn-spinner" id="otpSpinner"></span>
+                        <span id="btnOtpText">Send Verification Code</span>
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </button>
+
+                    <p class="form-footer-text">
+                        <a href="#" id="gotoSigninFromOtp">
+                            <i class="fa-solid fa-arrow-left"></i> <span id="txtBackToSignin2">Back to Password Login</span>
+                        </a>
+                    </p>
+                </form>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div class="toast-notification" id="toastAlert">
+        <i class="fa-solid fa-circle-check toast-icon" id="toastIcon"></i>
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle">Notification</div>
+            <div id="toastMessage">Action completed successfully.</div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            const langSwitcher = document.getElementById('langSwitcher');
+
+            // Forms & Containers
+            const signinForm = document.getElementById('signinForm');
+            const signupForm = document.getElementById('signupForm');
+            const forgotForm = document.getElementById('forgotForm');
+            const otpForm = document.getElementById('otpForm');
+
+            // Role Switchers
+            const roleCustomerBtn = document.getElementById('roleCustomerBtn');
+            const roleAdminBtn = document.getElementById('roleAdminBtn');
+            const roleIndicatorTxt = document.getElementById('roleIndicatorTxt');
+            let currentRole = 'customer'; // 'customer' or 'admin'
+
+            // Navigation links between forms
+            const gotoSignupLink = document.getElementById('gotoSignupLink');
+            const gotoSigninLink = document.getElementById('gotoSigninFromSignup');
+            const gotoForgotLink = document.getElementById('gotoForgotLink');
+            const gotoSigninFromForgot = document.getElementById('gotoSigninFromForgot');
+            const gotoOtpLink = document.getElementById('gotoOtpLink');
+            const gotoSigninFromOtp = document.getElementById('gotoSigninFromOtp');
+
+            // Passwords Show/Hide
+            const toggleSigninPass = document.getElementById('toggleSigninPass');
+            const eyeSigninIcon = document.getElementById('eyeSigninIcon');
+            const signinPassword = document.getElementById('signinPassword');
+
+            const toggleSignupPass = document.getElementById('toggleSignupPass');
+            const eyeSignupIcon = document.getElementById('eyeSignupIcon');
+            const signupPassword = document.getElementById('signupPassword');
+
+            // Toast Alert
+            const toastAlert = document.getElementById('toastAlert');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            // 1. Dark/Light Mode Switcher
+            function updateThemeUI(isDark) {
+                if (isDark) {
+                    document.body.classList.add('dark-mode');
+                    document.documentElement.classList.add('dark-mode');
+                    if (themeIcon) themeIcon.className = 'fa-solid fa-sun';
+                    localStorage.setItem('carstudio_theme', 'dark');
+                    localStorage.setItem('car_studio_theme', 'dark');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    document.documentElement.classList.remove('dark-mode');
+                    if (themeIcon) themeIcon.className = 'fa-solid fa-moon';
+                    localStorage.setItem('carstudio_theme', 'light');
+                    localStorage.setItem('car_studio_theme', 'light');
+                }
+            }
+
+            function toggleTheme() {
+                const isDark = !document.body.classList.contains('dark-mode');
+                updateThemeUI(isDark);
+            }
+
+            // Init stored theme (default to dark)
+            const savedTheme = localStorage.getItem('carstudio_theme') || localStorage.getItem('car_studio_theme');
+            if (savedTheme === 'light') {
+                updateThemeUI(false);
+            } else {
+                updateThemeUI(true);
+            }
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', toggleTheme);
+            }
+
+            // 2. ROLE SWITCHER (Customer vs Admin)
+            if (roleCustomerBtn) {
+                roleCustomerBtn.addEventListener('click', () => {
+                    currentRole = 'customer';
+                    roleCustomerBtn.classList.add('active');
+                    if (roleAdminBtn) roleAdminBtn.classList.remove('active');
+                    if (roleIndicatorTxt) roleIndicatorTxt.textContent = 'Logging in as Customer Member';
+                    document.getElementById('signinTitle').textContent = 'Welcome Back';
+                    document.getElementById('btnSigninText').textContent = 'Sign In to Account';
+                });
+            }
+
+            if (roleAdminBtn) {
+                roleAdminBtn.addEventListener('click', () => {
+                    currentRole = 'admin';
+                    roleAdminBtn.classList.add('active');
+                    if (roleCustomerBtn) roleCustomerBtn.classList.remove('active');
+                    if (roleIndicatorTxt) roleIndicatorTxt.textContent = 'Logging in as Studio Staff / Technician / Admin';
+                    document.getElementById('signinTitle').textContent = 'Staff Portal Sign In';
+                    document.getElementById('btnSigninText').textContent = 'Access Admin Console';
+                });
+            }
+
+            // 3. FORM SWITCHING LOGIC
+            function switchForm(activeForm) {
+                [signinForm, signupForm, forgotForm, otpForm].forEach(f => f.classList.add('hidden'));
+                activeForm.classList.remove('hidden');
+            }
+
+            gotoSignupLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'register.html'; });
+            gotoSigninLink.addEventListener('click', (e) => { e.preventDefault(); switchForm(signinForm); });
+            gotoForgotLink.addEventListener('click', (e) => { e.preventDefault(); switchForm(forgotForm); });
+            gotoSigninFromForgot.addEventListener('click', (e) => { e.preventDefault(); switchForm(signinForm); });
+            gotoOtpLink.addEventListener('click', (e) => { e.preventDefault(); switchForm(otpForm); });
+            gotoSigninFromOtp.addEventListener('click', (e) => { e.preventDefault(); switchForm(signinForm); });
+
+            // 4. PASSWORD VISIBILITY TOGGLE
+            toggleSigninPass.addEventListener('click', () => {
+                const type = signinPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                signinPassword.setAttribute('type', type);
+                eyeSigninIcon.className = type === 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+            });
+
+            if (toggleSignupPass) {
+                toggleSignupPass.addEventListener('click', () => {
+                    const type = signupPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                    signupPassword.setAttribute('type', type);
+                    eyeSignupIcon.className = type === 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+                });
+            }
+
+            // 5. FORM SUBMISSION & REDIRECTION SIMULATION
+            signinForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const spinner = document.getElementById('signinSpinner');
+                const btnText = document.getElementById('btnSigninText');
+                const submitBtn = document.getElementById('btnSigninSubmit');
+
+                spinner.style.display = 'inline-block';
+                btnText.textContent = 'Authenticating...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    spinner.style.display = 'none';
+                    if (currentRole === 'admin') {
+                        showToast('Staff Authentication Successful', 'Redirecting to Admin Dashboard...', 'fa-shield-halved');
+                        setTimeout(() => {
+                            window.location.href = 'admin-dashboard.html';
+                        }, 1200);
+                    } else {
+                        showToast('Welcome Back!', 'Redirecting to Customer Member Dashboard...', 'fa-circle-check');
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1200);
+                    }
+                }, 1000);
+            });
+
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const spinner = document.getElementById('signupSpinner');
+                const btnText = document.getElementById('btnSignupText');
+                
+                spinner.style.display = 'inline-block';
+                btnText.textContent = 'Creating VIP Account...';
+
+                setTimeout(() => {
+                    spinner.style.display = 'none';
+                    btnText.textContent = 'Complete Registration';
+                    showToast('Registration Successful', 'Account created! Redirecting to Member Dashboard...', 'fa-user-check');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1200);
+                }, 1100);
+            });
+
+            forgotForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const spinner = document.getElementById('forgotSpinner');
+                const btnText = document.getElementById('btnForgotText');
+
+                spinner.style.display = 'inline-block';
+                btnText.textContent = 'Sending Link...';
+
+                setTimeout(() => {
+                    spinner.style.display = 'none';
+                    btnText.textContent = 'Send Reset Link';
+                    showToast('Reset Link Sent', 'Password reset instructions sent to your email.', 'fa-paper-plane');
+                    setTimeout(() => {
+                        switchForm(signinForm);
+                    }, 1800);
+                }, 1000);
+            });
+
+            // 6. OTP LOGIC
+            let otpSent = false;
+            const phoneGroup = document.getElementById('phoneInputGroup');
+            const otpCodeGroup = document.getElementById('otpCodeGroup');
+            const btnOtpText = document.getElementById('btnOtpText');
+            const otpBoxes = [document.getElementById('otp1'), document.getElementById('otp2'), document.getElementById('otp3'), document.getElementById('otp4')];
+
+            otpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const spinner = document.getElementById('otpSpinner');
+
+                if (!otpSent) {
+                    spinner.style.display = 'inline-block';
+                    btnOtpText.textContent = 'Sending OTP...';
+
+                    setTimeout(() => {
+                        spinner.style.display = 'none';
+                        otpSent = true;
+                        phoneGroup.style.display = 'none';
+                        otpCodeGroup.style.display = 'block';
+                        btnOtpText.textContent = 'Verify Code & Sign In';
+                        showToast('Verification Code Sent', '4-digit OTP sent to your phone.', 'fa-comment-sms');
+                        otpBoxes[0].focus();
+                    }, 1000);
+                } else {
+                    spinner.style.display = 'inline-block';
+                    btnOtpText.textContent = 'Verifying Code...';
+
+                    setTimeout(() => {
+                        spinner.style.display = 'none';
+                        showToast('OTP Verified!', 'Access granted. Redirecting...', 'fa-lock-open');
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1200);
+                    }, 1000);
+                }
+            });
+
+            // Auto-focus OTP boxes
+            otpBoxes.forEach((box, idx) => {
+                box.addEventListener('keyup', (e) => {
+                    if (box.value.length === 1 && idx < otpBoxes.length - 1) {
+                        otpBoxes[idx + 1].focus();
+                    }
+                    if (e.key === 'Backspace' && idx > 0 && box.value === '') {
+                        otpBoxes[idx - 1].focus();
+                    }
+                });
+            });
+
+            // Social Logins Simulation
+            document.getElementById('btnGoogleLogin').addEventListener('click', () => {
+                showToast('Google Sign-In', 'Authenticating via Google account...', 'fa-brands fa-google');
+                setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+            });
+
+            document.getElementById('btnAppleLogin').addEventListener('click', () => {
+                showToast('Apple ID Sign-In', 'Authenticating via Apple ID...', 'fa-brands fa-apple');
+                setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+            });
+
+            // Toast Helper
+            function showToast(title, msg, iconClass = 'fa-circle-check') {
+                toastTitle.textContent = title;
+                toastMessage.textContent = msg;
+                toastIcon.className = `fa-solid ${iconClass} toast-icon`;
+                toastAlert.classList.add('active');
+
+                setTimeout(() => {
+                    toastAlert.classList.remove('active');
+                }, 3500);
+            }
+
+            // URL Params handler for incoming connections
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('registered') === 'true') {
+                showToast('Registration Successful!', 'Your VIP account has been created. Please sign in below.', 'fa-circle-check');
+            }
+
+            // 7. MULTI-LANGUAGE DICTIONARY & RTL LOGIC
+            const translations = {
+                en: {
+                    dir: 'ltr',
+                    backHome: 'Back to Home',
+                    showcaseTitle: 'Masterpiece Detailing & <span>Custom Studio</span>',
+                    showcaseDesc: 'Access your vehicle protection records, book precision detailing appointments, and unlock member-only studio privileges.',
+                    feat1: 'Paint Protection Film & Ceramic Warranty Records',
+                    feat2: 'Real-Time Detailing Progress & Stage Tracking',
+                    feat3: 'Instant Service Estimator & VIP Priority Booking',
+                    statText: '<strong>4.9 / 5 Rating</strong> &bull; Over 1,200+ Luxury & Supercars Detailed in 2026',
+                    roleCustomerTxt: 'Customer Portal',
+                    roleAdminTxt: 'Staff / Admin',
+                    roleCustInd: 'Logging in as Customer Member',
+                    roleAdminInd: 'Logging in as Studio Staff / Technician / Admin',
+                    signinTitle: 'Welcome Back',
+                    signinSubtitle: 'Enter your credentials to access your Car Studio account.',
+                    lblEmailPhone: 'Email or Mobile Number',
+                    lblPassword: 'Password',
+                    txtRemember: 'Remember me',
+                    gotoForgotLink: 'Forgot Password?',
+                    btnSigninText: 'Sign In to Account',
+                    txtOrSocial: 'or continue with',
+                    txtNoAccount: "Don't have an account yet?",
+                    gotoSignupLink: 'Register Now',
+                    signupTitle: 'Create Account',
+                    signupSubtitle: 'Join the VIP detailing membership for exclusive perks.',
+                    lblFullName: 'Full Name',
+                    lblRegEmail: 'Email Address',
+                    lblVehicleType: 'Vehicle / Car Model',
+                    lblRegPass: 'Create Password',
+                    txtAgreeTerms: 'I agree to the Terms & Conditions',
+                    btnSignupText: 'Complete Registration',
+                    txtHasAccount: 'Already have an account?',
+                    gotoSigninFromSignup: 'Sign In',
+                    forgotTitle: 'Reset Password',
+                    forgotSubtitle: 'Enter your registered email address to receive password reset instructions.',
+                    btnForgotText: 'Send Reset Link',
+                    txtBackToSignin1: 'Back to Sign In',
+                    otpTitle: 'Instant OTP Login',
+                    otpSubtitle: 'Verify your mobile phone to receive a 4-digit code.',
+                    lblPhoneNum: 'Mobile Phone Number',
+                    btnOtpText: 'Send Verification Code',
+                    txtBackToSignin2: 'Back to Password Login'
+                },
+                ar: {
+                    dir: 'rtl',
+                    backHome: 'العودة للرئيسية',
+                    showcaseTitle: 'العناية الفائقة بالسيارات & <span>استوديو التعديل</span>',
+                    showcaseDesc: 'استعرض سجلات حماية سيارتك، واحجز مواعيد العناية الدقيقة، واحصل على مزايا الأعضاء الحصرية.',
+                    feat1: 'سجلات ضمان أفلام حماية الطلاء والسيراميك',
+                    feat2: 'متابعة مراحل العناية والتلميع في الوقت الفعلي',
+                    feat3: 'حاسبة التكلفة الفورية وحجز الأولوية لجلسات التلميع',
+                    statText: '<strong>تقييم 4.9 / 5</strong> &bull; أكثر من 1,200 سيارة فاخرة وفائقة في 2026',
+                    roleCustomerTxt: 'بوابة العملاء',
+                    roleAdminTxt: 'الموظفون / الإدارة',
+                    roleCustInd: 'تسجيل الدخول كعضو عميل',
+                    roleAdminInd: 'تسجيل الدخول لفريق العمل / الفنيين / الإدارة',
+                    signinTitle: 'مرحباً بعودتك',
+                    signinSubtitle: 'أدخل بيانات الاعتماد الخاصة بك للوصول إلى حسابك في كار استوديو.',
+                    lblEmailPhone: 'البريد الإلكتروني أو رقم الجوال',
+                    lblPassword: 'كلمة المرور',
+                    txtRemember: 'تذكرني',
+                    gotoForgotLink: 'نسيت كلمة المرور؟',
+                    btnSigninText: 'تسجيل الدخول للحساب',
+                    txtOrSocial: 'أو الاستمرار بواسطة',
+                    txtNoAccount: 'ليس لديك حساب حتى الآن؟',
+                    gotoSignupLink: 'سجل الآن',
+                    signupTitle: 'إنشاء حساب جديد',
+                    signupSubtitle: 'انضم إلى عضوية كار استوديو الحصرية واستمتع بالمزايا الخاصة.',
+                    lblFullName: 'الاسم الكامل',
+                    lblRegEmail: 'البريد الإلكتروني',
+                    lblVehicleType: 'نوع وموديل السيارة',
+                    lblRegPass: 'إنشاء كلمة المرور',
+                    txtAgreeTerms: 'أوافق على الشروط والأحكام',
+                    btnSignupText: 'إكمال التسجيل',
+                    txtHasAccount: 'لديك حساب بالفعل؟',
+                    gotoSigninFromSignup: 'تسجيل الدخول',
+                    forgotTitle: 'إعادة ضبط كلمة المرور',
+                    forgotSubtitle: 'أدخل بريدك الإلكتروني المسجل لاستلام تعليمات إعادة الضبط.',
+                    btnForgotText: 'إرسال رابط إعادة الضبط',
+                    txtBackToSignin1: 'العودة لتسجيل الدخول',
+                    otpTitle: 'تسجيل الدخول عبر رمز OTP',
+                    otpSubtitle: 'أدخل رقم جوالك لاستلام رمز التحقق المكون من 4 أرقام.',
+                    lblPhoneNum: 'رقم الجوال',
+                    btnOtpText: 'إرسال رمز التحقق',
+                    txtBackToSignin2: 'العودة لتسجيل الدخول بكلمة المرور'
+                },
+                hi: {
+                    dir: 'ltr',
+                    backHome: 'मुख्य पृष्ठ पर लौटें',
+                    showcaseTitle: 'मास्टरपीस डिटेलिंग और <span>कस्टम स्टूडियो</span>',
+                    showcaseDesc: 'अपने वाहन सुरक्षा रिकॉर्ड तक पहुंचें, सटीक डिटेलिंग अपॉइंटमेंट बुक करें और वीआईपी स्टूडियो सुविधाएं अनलॉक करें।',
+                    feat1: 'पेंट प्रोटेक्शन फिल्म और सेरामिक वारंटी रिकॉर्ड',
+                    feat2: 'रियल-टाइम डिटेलिंग प्रगति और स्टेज ट्रैकिंग',
+                    feat3: 'तत्काल सेवा अनुमानक और वीआईपी प्राथमिकता बुकिंग',
+                    statText: '<strong>4.9 / 5 रेटिंग</strong> &bull; 2026 में 1,200+ लग्जरी कारों को विस्तृत किया गया',
+                    roleCustomerTxt: 'ग्राहक पोर्टल',
+                    roleAdminTxt: 'स्टाफ / व्यवस्थापक',
+                    roleCustInd: 'ग्राहक सदस्य के रूप में लॉगिन',
+                    roleAdminInd: 'कार स्टूडियो स्टाफ / तकनीशियन / व्यवस्थापक लॉगिन',
+                    signinTitle: 'पुनः स्वागत है',
+                    signinSubtitle: 'अपने कार स्टूडियो खाते तक पहुँचने के लिए अपने क्रेडेंशियल दर्ज करें।',
+                    lblEmailPhone: 'ईमेल या मोबाइल नंबर',
+                    lblPassword: 'पासवर्ड',
+                    txtRemember: 'मुझे याद रखें',
+                    gotoForgotLink: 'पासवर्ड भूल गए?',
+                    btnSigninText: 'खाते में साइन इन करें',
+                    txtOrSocial: 'या इसके साथ जारी रखें',
+                    txtNoAccount: 'क्या अभी तक कोई खाता नहीं है?',
+                    gotoSignupLink: 'अभी पंजीकरण करें',
+                    signupTitle: 'खाता बनाएं',
+                    signupSubtitle: 'विशेष लाभों के लिए वीआईपी डिटेलिंग सदस्यता में शामिल हों।',
+                    lblFullName: 'पूरा नाम',
+                    lblRegEmail: 'ईमेल पता',
+                    lblVehicleType: 'वाहन / कार मॉडल',
+                    lblRegPass: 'पासवर्ड बनाएं',
+                    txtAgreeTerms: 'मैं नियमों और शर्तों से सहमत हूँ',
+                    btnSignupText: 'पंजीकरण पूरा करें',
+                    txtHasAccount: 'क्या आपके पास पहले से एक खाता मौजूद है?',
+                    gotoSigninFromSignup: 'साइन इन करें',
+                    forgotTitle: 'पासवर्ड रीसेट करें',
+                    forgotSubtitle: 'पासवर्ड रीसेट निर्देश प्राप्त करने के लिए अपना पंजीकृत ईमेल दर्ज करें।',
+                    btnForgotText: 'रीसेट लिंक भेजें',
+                    txtBackToSignin1: 'साइन इन पर वापस जाएं',
+                    otpTitle: 'तत्काल ओटीपी लॉगिन',
+                    otpSubtitle: '4-अंकीय कोड प्राप्त करने के लिए अपने मोबाइल फोन को सत्यापित करें।',
+                    lblPhoneNum: 'मोबाइल फोन नंबर',
+                    btnOtpText: 'सत्यापन कोड भेजें',
+                    txtBackToSignin2: 'पासवर्ड लॉगिन पर वापस जाएं'
+                }
+            };
+
+            function applyLanguage(lang, notify = false) {
+                const dict = translations[lang] || translations.en;
+                const isRtl = dict.dir === 'rtl';
+
+                document.documentElement.setAttribute('dir', dict.dir);
+                document.body.setAttribute('dir', dict.dir);
+                localStorage.setItem('carstudio_rtl', dict.dir);
+                localStorage.setItem('car_studio_rtl', dict.dir);
+                localStorage.setItem('carstudio_lang', lang);
+
+                if (langSwitcher) langSwitcher.value = lang;
+
+                // Update text items
+                const txtBackHome = document.getElementById('txtBackHome');
+                if (txtBackHome) txtBackHome.textContent = dict.backHome;
+                if (document.getElementById('showcaseTitle')) document.getElementById('showcaseTitle').innerHTML = dict.showcaseTitle;
+                if (document.getElementById('showcaseDesc')) document.getElementById('showcaseDesc').textContent = dict.showcaseDesc;
+                if (document.getElementById('feat1')) document.getElementById('feat1').textContent = dict.feat1;
+                if (document.getElementById('feat2')) document.getElementById('feat2').textContent = dict.feat2;
+                if (document.getElementById('feat3')) document.getElementById('feat3').textContent = dict.feat3;
+                if (document.getElementById('statText')) document.getElementById('statText').innerHTML = dict.statText;
+
+                if (document.getElementById('roleCustomerTxt')) document.getElementById('roleCustomerTxt').textContent = dict.roleCustomerTxt;
+                if (document.getElementById('roleAdminTxt')) document.getElementById('roleAdminTxt').textContent = dict.roleAdminTxt;
+                if (document.getElementById('roleIndicatorTxt')) document.getElementById('roleIndicatorTxt').textContent = currentRole === 'admin' ? dict.roleAdminInd : dict.roleCustInd;
+
+                if (document.getElementById('signinTitle')) document.getElementById('signinTitle').textContent = dict.signinTitle;
+                if (document.getElementById('signinSubtitle')) document.getElementById('signinSubtitle').textContent = dict.signinSubtitle;
+                if (document.getElementById('lblEmailPhone')) document.getElementById('lblEmailPhone').textContent = dict.lblEmailPhone;
+                if (document.getElementById('lblPassword')) document.getElementById('lblPassword').textContent = dict.lblPassword;
+                if (document.getElementById('txtRemember')) document.getElementById('txtRemember').textContent = dict.txtRemember;
+                if (document.getElementById('gotoForgotLink')) document.getElementById('gotoForgotLink').textContent = dict.gotoForgotLink;
+                if (document.getElementById('btnSigninText')) document.getElementById('btnSigninText').textContent = dict.btnSigninText;
+                if (document.getElementById('txtOrSocial')) document.getElementById('txtOrSocial').textContent = dict.txtOrSocial;
+                if (document.getElementById('txtNoAccount')) document.getElementById('txtNoAccount').textContent = dict.txtNoAccount;
+                if (document.getElementById('gotoSignupLink')) document.getElementById('gotoSignupLink').textContent = dict.gotoSignupLink;
+
+                if (document.getElementById('signupTitle')) document.getElementById('signupTitle').textContent = dict.signupTitle;
+                if (document.getElementById('signupSubtitle')) document.getElementById('signupSubtitle').textContent = dict.signupSubtitle;
+                if (document.getElementById('lblFullName')) document.getElementById('lblFullName').textContent = dict.lblFullName;
+                if (document.getElementById('lblRegEmail')) document.getElementById('lblRegEmail').textContent = dict.lblRegEmail;
+                if (document.getElementById('lblVehicleType')) document.getElementById('lblVehicleType').textContent = dict.lblVehicleType;
+                if (document.getElementById('lblRegPass')) document.getElementById('lblRegPass').textContent = dict.lblRegPass;
+                if (document.getElementById('txtAgreeTerms')) document.getElementById('txtAgreeTerms').textContent = dict.txtAgreeTerms;
+                if (document.getElementById('btnSignupText')) document.getElementById('btnSignupText').textContent = dict.btnSignupText;
+                if (document.getElementById('txtHasAccount')) document.getElementById('txtHasAccount').textContent = dict.txtHasAccount;
+                if (document.getElementById('gotoSigninFromSignup')) document.getElementById('gotoSigninFromSignup').textContent = dict.gotoSigninFromSignup;
+
+                if (document.getElementById('forgotTitle')) document.getElementById('forgotTitle').textContent = dict.forgotTitle;
+                if (document.getElementById('forgotSubtitle')) document.getElementById('forgotSubtitle').textContent = dict.forgotSubtitle;
+                if (document.getElementById('btnForgotText')) document.getElementById('btnForgotText').textContent = dict.btnForgotText;
+                if (document.getElementById('txtBackToSignin1')) document.getElementById('txtBackToSignin1').textContent = dict.txtBackToSignin1;
+
+                if (document.getElementById('otpTitle')) document.getElementById('otpTitle').textContent = dict.otpTitle;
+                if (document.getElementById('otpSubtitle')) document.getElementById('otpSubtitle').textContent = dict.otpSubtitle;
+                if (document.getElementById('lblPhoneNum')) document.getElementById('lblPhoneNum').textContent = dict.lblPhoneNum;
+                if (document.getElementById('btnOtpText')) document.getElementById('btnOtpText').textContent = dict.btnOtpText;
+                if (document.getElementById('txtBackToSignin2')) document.getElementById('txtBackToSignin2').textContent = dict.txtBackToSignin2;
+
+                if (notify) {
+                    showToast('Language Updated', `Switched layout to ${lang.toUpperCase()}`, 'fa-language');
+                }
+            }
+
+            // Init stored language / RTL setting
+            const savedRtl = localStorage.getItem('carstudio_rtl') || localStorage.getItem('car_studio_rtl');
+            const savedLang = localStorage.getItem('carstudio_lang') || (savedRtl === 'rtl' ? 'ar' : 'en');
+            applyLanguage(savedLang, false);
+
+            if (langSwitcher) {
+                langSwitcher.addEventListener('change', (e) => {
+                    applyLanguage(e.target.value, true);
+                });
+            }
+    });
+    </script>
+</body>
+</html>
+
+
+
+
+

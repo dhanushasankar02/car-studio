@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgMem" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0e17"/>
+      <stop offset="50%" stop-color="#182336"/>
+      <stop offset="100%" stop-color="#080a11"/>
+    </linearGradient>
+
+    <linearGradient id="goldCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a1a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#ff6a1a" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bgMem)" rx="24"/>
+
+  <!-- VIP Gold Membership Pass Card Visual -->
+  <g transform="translate(150, 100)">
+    <!-- Main Card Body -->
+    <rect width="500" height="320" rx="24" fill="url(#goldCard)" filter="url(#cardShadow)"/>
+    <rect width="500" height="320" rx="24" fill="rgba(0,0,0,0.15)"/>
+
+    <!-- Metallic Chip -->
+    <rect x="50" y="50" width="54" height="42" rx="8" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="50" y1="71" x2="104" y2="71" stroke="#94a3b8" stroke-width="1"/>
+    <line x1="77" y1="50" x2="77" y2="92" stroke="#94a3b8" stroke-width="1"/>
+
+    <!-- Contactless Wireless Indicator -->
+    <path d="M 430 50 A 15 15 0 0 1 430 80 M 440 45 A 22 22 0 0 1 440 85" fill="none" stroke="#ffffff" stroke-width="3.5" opacity="0.8"/>
+
+    <!-- Card Brand & Title -->
+    <text x="50" y="145" font-family="'Outfit', sans-serif" font-size="14" font-weight="800" fill="#ffffff" letter-spacing="4">CAR STUDIO CLUB</text>
+    <text x="50" y="185" font-family="'Outfit', sans-serif" font-size="28" font-weight="900" fill="#ffffff">VIP BLACK CARD</text>
+
+    <text x="50" y="245" font-family="'Inter', font-size="14" font-weight="600" fill="rgba(255,255,255,0.8)" letter-spacing="3">•••• •••• •••• 9988</text>
+
+    <!-- Member Name -->
+    <text x="50" y="285" font-family="'Outfit', sans-serif" font-size="14" font-weight="700" fill="#ffffff">ALEXANDER VANCE</text>
+    <text x="380" y="285" font-family="'Outfit', sans-serif" font-size="12" font-weight="700" fill="#ffffff">EXP 12/28</text>
+  </g>
+
+  <!-- Perks Pills Below -->
+  <g transform="translate(100, 470)">
+    <rect width="180" height="44" rx="22" fill="rgba(255,255,255,0.06)" stroke="rgba(255,106,26,0.4)" stroke-width="1"/>
+    <text x="90" y="27" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#ff6a1a" text-anchor="middle">🎁 20% Off Ceramic Top-Up</text>
+  </g>
+
+  <g transform="translate(310, 470)">
+    <rect width="180" height="44" rx="22" fill="rgba(255,255,255,0.06)" stroke="rgba(245,158,11,0.4)" stroke-width="1"/>
+    <text x="90" y="27" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#f59e0b" text-anchor="middle">🚚 Free Transport</text>
+  </g>
+
+  <g transform="translate(520, 470)">
+    <rect width="180" height="44" rx="22" fill="rgba(255,255,255,0.06)" stroke="rgba(56,189,248,0.4)" stroke-width="1"/>
+    <text x="90" y="27" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">⚡ Priority Slot Booking</text>
+  </g>
+
+  <text x="400" y="65" font-family="'Outfit', sans-serif" font-weight="900" font-size="20" fill="#ffffff" text-anchor="middle" letter-spacing="3">EXCLUSIVE CAR STUDIO MEMBERSHIP &amp; OFFERS</text>
+</svg>

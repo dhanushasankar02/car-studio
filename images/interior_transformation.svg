@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgInt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0d14"/>
+      <stop offset="100%" stop-color="#182030"/>
+    </linearGradient>
+
+    <linearGradient id="leatherGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff6a1a"/>
+      <stop offset="100%" stop-color="#e5590c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bgInt)" rx="24"/>
+
+  <!-- Luxury Cabin Interior Seat & Steering Wheel Graphic -->
+  <g transform="translate(150, 100)">
+    <rect width="500" height="340" rx="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,106,26,0.3)" stroke-width="2"/>
+    
+    <!-- Steering Wheel Outline -->
+    <circle cx="160" cy="170" r="85" fill="none" stroke="#ff6a1a" stroke-width="8"/>
+    <circle cx="160" cy="170" r="70" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+    <line x1="160" y1="170" x2="160" y2="255" stroke="#ff6a1a" stroke-width="6"/>
+    <line x1="160" y1="170" x2="90" y2="140" stroke="#ff6a1a" stroke-width="6"/>
+    <line x1="160" y1="170" x2="230" y2="140" stroke="#ff6a1a" stroke-width="6"/>
+
+    <!-- Aniline Leather Bucket Seat Profile -->
+    <path d="M 320 80 C 370 80, 420 100, 430 180 C 440 260, 450 280, 400 300 C 350 320, 280 300, 300 240 Z" fill="#1e293b" stroke="url(#leatherGrad)" stroke-width="3"/>
+    
+    <!-- Custom Italian Stitching Accent Lines -->
+    <path d="M 340 100 L 410 180" stroke="#ff6a1a" stroke-width="2" stroke-dasharray="4 4"/>
+    <path d="M 360 120 L 420 200" stroke="#ff6a1a" stroke-width="2" stroke-dasharray="4 4"/>
+
+    <!-- Specs Badge -->
+    <rect x="20" y="20" width="160" height="34" rx="17" fill="#ff6a1a"/>
+    <text x="100" y="42" font-family="'Outfit', sans-serif" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle">ANILINE LEATHER CARE</text>
+  </g>
+
+  <!-- Feature Grid -->
+  <g transform="translate(100, 470)">
+    <rect width="180" height="46" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="90" y="28" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#cbd5e1" text-anchor="middle">💨 Steam Disinfection</text>
+  </g>
+
+  <g transform="translate(310, 470)">
+    <rect width="180" height="46" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="90" y="28" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#cbd5e1" text-anchor="middle">✨ Alcantara Grooming</text>
+  </g>
+
+  <g transform="translate(520, 470)">
+    <rect width="180" height="46" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="90" y="28" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#cbd5e1" text-anchor="middle">🛡️ UV Leather Shield</text>
+  </g>
+
+  <text x="400" y="65" font-family="'Outfit', sans-serif" font-weight="900" font-size="20" fill="#ffffff" text-anchor="middle" letter-spacing="3">EXECUTIVE CABIN INTERIOR TRANSFORMATION</text>
+</svg>

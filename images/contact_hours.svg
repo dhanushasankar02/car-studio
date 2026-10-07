@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="clockBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181124"/>
+      <stop offset="100%" stop-color="#0b0712"/>
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b92b27"/>
+      <stop offset="100%" stop-color="#1565c0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="24" fill="url(#clockBg)" stroke="rgba(185, 43, 39, 0.3)" stroke-width="2"/>
+  <!-- Clock HUD -->
+  <g transform="translate(400, 230)">
+    <circle cx="0" cy="0" r="120" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="4"/>
+    <circle cx="0" cy="0" r="105" fill="none" stroke="url(#purpleGlow)" stroke-width="3" stroke-dasharray="12 8"/>
+    <line x1="0" y1="0" x2="0" y2="-60" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="45" y2="25" stroke="#ff6a1a" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="10" fill="#ffffff"/>
+  </g>
+  <text x="400" y="490" text-anchor="middle" fill="#ffffff" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" letter-spacing="2">CLEANROOM OPERATING HOURS</text>
+  <text x="400" y="530" text-anchor="middle" fill="#94a3b8" font-family="'Inter', sans-serif" font-weight="500" font-size="16">Mon - Fri: 8am - 7pm | Sun: Private Appointments</text>
+</svg>

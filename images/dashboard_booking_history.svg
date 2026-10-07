@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" rx="24" fill="#0f172a"/>
+  <rect x="40" y="40" width="720" height="420" rx="20" fill="#141a26" stroke="#ff6a1a" stroke-width="2"/>
+  <text x="70" y="85" font-family="'Outfit', sans-serif" font-weight="800" font-size="24" fill="#ffffff">Detailing History and Warranty Log</text>
+
+  <rect x="70" y="120" width="660" height="300" rx="14" fill="#1e293b" stroke="rgba(255,255,255,0.1)"/>
+  <text x="90" y="155" font-family="'Outfit', sans-serif" font-weight="700" font-size="14" fill="#ff6a1a">DATE</text>
+  <text x="210" y="155" font-family="'Outfit', sans-serif" font-weight="700" font-size="14" fill="#ff6a1a">SERVICE PACKAGE</text>
+  <text x="460" y="155" font-family="'Outfit', sans-serif" font-weight="700" font-size="14" fill="#ff6a1a">AMOUNT</text>
+  <text x="580" y="155" font-family="'Outfit', sans-serif" font-weight="700" font-size="14" fill="#ff6a1a">STATUS</text>
+  <line x1="90" y1="170" x2="710" y2="170" stroke="rgba(255,255,255,0.1)"/>
+
+  <text x="90" y="200" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">Sep 15, 2026</text>
+  <text x="210" y="200" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">9H Ceramic Coating (Porsche 911)</text>
+  <text x="460" y="200" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">$1,850.00</text>
+  <text x="580" y="200" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#10b981">Completed</text>
+  <line x1="90" y1="225" x2="710" y2="225" stroke="rgba(255,255,255,0.1)"/>
+
+  <text x="90" y="255" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">Jun 04, 2026</text>
+  <text x="210" y="255" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">Full Stealth PPF Wrap (Mercedes G63)</text>
+  <text x="460" y="255" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">$4,200.00</text>
+  <text x="580" y="255" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#10b981">Completed</text>
+  <line x1="90" y1="280" x2="710" y2="280" stroke="rgba(255,255,255,0.1)"/>
+
+  <text x="90" y="310" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">Jan 22, 2026</text>
+  <text x="210" y="310" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">Interior Leather Spa and Ceramic Seal</text>
+  <text x="460" y="310" font-family="'Inter', sans-serif" font-size="13" fill="#ffffff">$650.00</text>
+  <text x="580" y="310" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#10b981">Completed</text>
+</svg>

@@ -1,0 +1,293 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="cpBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05070d"/>
+      <stop offset="50%" stop-color="#0d121e"/>
+      <stop offset="100%" stop-color="#040609"/>
+    </linearGradient>
+
+    <!-- Card Backgrounds -->
+    <linearGradient id="cardBgBase" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(18, 26, 41, 0.85)"/>
+      <stop offset="100%" stop-color="rgba(10, 14, 23, 0.95)"/>
+    </linearGradient>
+
+    <linearGradient id="featuredCardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(25, 34, 52, 0.95)"/>
+      <stop offset="100%" stop-color="rgba(12, 17, 28, 0.98)"/>
+    </linearGradient>
+
+    <!-- Accent Gradients -->
+    <linearGradient id="orangeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff6a1a"/>
+      <stop offset="50%" stop-color="#ff8c3b"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <linearGradient id="cyanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+
+    <radialGradient id="ambientLight" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="rgba(255, 106, 26, 0.22)"/>
+      <stop offset="60%" stop-color="rgba(56, 189, 248, 0.05)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+
+    <!-- Drop Glow Filters -->
+    <filter id="glowOrange" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="glowGold" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="glowCyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Base Canvas Background -->
+  <rect width="1200" height="700" fill="url(#cpBg)" rx="24"/>
+  <circle cx="600" cy="250" r="500" fill="url(#ambientLight)"/>
+
+  <!-- Architectural Background Grid Overlay Lines -->
+  <g stroke="rgba(255, 255, 255, 0.03)" stroke-width="1">
+    <line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="580" x2="1200" y2="580"/>
+    <line x1="200" y1="0" x2="200" y2="700"/>
+    <line x1="600" y1="0" x2="600" y2="700"/>
+    <line x1="1000" y1="0" x2="1000" y2="700"/>
+  </g>
+
+  <!-- Main Header Banner inside Graphic -->
+  <g transform="translate(600, 50)" text-anchor="middle">
+    <rect x="-160" y="0" width="320" height="32" rx="16" fill="rgba(255, 106, 26, 0.12)" stroke="rgba(255, 106, 26, 0.3)" stroke-width="1"/>
+    <text x="0" y="21" font-family="'Outfit', sans-serif" font-size="12" font-weight="800" fill="#ff8c3b" letter-spacing="2">AUTOMOTIVE CONCIERGE SUBSCRIPTIONS</text>
+  </g>
+
+  <!-- ==================== TIER 1: EXECUTIVE CARE ==================== -->
+  <g transform="translate(70, 110)">
+    <!-- Card Frame -->
+    <rect width="320" height="510" rx="24" fill="url(#cardBgBase)" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1.5"/>
+    
+    <!-- Top Accent Line -->
+    <rect x="30" y="0" width="100" height="4" rx="2" fill="url(#cyanGradient)"/>
+
+    <!-- Header -->
+    <g transform="translate(30, 40)">
+      <circle cx="22" cy="22" r="22" fill="rgba(56, 189, 248, 0.12)"/>
+      <path d="M 16 22 L 20 26 L 28 17" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="56" y="22" font-family="'Outfit', sans-serif" font-size="20" font-weight="900" fill="#ffffff">EXECUTIVE</text>
+      <text x="56" y="38" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#64748b" letter-spacing="1">ESSENTIAL CONCIERGE</text>
+    </g>
+
+    <!-- Pricing -->
+    <g transform="translate(30, 115)">
+      <text x="0" y="36" font-family="'Outfit', sans-serif" font-size="44" font-weight="900" fill="#ffffff">$199</text>
+      <text x="115" y="32" font-family="'Inter', sans-serif" font-size="14" font-weight="600" fill="#94a3b8">/ month</text>
+      <text x="0" y="54" font-family="'Inter', sans-serif" font-size="11" fill="#38bdf8">Billed annually or monthly</text>
+    </g>
+
+    <!-- Divider Line -->
+    <line x1="30" y1="185" x2="290" y2="185" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <!-- Feature List -->
+    <g transform="translate(30, 205)" font-family="'Inter', sans-serif" font-size="13">
+      <!-- Item 1 -->
+      <g transform="translate(0, 0)">
+        <circle cx="10" cy="10" r="10" fill="rgba(56, 189, 248, 0.15)"/>
+        <text x="10" y="14" font-size="10" fill="#38bdf8" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">Bi-Weekly Hydro Foam Wash</text>
+      </g>
+      <!-- Item 2 -->
+      <g transform="translate(0, 42)">
+        <circle cx="10" cy="10" r="10" fill="rgba(56, 189, 248, 0.15)"/>
+        <text x="10" y="14" font-size="10" fill="#38bdf8" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">Interior Vacuum &amp; Ozone Purify</text>
+      </g>
+      <!-- Item 3 -->
+      <g transform="translate(0, 84)">
+        <circle cx="10" cy="10" r="10" fill="rgba(56, 189, 248, 0.15)"/>
+        <text x="10" y="14" font-size="10" fill="#38bdf8" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">Wheel Decon &amp; Tire Feed</text>
+      </g>
+      <!-- Item 4 -->
+      <g transform="translate(0, 126)">
+        <circle cx="10" cy="10" r="10" fill="rgba(56, 189, 248, 0.15)"/>
+        <text x="10" y="14" font-size="10" fill="#38bdf8" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">100-Pt Quality Inspection</text>
+      </g>
+      <!-- Item 5 (Disabled) -->
+      <g transform="translate(0, 168)">
+        <circle cx="10" cy="10" r="10" fill="rgba(255, 255, 255, 0.05)"/>
+        <text x="10" y="14" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">✕</text>
+        <text x="28" y="14" font-weight="500" fill="#64748b">Enclosed Transport Included</text>
+      </g>
+    </g>
+
+    <!-- Button -->
+    <g transform="translate(30, 430)">
+      <rect width="260" height="48" rx="24" fill="rgba(56, 189, 248, 0.12)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5"/>
+      <text x="130" y="29" font-family="'Outfit', sans-serif" font-size="13" font-weight="800" fill="#38bdf8" text-anchor="middle" letter-spacing="1">SELECT EXECUTIVE</text>
+    </g>
+  </g>
+
+
+  <!-- ==================== TIER 2: BESPOKE PRECISION (FEATURED CENTER) ==================== -->
+  <g transform="translate(435, 90)">
+    <!-- Outer Glow Frame -->
+    <rect width="330" height="550" rx="28" fill="url(#featuredCardBg)" stroke="url(#orangeGlow)" stroke-width="2.5" filter="url(#glowOrange)"/>
+
+    <!-- Floating Badge Header -->
+    <g transform="translate(165, -18)">
+      <rect x="-85" y="0" width="170" height="34" rx="17" fill="url(#orangeGlow)"/>
+      <text x="0" y="21" font-family="'Outfit', sans-serif" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">★ MOST POPULAR</text>
+    </g>
+
+    <!-- Header Section -->
+    <g transform="translate(35, 45)">
+      <circle cx="24" cy="24" r="24" fill="rgba(255, 106, 26, 0.18)"/>
+      <path d="M 16 24 L 22 16 L 28 24 L 32 18" fill="none" stroke="#ff6a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="24" font-family="'Outfit', sans-serif" font-size="22" font-weight="900" fill="#ffffff">BESPOKE CARE</text>
+      <text x="60" y="42" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#ff8c3b" letter-spacing="1">SHOWROOM PRESERVATION</text>
+    </g>
+
+    <!-- Pricing Section -->
+    <g transform="translate(35, 125)">
+      <text x="0" y="40" font-family="'Outfit', sans-serif" font-size="50" font-weight="900" fill="#ffffff">$399</text>
+      <text x="130" y="34" font-family="'Inter', sans-serif" font-size="15" font-weight="600" fill="#cbd5e1">/ month</text>
+      <text x="0" y="60" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#ff6a1a">Includes 1x Annual Stage-1 Correction</text>
+    </g>
+
+    <!-- Divider Line -->
+    <line x1="35" y1="200" x2="295" y2="200" stroke="rgba(255, 106, 26, 0.25)" stroke-width="1"/>
+
+    <!-- Feature List -->
+    <g transform="translate(35, 222)" font-family="'Inter', sans-serif" font-size="13.5">
+      <!-- Item 1 -->
+      <g transform="translate(0, 0)">
+        <circle cx="11" cy="11" r="11" fill="#ff6a1a"/>
+        <text x="11" y="15" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="30" y="15" font-weight="700" fill="#ffffff">Weekly Hydro-Sheath Foam Prep</text>
+      </g>
+      <!-- Item 2 -->
+      <g transform="translate(0, 44)">
+        <circle cx="11" cy="11" r="11" fill="#ff6a1a"/>
+        <text x="11" y="15" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="30" y="15" font-weight="700" fill="#ffffff">1-Stage Paint Correction (Annual)</text>
+      </g>
+      <!-- Item 3 -->
+      <g transform="translate(0, 88)">
+        <circle cx="11" cy="11" r="11" fill="#ff6a1a"/>
+        <text x="11" y="15" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="30" y="15" font-weight="700" fill="#ffffff">9H SiO2 Ceramic Quartz Sealant</text>
+      </g>
+      <!-- Item 4 -->
+      <g transform="translate(0, 132)">
+        <circle cx="11" cy="11" r="11" fill="#ff6a1a"/>
+        <text x="11" y="15" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="30" y="15" font-weight="700" fill="#ffffff">Alcantara &amp; Leather Feed Grooming</text>
+      </g>
+      <!-- Item 5 -->
+      <g transform="translate(0, 176)">
+        <circle cx="11" cy="11" r="11" fill="#ff6a1a"/>
+        <text x="11" y="15" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="30" y="15" font-weight="700" fill="#ffffff">Free Enclosed VIP Pickup Transport</text>
+      </g>
+    </g>
+
+    <!-- Glowing CTA Button -->
+    <g transform="translate(35, 465)">
+      <rect width="260" height="52" rx="26" fill="url(#orangeGlow)"/>
+      <text x="130" y="32" font-family="'Outfit', sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">CLAIM BESPOKE CARE</text>
+    </g>
+  </g>
+
+
+  <!-- ==================== TIER 3: COLLECTOR VIP ==================== -->
+  <g transform="translate(810, 110)">
+    <!-- Card Frame -->
+    <rect width="320" height="510" rx="24" fill="url(#cardBgBase)" stroke="url(#goldGradient)" stroke-width="1.5"/>
+
+    <!-- Top Accent Line -->
+    <rect x="30" y="0" width="100" height="4" rx="2" fill="url(#goldGradient)"/>
+
+    <!-- Header -->
+    <g transform="translate(30, 40)">
+      <circle cx="22" cy="22" r="22" fill="rgba(245, 158, 11, 0.15)"/>
+      <path d="M 14 26 L 16 16 L 22 21 L 28 16 L 30 26 Z" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linejoin="round"/>
+      <text x="56" y="22" font-family="'Outfit', sans-serif" font-size="20" font-weight="900" fill="#ffffff">COLLECTOR VIP</text>
+      <text x="56" y="38" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#f59e0b" letter-spacing="1">UNLIMITED HYPERCAR CARE</text>
+    </g>
+
+    <!-- Pricing -->
+    <g transform="translate(30, 115)">
+      <text x="0" y="36" font-family="'Outfit', sans-serif" font-size="44" font-weight="900" fill="#ffffff">$799</text>
+      <text x="115" y="32" font-family="'Inter', sans-serif" font-size="14" font-weight="600" fill="#94a3b8">/ month</text>
+      <text x="0" y="54" font-family="'Inter', sans-serif" font-size="11" fill="#f59e0b">Dedicated Master Detailer Assigned</text>
+    </g>
+
+    <!-- Divider Line -->
+    <line x1="30" y1="185" x2="290" y2="185" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+    <!-- Feature List -->
+    <g transform="translate(30, 205)" font-family="'Inter', sans-serif" font-size="13">
+      <!-- Item 1 -->
+      <g transform="translate(0, 0)">
+        <circle cx="10" cy="10" r="10" fill="rgba(245, 158, 11, 0.2)"/>
+        <text x="10" y="14" font-size="10" fill="#fbbf24" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">Unlimited Studio Concierge Access</text>
+      </g>
+      <!-- Item 2 -->
+      <g transform="translate(0, 42)">
+        <circle cx="10" cy="10" r="10" fill="rgba(245, 158, 11, 0.2)"/>
+        <text x="10" y="14" font-size="10" fill="#fbbf24" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">Full Self-Healing PPF Coverage (1x)</text>
+      </g>
+      <!-- Item 3 -->
+      <g transform="translate(0, 84)">
+        <circle cx="10" cy="10" r="10" fill="rgba(245, 158, 11, 0.2)"/>
+        <text x="10" y="14" font-size="10" fill="#fbbf24" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">10-Yr Multi-Layer Quartz Armor</text>
+      </g>
+      <!-- Item 4 -->
+      <g transform="translate(0, 126)">
+        <circle cx="10" cy="10" r="10" fill="rgba(245, 158, 11, 0.2)"/>
+        <text x="10" y="14" font-size="10" fill="#fbbf24" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">24/7 Climate-Stabilized Storage</text>
+      </g>
+      <!-- Item 5 -->
+      <g transform="translate(0, 168)">
+        <circle cx="10" cy="10" r="10" fill="rgba(245, 158, 11, 0.2)"/>
+        <text x="10" y="14" font-size="10" fill="#fbbf24" text-anchor="middle" font-weight="bold">✓</text>
+        <text x="28" y="14" font-weight="600" fill="#e2e8f0">Priority Track-Day Prep &amp; Clean</text>
+      </g>
+    </g>
+
+    <!-- Button -->
+    <g transform="translate(30, 430)">
+      <rect width="260" height="48" rx="24" fill="rgba(245, 158, 11, 0.12)" stroke="url(#goldGradient)" stroke-width="1.5"/>
+      <text x="130" y="29" font-family="'Outfit', sans-serif" font-size="13" font-weight="800" fill="#fbbf24" text-anchor="middle" letter-spacing="1">SELECT COLLECTOR VIP</text>
+    </g>
+  </g>
+
+  <!-- Bottom Badge Guarantee -->
+  <g transform="translate(600, 665)" text-anchor="middle">
+    <text x="0" y="0" font-family="'Outfit', sans-serif" font-size="12" font-weight="700" fill="#64748b" letter-spacing="2.5">
+      ★ ALL SUBSCRIPTIONS INCLUDE DIGITAL INSPECTION LOGS &amp; SERIALIZED WARRANTY ★
+    </text>
+  </g>
+</svg>

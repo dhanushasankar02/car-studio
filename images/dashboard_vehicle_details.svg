@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" rx="24" fill="#0f172a"/>
+  <rect x="40" y="40" width="720" height="420" rx="20" fill="#141a26" stroke="#ff6a1a" stroke-width="2"/>
+  <text x="70" y="85" font-family="'Outfit', sans-serif" font-weight="800" font-size="24" fill="#ffffff">My Saved Garage and Vehicle Profiles</text>
+
+  <rect x="70" y="120" width="320" height="310" rx="16" fill="#1e293b" stroke="#ff6a1a"/>
+  <rect x="90" y="140" width="280" height="130" rx="12" fill="#0f172a"/>
+  <text x="230" y="210" font-family="'Outfit', sans-serif" font-weight="800" font-size="18" fill="#ff6a1a" text-anchor="middle">Porsche GT3 RS</text>
+  <text x="90" y="300" font-family="'Outfit', sans-serif" font-weight="700" font-size="18" fill="#ffffff">2024 Porsche 911 GT3 RS</text>
+  <text x="90" y="325" font-family="'Inter', sans-serif" font-size="13" fill="#94a3b8">VIN: WP0ZZZ99ZPS289012</text>
+  <text x="90" y="350" font-family="'Inter', sans-serif" font-size="13" fill="#94a3b8">Coating: 9H Ceramic Matrix Pro</text>
+  <rect x="90" y="375" width="130" height="32" rx="6" fill="#ff6a1a"/>
+  <text x="155" y="396" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle">Edit Vehicle</text>
+
+  <rect x="410" y="120" width="320" height="310" rx="16" fill="#1e293b" stroke="rgba(255,255,255,0.1)"/>
+  <rect x="430" y="140" width="280" height="130" rx="12" fill="#0f172a"/>
+  <text x="570" y="210" font-family="'Outfit', sans-serif" font-weight="800" font-size="18" fill="#3b82f6" text-anchor="middle">Mercedes G63</text>
+  <text x="430" y="300" font-family="'Outfit', sans-serif" font-weight="700" font-size="18" fill="#ffffff">2023 Mercedes-AMG G63</text>
+  <text x="430" y="325" font-family="'Inter', sans-serif" font-size="13" fill="#94a3b8">VIN: W1N4632761X092184</text>
+  <text x="430" y="350" font-family="'Inter', sans-serif" font-size="13" fill="#94a3b8">Coating: Full Body Stealth PPF</text>
+  <rect x="430" y="375" width="130" height="32" rx="6" fill="#334155"/>
+  <text x="495" y="396" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="#ffffff" text-anchor="middle">Edit Vehicle</text>
+</svg>

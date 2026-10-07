@@ -1,0 +1,3358 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Packages | Car Studio VIP Membership &amp; Retainers</title>
+    
+    <!-- Google Fonts & Font Awesome 6 Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ---------- RESET & DESIGN TOKENS ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --surface-glass: rgba(255, 255, 255, 0.92);
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #ff6a1a;
+            --accent-hover: #e5590c;
+            --accent-glow: rgba(255, 106, 26, 0.25);
+            --border-light: rgba(15, 23, 42, 0.12);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.12);
+            --transition-smooth: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+        }
+
+        body.dark-mode {
+            --bg-primary: #080a0f;
+            --bg-secondary: #0e121b;
+            --surface-glass: rgba(14, 18, 27, 0.92);
+            --card-bg: #141a26;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.65);
+        }
+
+        /* RTL Icon Flipping & Layout Fixes */
+        body[dir="rtl"] .fa-angle-right,
+        body[dir="rtl"] .fa-arrow-right,
+        body[dir="rtl"] .fa-chevron-right,
+        body[dir="rtl"] .fa-angle-double-right {
+            transform: scaleX(-1);
+            display: inline-block;
+        }
+
+        body {
+            font-family: var(--font-main);
+            font-size: 1rem;
+            line-height: 1.6;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- STICKY GLASS NAVBAR ---------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: var(--surface-glass);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .logo-svg {
+            height: 58px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 2px 8px var(--accent-glow));
+            transition: var(--transition-smooth);
+        }
+
+        .mobile-header .logo-svg {
+            height: 44px;
+        }
+
+        .logo-area:hover .logo-svg {
+            transform: scale(1.04);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.55rem 1rem;
+            color: var(--text-primary);
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: var(--transition-smooth);
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+        }
+
+        .nav-link .chevron {
+            font-size: 0.75rem;
+            transition: transform 0.25s ease;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown:hover .nav-link .chevron {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 8px;
+            min-width: 210px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 0.6rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition-smooth);
+            z-index: 1000;
+            list-style: none;
+        }
+
+        body[dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.65rem 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .dropdown-item i {
+            color: var(--accent);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        body[dir="rtl"] .dropdown-item:hover {
+            transform: translateX(-4px);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 0.92rem;
+            font-weight: 600;
+            font-family: inherit;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .action-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--accent-glow);
+        }
+
+        .action-btn.btn-login {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        .action-btn.btn-login:hover {
+            background: var(--accent-hover);
+            color: #ffffff;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: rgba(255, 106, 26, 0.12);
+            border: 1px solid rgba(255, 106, 26, 0.3);
+            color: var(--accent);
+            font-size: 1.3rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .menu-toggle:hover {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        /* ---------- MOBILE DRAWER ---------- */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 12, 16, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        
+
+        /* ---------- PACKAGES PAGE LAYOUT & 7 UNIQUE SECTIONS ---------- */
+        .packages-container {
+            flex: 1;
+            padding-top: 75px;
+        }
+
+        .package-sec {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .package-sec:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        .sec-title-box {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .sec-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0.45rem 1.1rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 106, 26, 0.3);
+        }
+
+        .sec-h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .sec-p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .grid-2 {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .grid-2 > * {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .img-card {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            background: var(--card-bg);
+            transition: var(--transition-smooth);
+        }
+
+        .img-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgba(255, 106, 26, 0.2);
+        }
+
+        .img-card img {
+            width: 100%;
+            max-width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition-smooth);
+        }
+
+        /* PRICING CARDS */
+        .pricing-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px var(--accent-glow);
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 35px var(--accent-glow);
+        }
+
+        .price-card-header-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .price-card-body {
+            padding: 2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .price-amount {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin: 0.6rem 0;
+        }
+
+        .price-feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 1.5rem 0 2rem;
+            flex: 1;
+        }
+
+        .price-feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .price-feature-list li i {
+            color: var(--accent);
+        }
+
+        /* COMPARISON TABLE STYLING */
+        .matrix-table-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            background: var(--card-bg);
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        body[dir="rtl"] .matrix-table {
+            text-align: right;
+        }
+
+        .matrix-table th, .matrix-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.95rem;
+        }
+
+        .matrix-table th {
+            background: var(--bg-secondary);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .matrix-table td i.fa-check-circle {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .matrix-table td i.fa-times-circle {
+            color: var(--text-secondary);
+            opacity: 0.4;
+            font-size: 1.1rem;
+        }
+
+        /* REVEAL ANIMATIONS */
+        [data-framer-section] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-framer-section].framer-animated {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-light);
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+        }
+
+        
+
+        
+
+        
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 106, 26, 0.12);
+            border: 1px solid rgba(255, 106, 26, 0.3);
+            color: var(--accent) !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            transition: var(--transition-smooth);
+            font-size: 1.1rem;
+        }
+
+        .social-btn i {
+            color: var(--accent) !important;
+            transition: var(--transition-smooth);
+        }
+
+        .social-btn:hover {
+            background: var(--accent) !important;
+            color: #ffffff !important;
+            border-color: var(--accent) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(255, 106, 26, 0.4);
+        }
+
+        .social-btn:hover i {
+            color: #ffffff !important;
+        }
+
+        
+
+        
+
+        body[dir="rtl"] 
+
+        
+
+        
+
+        .footer-link:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        body[dir="rtl"] .footer-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 0.75rem 1.1rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            outline: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 20000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 420px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transform: scale(0.95);
+            transition: var(--transition-smooth);
+        }
+
+        .modal-overlay.active .login-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        body[dir="rtl"] .modal-close {
+            right: auto;
+            left: 1.2rem;
+        }
+
+        .login-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        body[dir="rtl"] .form-group {
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .login-submit {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--accent);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-top: 0.5rem;
+        }
+
+        .login-submit:hover {
+            background: var(--accent-hover);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1100px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-actions .action-btn {
+                display: none !important;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            
+        }
+
+        @media (max-width: 992px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sec-h2 {
+                font-size: 2rem;
+            }
+
+            
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    
+        @media (max-width: 768px) {
+            
+        }
+        @media (max-width: 576px) {
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    
+    
+        /* ---------- EXACT FOOTER DESIGN ---------- */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-light);
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem 5rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .footer-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 440px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 106, 26, 0.12);
+            border: 1px solid rgba(255, 106, 26, 0.3);
+            color: var(--accent) !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            transition: var(--transition-smooth);
+            font-size: 1.1rem;
+        }
+
+        .social-btn i {
+            color: var(--accent) !important;
+            transition: var(--transition-smooth);
+        }
+
+        .social-btn:hover {
+            background: var(--accent) !important;
+            color: #ffffff !important;
+            border-color: var(--accent) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(255, 106, 26, 0.4);
+        }
+
+        .social-btn:hover i {
+            color: #ffffff !important;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1.4rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 36px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        body[dir="rtl"] .footer-col h4::after {
+            left: auto;
+            right: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-link {
+            text-decoration: none !important;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-link i {
+            color: var(--accent);
+            font-size: 0.85rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        body[dir="rtl"] .footer-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-top: 1rem;
+            max-width: 440px;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 0.85rem 1.4rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(255, 106, 26, 0.25);
+        }
+
+        .newsletter-btn {
+            width: 100%;
+            padding: 0.85rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            background: var(--accent);
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px rgba(255, 106, 26, 0.35);
+        }
+
+        .newsletter-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 106, 26, 0.5);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 650px) {
+            .footer-container {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.2rem;
+            }
+        }
+
+    
+        /* ---------- EXACT MOBILE DRAWER DESIGN ---------- */
+        .mobile-panel {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 340px;
+            max-width: 88vw;
+            height: 100vh;
+            background: var(--card-bg);
+            border-left: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            z-index: 10001;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-y: auto;
+            transition: right 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        body[dir="rtl"] .mobile-panel {
+            right: auto;
+            left: -380px;
+            border-left: none;
+            border-right: 1px solid var(--border-light);
+            transition: left 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .mobile-panel.active {
+            right: 0;
+        }
+
+        body[dir="rtl"] .mobile-panel.active {
+            left: 0;
+        }
+
+        .mobile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .mobile-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .mobile-close:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .mobile-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .mobile-link-item {
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 0.4rem;
+        }
+
+        .mobile-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none !important;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 0.75rem 0.85rem;
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .mobile-link:hover {
+            color: var(--accent);
+            background: rgba(255, 106, 26, 0.08);
+        }
+
+        .mobile-link.active {
+            color: var(--accent) !important;
+            background: rgba(255, 106, 26, 0.08) !important;
+            font-weight: 700;
+        }
+
+        .mobile-accordion-content {
+            display: none;
+            padding-left: 1rem;
+            padding-top: 0.4rem;
+            flex-direction: column;
+            gap: 0.4rem;
+            list-style: none;
+        }
+
+        body[dir="rtl"] .mobile-accordion-content {
+            padding-left: 0;
+            padding-right: 1rem;
+        }
+
+        .mobile-accordion-content.show {
+            display: flex;
+        }
+
+        .mobile-sublink {
+            text-decoration: none !important;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.55rem 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 10px;
+        }
+
+        .mobile-sublink:hover {
+            color: var(--accent);
+            background: rgba(255, 106, 26, 0.08);
+        }
+
+        .mobile-sublink.active {
+            color: var(--accent) !important;
+            background: rgba(255, 106, 26, 0.08) !important;
+            font-weight: 700;
+        }
+
+        .mobile-actions {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .mobile-actions .action-btn {
+            justify-content: center;
+            width: 100%;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .mobile-actions .action-btn.btn-login {
+            background: var(--accent);
+            color: #ffffff !important;
+            border-color: var(--accent);
+            box-shadow: 0 4px 15px rgba(255, 106, 26, 0.35);
+        }
+
+    
+
+
+
+/* ---------- BREAKPOINT: 768px (Tablets / Small Screens) ---------- */
+@media (max-width: 768px) {
+    main .container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+    main .section-padding {
+        padding: 3rem 0;
+    }
+    main .section-header {
+        margin-bottom: 2rem;
+    }
+    main .section-title {
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+    }
+    main .section-desc {
+        font-size: 1rem;
+    }
+
+    /* Auto Stack Multi-column Grids inside Main Content */
+    main [class*="-grid"], 
+    main [class*="-layout"],
+    main [class*="-container"]:not(.nav-container):not(.footer-container),
+    main .grid-2col, main .grid-3col, main .grid-4col {
+        grid-template-columns: 1fr !important;
+        flex-direction: column;
+    }
+
+    /* Form Responsive Stacking */
+    main form, main [class*="-form"] {
+        width: 100%;
+        max-width: 100%;
+    }
+    main [class*="form-grid"], main .form-row {
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+}
+
+/* ---------- BREAKPOINT: 480px (Mobile Phones) ---------- */
+@media (max-width: 480px) {
+    main .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    main .section-padding {
+        padding: 2.5rem 0;
+    }
+    main .section-title {
+        font-size: 1.5rem !important;
+        line-height: 1.25 !important;
+    }
+    main .section-badge {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0.85rem !important;
+    }
+
+    /* Card Padding Scaling on Small Mobile */
+    main [class*="-card"], 
+    main [class*="-box"]:not(.matrix-icon-box):not(.location-feature-icon), 
+    main [class*="-wrapper"], 
+    main [class*="-container"]:not(.container):not(.nav-container):not(.footer-container) {
+        padding: 1.25rem !important;
+        max-width: 100% !important;
+    }
+
+    /* Inputs, Buttons, & Interactive Elements */
+    main input, main select, main textarea, main button, main .btn {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Prevent Image Overflows */
+    main img {
+        height: auto !important;
+        max-height: 280px;
+        object-fit: cover;
+    }
+}
+
+/* ---------- BREAKPOINT: 320px (Extra Small Mobile Devices) ---------- */
+@media (max-width: 320px) {
+    main .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    main .section-title {
+        font-size: 1.35rem !important;
+    }
+    main [class*="-card"], main [class*="-box"] {
+        padding: 1rem !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   FULL MOBILE RESPONSIVE ENGINE (Breakpoints: 1024px, 768px, 480px, 320px)
+   ========================================================================== */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Images & Media Fluid Sizing */
+img, video, iframe, svg, canvas {
+    max-width: 100% !important;
+    height: auto;
+}
+
+/* Content Container & Typography Constraints */
+main {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+main .container, 
+main [class*="container"]:not(.nav-container):not(.footer-container) {
+    width: 100%;
+    max-width: 1400px;
+    box-sizing: border-box;
+}
+
+/* Word Wrapping & Text Overflow Protection */
+h1, h2, h3, h4, h5, h6,
+.hero-title, .section-title, .page-title, [class*="title"] {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+}
+
+p, span, div, a, label, input, textarea, select, button {
+    max-width: 100%;
+    word-break: normal;
+    overflow-wrap: break-word;
+}
+
+/* Flex & Grid Layout Bounds */
+[class*="-grid"], [class*="-layout"], [class*="-row"], [class*="-wrapper"], [class*="-card"] {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Table Responsive Horizontal Scroll Wrappers */
+table {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.table-responsive, [class*="-table-wrap"], [class*="-matrix-wrap"] {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- BREAKPOINT 1: 1024px (Laptops & Large Tablets) ---------- */
+@media (max-width: 1024px) {
+    main .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .section-padding {
+        padding: 4rem 0 !important;
+    }
+    
+    /* 2-Column & 3-Column Grids Adapt */
+    .grid-2, .grid-2col, .grid-3col, .grid-4col,
+    [class*="-hero-grid"], [class*="-location-grid"], 
+    [class*="-hours-layout"], [class*="-area-grid"],
+    [class*="-cards-grid"], [class*="-cards-container"],
+    [class*="-matrix-cards"], [class*="-info-grid"],
+    .pricing-grid, .gallery-grid, .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+        gap: 2rem !important;
+    }
+
+    /* Dashboard Sidebar Adjustments */
+    .dashboard-sidebar, .admin-sidebar {
+        width: 80px !important;
+        padding: 1.25rem 0.5rem !important;
+    }
+    .dashboard-sidebar .sidebar-brand span, 
+    .dashboard-sidebar .menu-item-link span, 
+    .dashboard-sidebar .ctrl-btn span,
+    .admin-sidebar .sidebar-brand span, 
+    .admin-sidebar .menu-item-link span, 
+    .admin-sidebar .ctrl-btn span {
+        display: none !important;
+    }
+    .dashboard-main-content, .admin-main-content {
+        margin-left: 80px !important;
+    }
+    body[dir="rtl"] .dashboard-main-content,
+    body[dir="rtl"] .admin-main-content {
+        margin-left: 0 !important;
+        margin-right: 80px !important;
+    }
+}
+
+/* ---------- BREAKPOINT 2: 768px (Medium Tablets & Phablets) ---------- */
+@media (max-width: 768px) {
+    main .container {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+    .section-padding {
+        padding: 3.25rem 0 !important;
+    }
+    .section-header, .sec-title-box {
+        margin-bottom: 2.25rem !important;
+    }
+    .hero-title, .section-title, .page-title {
+        font-size: clamp(1.75rem, 5vw, 2.4rem) !important;
+        line-height: 1.2 !important;
+    }
+    .section-desc, .hero-text {
+        font-size: 1rem !important;
+    }
+
+    /* Force Vertical Stacking on Tablets */
+    .grid-2, .grid-2col, .grid-3col, .grid-4col,
+    [class*="-hero-grid"], [class*="-location-grid"], 
+    [class*="-hours-layout"], [class*="-area-grid"],
+    [class*="-cards-grid"], [class*="-cards-container"],
+    [class*="-matrix-cards"], [class*="-info-grid"],
+    .pricing-grid, .gallery-grid, .services-grid,
+    .form-grid-2col, .form-row, [class*="-form-grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Dashboard Sidebar Collapses to Top / Hidden */
+    .dashboard-sidebar, .admin-sidebar {
+        display: none !important;
+    }
+    .dashboard-main-content, .admin-main-content {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Modals Responsive */
+    .login-card, .modal-card {
+        width: 92% !important;
+        max-width: 420px !important;
+        padding: 1.8rem 1.25rem !important;
+    }
+}
+
+/* ---------- BREAKPOINT 3: 480px (Standard Mobile Phones) ---------- */
+@media (max-width: 480px) {
+    main .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .section-padding {
+        padding: 2.5rem 0 !important;
+    }
+    .section-header, .sec-title-box {
+        margin-bottom: 1.75rem !important;
+    }
+    .hero-title, .section-title, .page-title {
+        font-size: 1.55rem !important;
+        line-height: 1.25 !important;
+    }
+    .section-badge {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0.85rem !important;
+    }
+
+    /* Universal Card & Box Padding on Mobile */
+    [class*="-card"]:not(.social-btn), 
+    [class*="-box"]:not(.matrix-icon-box):not(.location-feature-icon):not(.logo-area), 
+    [class*="-wrapper"], 
+    [class*="-container"]:not(.container):not(.nav-container):not(.footer-container) {
+        padding: 1.25rem !important;
+        border-radius: 16px !important;
+    }
+
+    /* Image Max Heights on Small Screens */
+    main img {
+        max-height: 260px !important;
+        object-fit: cover !important;
+    }
+
+    /* Full Width Form Controls & Buttons */
+    input[type="text"], input[type="email"], input[type="password"], input[type="tel"],
+    select, textarea, .form-input, .newsletter-input {
+        width: 100% !important;
+        font-size: 0.9rem !important;
+    }
+    .btn, .action-btn:not(.social-btn), button[type="submit"] {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* Hero Stats / Grid 3 Col Stacking */
+    .hero-stats, [class*="-stats-grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+
+/* ---------- BREAKPOINT 4: 320px (Extra Small Mobile Devices) ---------- */
+@media (max-width: 320px) {
+    main .container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+    .section-padding {
+        padding: 2rem 0 !important;
+    }
+    .hero-title, .section-title, .page-title {
+        font-size: 1.35rem !important;
+    }
+    .section-desc, .hero-text {
+        font-size: 0.9rem !important;
+    }
+    [class*="-card"], [class*="-box"] {
+        padding: 1rem !important;
+    }
+}
+
+/* ---------- RTL DIRECTION ALIGNMENT SUPPORT ---------- */
+body[dir="rtl"] .fa-angle-right,
+body[dir="rtl"] .fa-arrow-right,
+body[dir="rtl"] .fa-chevron-right,
+body[dir="rtl"] .fa-angle-double-right {
+    transform: scaleX(-1);
+    display: inline-block;
+}
+
+
+
+/* ==========================================================================
+   GLOBAL REMOVAL OF ALL TEXT UNDERLINES & LINES FROM BUTTONS, LINKS, & TEXT
+   ========================================================================== */
+a, 
+button, 
+.btn, 
+.action-btn, 
+.btn-login, 
+.hero-actions a, 
+.nav-link, 
+.dropdown-item, 
+.footer-link, 
+.mobile-link, 
+.mobile-sublink, 
+[class*="btn"], 
+[class*="action"], 
+[class*="link"] {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+    text-decoration-color: transparent !important;
+}
+
+a:hover, a:focus, a:active, a:visited,
+button:hover, button:focus, button:active,
+.action-btn:hover, .action-btn:focus, .action-btn:active,
+.btn-login:hover, .btn-login:focus, .btn-login:active,
+.hero-actions a:hover, .hero-actions a:focus {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+    text-decoration-color: transparent !important;
+}
+
+a i, button i, .action-btn i, .btn-login i {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+}
+
+
+
+/* ==========================================================================
+   INCREASED IMAGE CARD & PHOTO CONTAINER SIZING (DESKTOP & MOBILE)
+   ========================================================================== */
+.img-card {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-card img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    min-height: 480px !important;
+    max-height: 560px !important;
+    object-fit: cover !important;
+    border-radius: 20px !important;
+}
+
+/* Also expand specialized image boxes site-wide */
+[class*="-hero-img-box"], 
+[class*="-location-map-wrapper"], 
+[class*="-visual-card"], 
+[class*="showcase-img-box"] {
+    min-height: 380px;
+}
+
+[class*="-hero-img-box"] img, 
+[class*="-location-map-wrapper"] img, 
+[class*="-visual-card"] img {
+    min-height: 380px !important;
+    max-height: 520px !important;
+    object-fit: cover !important;
+}
+
+@media (max-width: 1024px) {
+    .img-card, .img-card img {
+        min-height: 420px !important;
+        max-height: 480px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .img-card, .img-card img {
+        min-height: 360px !important;
+        max-height: 420px !important;
+    }
+    main img {
+        max-height: 400px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .img-card, .img-card img {
+        min-height: 300px !important;
+        max-height: 360px !important;
+    }
+    main img {
+        max-height: 350px !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   MOBILE DRAWER LINK COLOR & UNDERLINE REMOVAL FIX
+   ========================================================================== */
+.mobile-panel a,
+.mobile-panel a:visited,
+.mobile-panel a:hover,
+.mobile-panel a:focus,
+.mobile-panel a:active,
+.mobile-links a,
+.mobile-links a:visited,
+.mobile-link,
+.mobile-link:visited,
+.mobile-sublink,
+.mobile-sublink:visited {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: none !important;
+    outline: none !important;
+}
+
+.mobile-link {
+    color: var(--text-primary) !important;
+}
+
+.mobile-sublink {
+    color: var(--text-secondary) !important;
+}
+
+.mobile-link:hover,
+.mobile-sublink:hover {
+    color: var(--accent) !important;
+    background: rgba(255, 106, 26, 0.1) !important;
+}
+
+.mobile-link.active,
+.mobile-sublink.active {
+    color: var(--accent) !important;
+    background: rgba(255, 106, 26, 0.12) !important;
+    font-weight: 700 !important;
+}
+
+/* Site-wide visited link underline & purple color reset */
+a, a:visited {
+    text-decoration: none !important;
+}
+
+
+
+/* ==========================================================================
+   EXACT FOOTER DESIGN & 2x2 GRID (SAME AS INDEX.HTML)
+   ========================================================================== */
+.footer {
+    background: var(--bg-secondary) !important;
+    border-top: 1px solid var(--border-light) !important;
+    padding: 4rem 2rem 2rem !important;
+    margin-top: auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.footer-container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3rem 5rem !important;
+}
+
+.footer-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+}
+
+.footer-desc {
+    color: var(--text-secondary) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    max-width: 440px !important;
+}
+
+.social-links {
+    display: flex !important;
+    gap: 0.75rem !important;
+    margin-top: 0.5rem !important;
+}
+
+.social-btn {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 106, 26, 0.12) !important;
+    border: 1px solid rgba(255, 106, 26, 0.3) !important;
+    color: var(--accent) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: var(--transition-smooth) !important;
+    font-size: 1.1rem !important;
+}
+
+.social-btn i {
+    color: var(--accent) !important;
+}
+
+.social-btn:hover {
+    background: var(--accent) !important;
+    color: #ffffff !important;
+    border-color: var(--accent) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 15px rgba(255, 106, 26, 0.4) !important;
+}
+
+.social-btn:hover i {
+    color: #ffffff !important;
+}
+
+.footer-col h4 {
+    font-family: var(--font-heading) !important;
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 1.4rem !important;
+    position: relative !important;
+    display: inline-block !important;
+}
+
+.footer-col h4::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -6px !important;
+    left: 0 !important;
+    width: 36px !important;
+    height: 3px !important;
+    background: var(--accent) !important;
+    border-radius: 3px !important;
+}
+
+body[dir="rtl"] .footer-col h4::after {
+    left: auto !important;
+    right: 0 !important;
+}
+
+.footer-links {
+    list-style: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.footer-link,
+.footer-link:visited,
+.footer-link:hover,
+.footer-link:focus,
+.footer-link:active {
+    text-decoration: none !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    transition: var(--transition-smooth) !important;
+    border: none !important;
+    background: none !important;
+}
+
+.footer-link i {
+    color: var(--accent) !important;
+    font-size: 0.85rem !important;
+}
+
+.footer-link:hover {
+    color: var(--accent) !important;
+    transform: translateX(4px) !important;
+}
+
+body[dir="rtl"] .footer-link:hover {
+    transform: translateX(-4px) !important;
+}
+
+.newsletter-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.85rem !important;
+    margin-top: 1rem !important;
+    max-width: 440px !important;
+}
+
+.newsletter-input {
+    width: 100% !important;
+    padding: 0.85rem 1.4rem !important;
+    border-radius: 50px !important;
+    border: 1px solid var(--border-light) !important;
+    background: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    font-size: 0.95rem !important;
+    outline: none !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.newsletter-btn {
+    width: 100% !important;
+    padding: 0.85rem 1.5rem !important;
+    border-radius: 50px !important;
+    border: none !important;
+    background: var(--accent) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+    transition: var(--transition-smooth) !important;
+    box-shadow: 0 4px 15px rgba(255, 106, 26, 0.35) !important;
+}
+
+.newsletter-btn:hover {
+    background: var(--accent-hover) !important;
+    transform: translateY(-2px) !important;
+}
+
+.footer-bottom {
+    max-width: 1400px !important;
+    margin: 3rem auto 0 !important;
+    padding-top: 2rem !important;
+    border-top: 1px solid var(--border-light) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem !important;
+}
+
+@media (max-width: 650px) {
+    .footer-container {
+        grid-template-columns: 1fr !important;
+        gap: 2.5rem !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1.2rem !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   PERFECT LINK COLOR & UNDERLINE RESET FOR LIGHT & DARK MODES
+   ========================================================================== */
+a, 
+a:link, 
+a:visited, 
+a:hover, 
+a:focus, 
+a:active,
+.mobile-panel a,
+.mobile-panel a:link,
+.mobile-panel a:visited,
+.mobile-panel a:hover,
+.mobile-panel a:focus,
+.mobile-panel a:active,
+.mobile-link,
+.mobile-link:link,
+.mobile-link:visited,
+.mobile-sublink,
+.mobile-sublink:link,
+.mobile-sublink:visited {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: none !important;
+    outline: none !important;
+}
+
+/* Light Mode & Dark Mode Text Colors */
+.mobile-link,
+.mobile-link:link,
+.mobile-link:visited {
+    color: var(--text-primary) !important;
+}
+
+.mobile-sublink,
+.mobile-sublink:link,
+.mobile-sublink:visited {
+    color: var(--text-secondary) !important;
+}
+
+.mobile-link:hover,
+.mobile-link:focus,
+.mobile-sublink:hover,
+.mobile-sublink:focus {
+    color: var(--accent) !important;
+    background: rgba(255, 106, 26, 0.12) !important;
+}
+
+.mobile-link.active,
+.mobile-sublink.active {
+    color: var(--accent) !important;
+    background: rgba(255, 106, 26, 0.15) !important;
+    font-weight: 700 !important;
+}
+
+
+
+/* ==========================================================================
+   ULTRA-STRICT SITE-WIDE LINK & VISITED PURPLE UNDERLINE KILLER
+   ========================================================================== */
+a, 
+a *, 
+a:link, 
+a:visited, 
+a:hover, 
+a:active, 
+a:focus {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+    text-decoration-color: transparent !important;
+    border-bottom: none !important;
+}
+
+/* Mobile Drawer Links Explicit Light & Dark Mode Colors */
+.mobile-panel a,
+.mobile-panel a *,
+.mobile-panel a:link,
+.mobile-panel a:visited,
+.mobile-panel a:hover,
+.mobile-panel a:focus,
+.mobile-panel a:active,
+.mobile-links a,
+.mobile-links a *,
+.mobile-links a:link,
+.mobile-links a:visited,
+.mobile-link,
+.mobile-link *,
+.mobile-link:link,
+.mobile-link:visited {
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: none !important;
+}
+
+.mobile-sublink,
+.mobile-sublink *,
+.mobile-sublink:link,
+.mobile-sublink:visited {
+    color: var(--text-secondary) !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: none !important;
+}
+
+.mobile-link:hover,
+.mobile-link:hover *,
+.mobile-sublink:hover,
+.mobile-sublink:hover * {
+    color: var(--accent) !important;
+    text-decoration: none !important;
+}
+
+.mobile-link.active,
+.mobile-link.active *,
+.mobile-sublink.active,
+.mobile-sublink.active * {
+    color: var(--accent) !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+}
+
+
+
+/* ==========================================================================
+   UNIFIED SITE-WIDE FOOTER STYLING (MATCHING EXACT CAR STUDIO DESIGN)
+   ========================================================================== */
+.footer {
+    background: #080a0f !important;
+    color: #f8fafc !important;
+    padding: 4.5rem 2rem 2rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin-top: auto !important;
+}
+
+body:not(.dark-mode) .footer {
+    background: #0f172a !important;
+    color: #f8fafc !important;
+}
+
+.footer-container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr !important;
+    gap: 3.5rem !important;
+    margin-bottom: 3.5rem !important;
+}
+
+.footer-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+}
+
+.footer-desc {
+    color: #94a3b8 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1rem !important;
+    max-width: 380px !important;
+}
+
+.social-links {
+    display: flex !important;
+    gap: 0.8rem !important;
+}
+
+.social-btn {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #f8fafc !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.social-btn i {
+    color: #f8fafc !important;
+}
+
+.social-btn:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: #ffffff !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 15px var(--accent-glow) !important;
+}
+
+.social-btn:hover i {
+    color: #ffffff !important;
+}
+
+.footer-col h4 {
+    font-family: var(--font-heading) !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.footer-links {
+    list-style: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+}
+
+.footer-link {
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    font-size: 0.95rem !important;
+    transition: var(--transition-smooth) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.footer-link i {
+    font-size: 0.75rem !important;
+    color: var(--accent) !important;
+}
+
+.footer-link:hover {
+    color: var(--accent) !important;
+    transform: translateX(4px) !important;
+}
+
+body[dir="rtl"] .footer-link:hover {
+    transform: translateX(-4px) !important;
+}
+
+.newsletter-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+}
+
+.newsletter-input {
+    width: 100% !important;
+    padding: 0.85rem 1.2rem !important;
+    border-radius: 50px !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #ffffff !important;
+    outline: none !important;
+    font-family: inherit !important;
+    font-size: 0.9rem !important;
+}
+
+.newsletter-btn {
+    background: var(--accent) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    border: none !important;
+    padding: 0.85rem 1.5rem !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    transition: var(--transition-smooth) !important;
+    box-shadow: 0 4px 15px var(--accent-glow) !important;
+}
+
+.newsletter-btn:hover {
+    background: var(--accent-hover) !important;
+}
+
+.footer-bottom {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-top: 1.8rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+}
+
+@media (max-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2.5rem !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .footer-container {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   ULTRA-PRECISION RTL & DARK MODE ICON & LAYOUT ENGINE (SITE-WIDE)
+   ========================================================================== */
+/* 1. Universal RTL Icon Horizontal Flip */
+[dir="rtl"] .fa-angle-right,
+[dir="rtl"] .fa-arrow-right,
+[dir="rtl"] .fa-chevron-right,
+[dir="rtl"] .fa-chevron-left,
+[dir="rtl"] .fa-angle-double-right,
+[dir="rtl"] .fa-arrow-left,
+[dir="rtl"] .fa-angle-left,
+[dir="rtl"] .fa-arrow-right-long,
+[dir="rtl"] .fa-arrow-left-long,
+[dir="rtl"] .fa-long-arrow-alt-right,
+[dir="rtl"] .fa-long-arrow-alt-left,
+[dir="rtl"] .fa-caret-right,
+[dir="rtl"] .fa-caret-left,
+[dir="rtl"] .fa-arrow-circle-right,
+[dir="rtl"] .fa-arrow-circle-left,
+[dir="rtl"] .fa-paper-plane,
+[dir="rtl"] .fa-right-to-bracket,
+[dir="rtl"] .fa-left-to-bracket,
+[dir="rtl"] .fa-external-link-alt,
+[dir="rtl"] .fa-arrow-up-right-from-square,
+[dir="rtl"] .footer-link i.fa-chevron-right,
+html[dir="rtl"] .fa-angle-right,
+html[dir="rtl"] .fa-arrow-right,
+html[dir="rtl"] .fa-chevron-right,
+html[dir="rtl"] .fa-chevron-left,
+html[dir="rtl"] .fa-angle-double-right,
+html[dir="rtl"] .fa-arrow-left,
+html[dir="rtl"] .fa-angle-left,
+html[dir="rtl"] .footer-link i.fa-chevron-right,
+body[dir="rtl"] .fa-angle-right,
+body[dir="rtl"] .fa-arrow-right,
+body[dir="rtl"] .fa-chevron-right,
+body[dir="rtl"] .fa-chevron-left,
+body[dir="rtl"] .fa-angle-double-right,
+body[dir="rtl"] .fa-arrow-left,
+body[dir="rtl"] .fa-angle-left,
+body[dir="rtl"] .footer-link i.fa-chevron-right {
+    transform: scaleX(-1) !important;
+    display: inline-block !important;
+}
+
+/* 2. RTL Text Alignment & Layout Adjustments */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .navbar,
+[dir="rtl"] .nav-container,
+[dir="rtl"] .footer,
+[dir="rtl"] .footer-container,
+[dir="rtl"] .section-header,
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-desc,
+[dir="rtl"] .hero-text-box,
+[dir="rtl"] .footer-bottom {
+    text-align: right;
+}
+
+[dir="rtl"] .dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+}
+
+[dir="rtl"] .dropdown-item:hover,
+[dir="rtl"] .footer-link:hover,
+[dir="rtl"] .protocol-step-item:hover,
+[dir="rtl"] .step-nav-card:hover {
+    transform: translateX(-4px) !important;
+}
+
+[dir="rtl"] .mobile-panel {
+    right: auto !important;
+    left: -380px !important;
+    border-left: none !important;
+    border-right: 1px solid var(--border-light) !important;
+    transition: left 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+}
+
+[dir="rtl"] .mobile-panel.active {
+    left: 0 !important;
+    right: auto !important;
+}
+
+[dir="rtl"] .modal-close,
+[dir="rtl"] .close-drawer-btn,
+[dir="rtl"] .modal-close-btn {
+    right: auto !important;
+    left: 20px !important;
+}
+
+[dir="rtl"] .step-num,
+[dir="rtl"] .service-card-badge {
+    right: auto !important;
+    left: 1.2rem !important;
+}
+
+/* 3. RTL Icons in Dark Mode Explicit Inversion & High Contrast Fix */
+body.dark-mode[dir="rtl"] i,
+body.dark-mode [dir="rtl"] i,
+html[dir="rtl"] body.dark-mode i,
+.dark-mode[dir="rtl"] .social-btn i,
+.dark-mode[dir="rtl"] .footer-link i,
+.dark-mode[dir="rtl"] .action-btn i,
+.dark-mode[dir="rtl"] .btn-login i,
+.dark-mode[dir="rtl"] .dropdown-item i {
+    opacity: 1 !important;
+}
+
+/* 4. RTL Button & Input Flex Direction & Icon Margins */
+[dir="rtl"] .action-btn,
+[dir="rtl"] .btn-login,
+[dir="rtl"] .dropdown-item,
+[dir="rtl"] .footer-link,
+[dir="rtl"] .mobile-nav-link,
+[dir="rtl"] .mobile-sublink {
+    flex-direction: row;
+}
+
+[dir="rtl"] .action-btn i,
+[dir="rtl"] .btn-login i,
+[dir="rtl"] .dropdown-item i,
+[dir="rtl"] .footer-link i {
+    margin-right: 0;
+    margin-left: 6px;
+}
+
+
+
+/* ==========================================================================
+   RTL / LTR TOGGLE BUTTON STYLING (DARK MODE & LIGHT MODE COMPATIBLE)
+   ========================================================================== */
+#rtlBtn, #mobileRtlBtn {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-light) !important;
+    color: var(--text-primary) !important;
+    font-size: 0.92rem !important;
+    font-weight: 600 !important;
+    font-family: inherit !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 50px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: var(--transition-smooth) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+#rtlBtn i, #mobileRtlBtn i {
+    color: var(--accent) !important;
+    font-size: 0.95rem !important;
+}
+
+#rtlBtn:hover, #mobileRtlBtn:hover {
+    border-color: var(--accent) !important;
+    background: rgba(255, 106, 26, 0.12) !important;
+    color: var(--accent) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px var(--accent-glow) !important;
+}
+
+body.dark-mode #rtlBtn, body.dark-mode #mobileRtlBtn {
+    background: var(--card-bg) !important;
+    border-color: var(--border-light) !important;
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
+    color: var(--accent) !important;
+}
+
+
+
+/* ==========================================================================
+   NAVBAR ONE-LINE SINGLE HORIZONTAL ROW & NO-WRAP FIX (SITE-WIDE)
+   ========================================================================== */
+.navbar, .nav-container, .nav-links, .nav-actions {
+    flex-wrap: nowrap !important;
+}
+
+.nav-container {
+    max-width: 1440px !important;
+    padding: 0.65rem 1.5rem !important;
+    gap: 0.8rem !important;
+}
+
+.nav-links {
+    gap: 0.25rem !important;
+}
+
+.nav-link, .dropdown-item, .action-btn, .logo-area {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+}
+
+.nav-link {
+    font-size: 0.92rem !important;
+    padding: 0.5rem 0.85rem !important;
+}
+
+.nav-actions {
+    gap: 0.5rem !important;
+}
+
+.action-btn {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.88rem !important;
+}
+
+@media (max-width: 1200px) {
+    .nav-link {
+        font-size: 0.88rem !important;
+        padding: 0.45rem 0.65rem !important;
+    }
+    .nav-container {
+        padding: 0.6rem 1rem !important;
+        gap: 0.5rem !important;
+    }
+}
+
+/* FORCE HIDE FLOATING RTL & NAVBAR ACTION BUTTONS ON MOBILE VIEW (LTR & RTL COMPATIBLE) */
+@media (max-width: 1100px) {
+    .nav-actions .action-btn,
+    .nav-actions #rtlBtn,
+    .nav-actions #darkModeBtn,
+    .nav-actions #loginModalBtn,
+    .top-controls-floating #rtlBtn,
+    [dir="rtl"] .nav-actions .action-btn,
+    body[dir="rtl"] .nav-actions .action-btn,
+    [dir="rtl"] .top-controls-floating #rtlBtn,
+    body[dir="rtl"] .top-controls-floating #rtlBtn,
+    html[dir="rtl"] .nav-actions .action-btn,
+    html[dir="rtl"] .top-controls-floating #rtlBtn {
+        display: none !important;
+    }
+}
+/* COMPREHENSIVE MOBILE LAYOUT & ALIGNMENT OVERFLOW FIXES */
+@media (max-width: 768px) {
+    .turntable-angles-grid, [class*="-angles-grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    .angle-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        white-space: normal !important;
+        text-align: center !important;
+    }
+    .sec-badge, .section-badge, .hero-badge-tag, .sec-title-box span, [class*="-badge"] {
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        display: inline-block !important;
+    }
+    h1, .hero-main-title, .hero-title, .page-title, .section-title {
+        font-size: clamp(1.5rem, 6vw, 2.2rem) !important;
+        line-height: 1.25 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+    }
+    .hero-stats-banner, .stats-grid-3col, .stats-grid, [class*="-stats-banner"] {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 1rem !important;
+    }
+    .stat-banner-box, .stat-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .hours-row {
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        gap: 0.4rem 0.5rem !important;
+        padding: 0.85rem 0 !important;
+        align-items: center !important;
+    }
+    .hours-row .time-slot {
+        grid-column: 1 / -1 !important;
+        color: var(--accent) !important;
+        font-weight: 700 !important;
+        font-size: 0.88rem !important;
+        padding-left: 1.8rem !important;
+    }
+    body[dir="rtl"] .hours-row .time-slot {
+        padding-left: 0 !important;
+        padding-right: 1.8rem !important;
+    }
+}
+/* COMPREHENSIVE MOBILE HERO & BUTTON ALIGNMENT FIXES */
+@media (max-width: 768px) {
+    .sec-badge, .section-badge, .hero-badge-tag, .sec-title-box span, [class*="-badge"] {
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        display: inline-block !important;
+        line-height: 1.4 !important;
+        padding: 0.5rem 1rem !important;
+    }
+    h1, .hero-main-title, .hero-title, .page-title, .section-title {
+        font-size: clamp(1.6rem, 7vw, 2.3rem) !important;
+        line-height: 1.25 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        max-width: 100% !important;
+        padding: 0 0.5rem !important;
+    }
+    .package-sec p, #pkg-sec1-hero p, .hero-text-box p {
+        font-size: 0.95rem !important;
+        padding: 0 0.5rem !important;
+        line-height: 1.5 !important;
+    }
+    .pkg-cycle-wrap, [class*="-cycle-wrap"] {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.75rem !important;
+        align-items: center !important;
+    }
+    .cycle-btn, .pkg-cycle-wrap .action-btn {
+        width: 100% !important;
+        max-width: 320px !important;
+        justify-content: center !important;
+        white-space: normal !important;
+        text-align: center !important;
+    }
+}
+</style>
+</head>
+<body class="dark-mode" dir="ltr">
+
+    <!-- ==================== HEADER NAVBAR ==================== -->
+        <!-- ==================== STICKY GLASS NAVBAR ==================== -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo Area -->
+            <a href="index.html" class="logo-area" aria-label="Car Studio Home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" class="logo-svg" height="58">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FF3800"/>
+                        </linearGradient>
+                        <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FFA066"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(10, 10)">
+                        <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGrad)"/>
+                        <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
+                        <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
+                        <circle cx="28" cy="54" r="5" fill="#12151C"/>
+                        <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                    </g>
+                    <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGrad)" letter-spacing="2">CAR STUDIO</text>
+                    <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
+                </svg>
+            </a>
+
+            <!-- Navigation Links (One Line Horizontal Order) -->
+            <ul class="nav-links">
+                <li class="nav-item dropdown">
+                    <a href="index.html" class="nav-link ">
+                        Home <i class="fas fa-chevron-down chevron"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item"><i class="fas fa-layer-group"></i> Home 1</a></li>
+                        <li><a href="home2.html" class="dropdown-item"><i class="fas fa-desktop"></i> Home 2</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="services.html" class="nav-link ">Services</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link ">Gallery</a></li>
+                <li class="nav-item"><a href="packages.html" class="nav-link active">Packages</a></li>
+                <li class="nav-item"><a href="why-choose-us.html" class="nav-link ">Why Choose Us</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link ">Contact</a></li>
+                <li class="nav-item dropdown">
+                    <a href="dashboard.html" class="nav-link ">
+                        Dashboard <i class="fas fa-chevron-down chevron"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="dashboard.html" class="dropdown-item"><i class="fas fa-user-circle"></i> User Dashboard</a></li>
+                        <li><a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-shield-alt"></i> Admin Dashboard</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Right Side Controls (Dark Mode -> RTL -> Login -> Menu Toggle) -->
+            <div class="nav-actions">
+                <button class="action-btn" id="darkModeBtn" aria-label="Toggle Theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                    <span id="themeLabel">Dark</span>
+                </button>
+
+                <button class="action-btn" id="rtlBtn" aria-label="Toggle Layout Direction">
+                    <i class="fas fa-right-left" id="rtlIcon"></i>
+                    <span id="rtlLabel">RTL</span>
+                </button>
+
+                <a href="login.html" class="action-btn btn-login" id="loginModalBtn">
+                    <i class="fas fa-lock"></i>
+                    <span>Login</span>
+                </a>
+
+                <button class="menu-toggle" id="mobileToggleBtn" aria-label="Open Mobile Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE OVERLAY & PANEL -->
+    <!-- ==================== MOBILE SLIDE-OUT PANEL ==================== -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-panel" id="mobilePanel">
+        <div class="mobile-header">
+            <a href="index.html" class="logo-area">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" class="logo-svg" height="44">
+                    <defs>
+                        <linearGradient id="logoGradMob" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FF3800"/>
+                        </linearGradient>
+                        <linearGradient id="textGradMob" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FFA066"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(10, 10)">
+                        <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGradMob)"/>
+                        <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
+                        <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
+                        <circle cx="28" cy="54" r="5" fill="#12151C"/>
+                        <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                    </g>
+                    <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGradMob)" letter-spacing="2">CAR STUDIO</text>
+                    <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
+                </svg>
+            </a>
+            <button class="mobile-close" id="mobileCloseBtn"><i class="fas fa-times"></i></button>
+        </div>
+
+        <ul class="mobile-links">
+            <li class="mobile-link-item">
+                <div class="mobile-link " id="mobileHomeAcc">
+                    <span>Home</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-accordion-content " id="mobileHomeContent">
+                    <li><a href="index.html" class="mobile-sublink "><i class="fas fa-layer-group"></i> Home 1</a></li>
+                    <li><a href="home2.html" class="mobile-sublink "><i class="fas fa-desktop"></i> Home 2</a></li>
+                </ul>
+            </li>
+            <li class="mobile-link-item"><a href="services.html" class="mobile-link ">Services</a></li>
+            <li class="mobile-link-item"><a href="gallery.html" class="mobile-link ">Gallery</a></li>
+            <li class="mobile-link-item"><a href="packages.html" class="mobile-link active">Packages</a></li>
+            <li class="mobile-link-item"><a href="why-choose-us.html" class="mobile-link ">Why Choose Us</a></li>
+            <li class="mobile-link-item"><a href="contact.html" class="mobile-link ">Contact</a></li>
+            <li class="mobile-link-item">
+                <div class="mobile-link " id="mobileDashAcc">
+                    <span>Dashboard</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="mobile-accordion-content " id="mobileDashContent">
+                    <li><a href="dashboard.html" class="mobile-sublink "><i class="fas fa-user-circle"></i> User Dashboard</a></li>
+                    <li><a href="admin-dashboard.html" class="mobile-sublink "><i class="fas fa-shield-alt"></i> Admin Dashboard</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="mobile-actions">
+            <button class="action-btn" id="mobileDarkBtn">
+                <i class="fas fa-moon" id="mobileThemeIcon"></i>
+                <span id="mobileThemeLabel">Dark Mode</span>
+            </button>
+            <button class="action-btn" id="mobileRtlBtn">
+                <i class="fas fa-right-left" id="mobileRtlIcon"></i>
+                <span id="mobileRtlLabel">RTL Layout</span>
+            </button>
+            <a href="login.html" class="action-btn btn-login" id="mobileLoginModalBtn">
+                <i class="fas fa-lock"></i>
+                <span>Login</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN PAGE CONTENT (7 UNIQUE PACKAGES SECTIONS) ==================== -->
+    <main class="packages-container">
+
+        <!-- SECTION 1: VIP PACKAGE ARCHITECTURE HERO -->
+        <section class="package-sec" id="pkg-sec1-hero" data-framer-section="pkg-sec1-hero" style="background: linear-gradient(180deg, rgba(8, 10, 15, 0.85) 0%, rgba(8, 10, 15, 0.95) 100%), url('images/care_plans.jpg') center/cover no-repeat fixed; min-height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #ffffff;">
+            <div style="max-width: 950px; margin: 0 auto; padding: 2rem 1rem;">
+                <span class="sec-badge" style="background: rgba(255,106,26,0.25); color: #ff8542; border-color: var(--accent); margin-bottom: 1.2rem;">
+                    <i class="fas fa-crown"></i> VIP Membership &amp; Plan Architecture
+                </span>
+                <h1 style="font-family: var(--font-heading); font-size: 3.6rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Concourse Detailing Packages &amp; Supercar Retainers
+                </h1>
+                <p style="font-size: 1.15rem; color: #cbd5e1; max-width: 780px; margin: 0 auto 2rem; line-height: 1.7;">
+                    Transparent single-visit options, annual ceramic maintenance retainers, and private fleet collection management engineered to preserve your vehicle's gloss and resale value.
+                </p>
+
+                <!-- Billing Cycle Selector Pills -->
+                <div class="pkg-cycle-wrap" style="display: flex; justify-content: center; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <button class="action-btn btn-login cycle-btn active" data-cycle="single" style="border-radius: 50px; padding: 0.6rem 1.6rem;">
+                        Single-Visit Package
+                    </button>
+                    <button class="action-btn cycle-btn" data-cycle="annual" style="border-radius: 50px; padding: 0.6rem 1.6rem; background: rgba(255,255,255,0.08); color: #fff;">
+                        Annual VIP Retainer (Save 20%)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 3-TIER CONCOURSE DETAILING PRICING CARDS WITH IMAGES -->
+        <section class="package-sec" id="pkg-sec2-tiers" data-framer-section="pkg-sec2-tiers">
+            <div class="sec-title-box">
+                <div class="sec-badge"><i class="fas fa-tags"></i> Fixed Pricing Tiers</div>
+                <h2 class="sec-h2">Concourse Detailing Packages</h2>
+                <p class="sec-p">Select the protection tier that matches your vehicle's paint condition and usage profile.</p>
+            </div>
+
+            <div class="pricing-grid">
+                
+                <!-- TIER 1 -->
+                <div class="price-card">
+                    <img src="images/studio_showcase_1.jpg" alt="Tier 1 Executive Gloss Detailing Package" class="price-card-header-img">
+                    <div class="price-card-body">
+                        <span style="background: rgba(255,106,26,0.12); color: var(--accent); font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; width: fit-content; text-transform: uppercase;">TIER 1 ENTRY</span>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); margin-top: 0.5rem;">Executive Gloss Enhancement</h3>
+                        <div class="price-amount" id="tier1Price">$599</div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Ideal for daily drivers needing paint gloss restoration and light swirl removal.</p>
+                        
+                        <ul class="price-feature-list">
+                            <li><i class="fas fa-check-circle"></i> Single-Stage Rotary Jewel Polishing</li>
+                            <li><i class="fas fa-check-circle"></i> 1-Year Hydrophobic Silica Sealant</li>
+                            <li><i class="fas fa-check-circle"></i> Full Exterior Decontamination &amp; Clay Bar</li>
+                            <li><i class="fas fa-check-circle"></i> Interior Steam Extraction &amp; Vacuum</li>
+                            <li><i class="fas fa-check-circle"></i> Wheel Face Polish &amp; Tire Dressing</li>
+                        </ul>
+
+                        <button class="action-btn btn-login select-pkg-btn" data-pkg="Executive Gloss ($599)" style="justify-content: center; width: 100%;">
+                            <i class="fas fa-arrow-right"></i> Reserve Tier 1
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TIER 2 (FEATURED) -->
+                <div class="price-card featured">
+                    <span style="position: absolute; top: 12px; right: 12px; background: var(--accent); color: #fff; font-size: 0.75rem; font-weight: 800; padding: 0.3rem 0.8rem; border-radius: 50px; text-transform: uppercase; z-index: 10;">
+                        MOST POPULAR
+                    </span>
+                    <img src="images/ceramic_coating.jpg" alt="Tier 2 Apex 9H Dual Layer Ceramic Package" class="price-card-header-img">
+                    <div class="price-card-body">
+                        <span style="background: rgba(255,106,26,0.12); color: var(--accent); font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; width: fit-content; text-transform: uppercase;">TIER 2 CERAMIC</span>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); margin-top: 0.5rem;">Apex 9H Dual Ceramic Shield</h3>
+                        <div class="price-amount" id="tier2Price">$1,499</div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Our flagship 2-stage correction and 5-year permanent ceramic glass barrier.</p>
+                        
+                        <ul class="price-feature-list">
+                            <li><i class="fas fa-check-circle"></i> 2-Stage Paint Correction (90%+ Swirl Removal)</li>
+                            <li><i class="fas fa-check-circle"></i> 5-Year Dual Layer 9H Ceramic Matrix</li>
+                            <li><i class="fas fa-check-circle"></i> Hydrophobic Glass Rain Armor Application</li>
+                            <li><i class="fas fa-check-circle"></i> Italian Nappa Hide Leather Lipid Feeding</li>
+                            <li><i class="fas fa-check-circle"></i> Digital QR Passport Certificate Logged</li>
+                        </ul>
+
+                        <button class="action-btn btn-login select-pkg-btn" data-pkg="Apex 9H Ceramic ($1,499)" style="justify-content: center; width: 100%;">
+                            <i class="fas fa-crown"></i> Reserve Tier 2
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TIER 3 -->
+                <div class="price-card">
+                    <img src="images/paint_protection.jpg" alt="Tier 3 Hypercar Polyurethane Vault Package" class="price-card-header-img">
+                    <div class="price-card-body">
+                        <span style="background: rgba(255,106,26,0.12); color: var(--accent); font-size: 0.78rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 6px; width: fit-content; text-transform: uppercase;">TIER 3 CONCOURSE</span>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-primary); margin-top: 0.5rem;">Hypercar Polyurethane Vault</h3>
+                        <div class="price-amount" id="tier3Price">$3,299</div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Full front self-healing PPF wrap, 10-year ceramic matrix, and white-glove care.</p>
+                        
+                        <ul class="price-feature-list">
+                            <li><i class="fas fa-check-circle"></i> Full Track Front Self-Healing PPF Wrap</li>
+                            <li><i class="fas fa-check-circle"></i> 10-Year Graphene Ceramic Body Matrix</li>
+                            <li><i class="fas fa-check-circle"></i> Wheel-Off 1200°F Thermal Caliper Coating</li>
+                            <li><i class="fas fa-check-circle"></i> Enclosed Flatbed Transport Included</li>
+                            <li><i class="fas fa-check-circle"></i> Free Bi-Annual Coating Inspection Visits</li>
+                        </ul>
+
+                        <button class="action-btn btn-login select-pkg-btn" data-pkg="Hypercar Vault ($3,299)" style="justify-content: center; width: 100%;">
+                            <i class="fas fa-shield-halved"></i> Reserve Tier 3
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: INTERACTIVE PACKAGE FEATURE COMPARISON MATRIX -->
+        <section class="package-sec" id="pkg-sec3-matrix" data-framer-section="pkg-sec3-matrix">
+            <div class="sec-title-box">
+                <div class="sec-badge"><i class="fas fa-list-check"></i> Complete Specification</div>
+                <h2 class="sec-h2">Package Benefit &amp; Feature Comparison</h2>
+                <p class="sec-p">Compare exact technical inclusions, thickness gauges, and warranty coverage across all tiers.</p>
+            </div>
+
+            <div class="matrix-table-wrap">
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Studio Feature / Specification</th>
+                            <th>Executive ($599)</th>
+                            <th>Apex Ceramic ($1,499)</th>
+                            <th>Hypercar Vault ($3,299)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Digital Paint Gauge Measurement</strong></td>
+                            <td><i class="fas fa-check-circle"></i> Included</td>
+                            <td><i class="fas fa-check-circle"></i> Included</td>
+                            <td><i class="fas fa-check-circle"></i> Included</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Paint Correction Stage Level</strong></td>
+                            <td>Stage 1 (Gloss Boost)</td>
+                            <td>Stage 2 (90%+ Swirl Cut)</td>
+                            <td>Stage 3 (Concourse Leveling)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ceramic Coating Hardness</strong></td>
+                            <td>Silica Spray Barrier</td>
+                            <td>9H Dual Layer Matrix</td>
+                            <td>10H Graphene Crystalline</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Self-Healing PPF Wrap Film</strong></td>
+                            <td><i class="fas fa-times-circle"></i> Optional Add-On</td>
+                            <td><i class="fas fa-times-circle"></i> Optional Add-On</td>
+                            <td><i class="fas fa-check-circle"></i> Full Track Front Clip</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wheel-Off Caliper Coating</strong></td>
+                            <td><i class="fas fa-times-circle"></i> Optional Add-On</td>
+                            <td>Wheel Face Only</td>
+                            <td><i class="fas fa-check-circle"></i> 1200°F Wheel-Off Barrel</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Enclosed Transport Carrier</strong></td>
+                            <td><i class="fas fa-times-circle"></i> Standard Drop-Off</td>
+                            <td><i class="fas fa-times-circle"></i> Standard Drop-Off</td>
+                            <td><i class="fas fa-check-circle"></i> White-Glove Flatbed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Digital QR Passport Certificate</strong></td>
+                            <td><i class="fas fa-times-circle"></i> Standard Log</td>
+                            <td><i class="fas fa-check-circle"></i> Verified QR Passport</td>
+                            <td><i class="fas fa-check-circle"></i> Verified QR Passport</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coating Warranty Term</strong></td>
+                            <td>1-Year Warranty</td>
+                            <td>5-Year Studio Guarantee</td>
+                            <td>10-Year Transferable Warranty</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 4: MOTORSPORT TRACKDAY PREP & RACE RETAINER -->
+        <section class="package-sec" id="pkg-sec4-track" data-framer-section="pkg-sec4-track">
+            <div class="grid-2">
+                <div class="img-card">
+                    <img src="images/studio_showcase_7.jpg" alt="Motorsport Trackday Scuff Protection and Post-Race Prep">
+                </div>
+
+                <div>
+                    <div class="sec-badge"><i class="fas fa-flag-checkered"></i> Race Preparation</div>
+                    <h2 class="sec-h2">Motorsport Trackday &amp; Race Event Prep</h2>
+                    <p class="sec-p" style="margin-bottom: 1.5rem;">
+                        Track driving exposes your supercar to molten tire rubber marbles, high-temperature brake dust etching, and gravel stone chips.
+                    </p>
+
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.8rem;">
+                        <div style="padding: 1.2rem; background: var(--card-bg); border-radius: 14px; border: 1px solid var(--border-light); display: flex; gap: 1rem; align-items: center;">
+                            <i class="fas fa-shield-virus" style="font-size: 1.6rem; color: var(--accent);"></i>
+                            <div>
+                                <div style="font-weight: 700; color: var(--text-primary); font-size: 0.95rem;">Sacrificial Track Rubber Wrap</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">Temporary clear film applied over headlights &amp; lower sills for race weekends.</div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 1.2rem; background: var(--card-bg); border-radius: 14px; border: 1px solid var(--border-light); display: flex; gap: 1rem; align-items: center;">
+                            <i class="fas fa-soap" style="font-size: 1.6rem; color: var(--accent);"></i>
+                            <div>
+                                <div style="font-weight: 700; color: var(--text-primary); font-size: 0.95rem;">Post-Race Decontamination Blitz</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">48-hour turn-around chemical removal of melted rubber and metallic brake fallout.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="action-btn btn-login"><i class="fas fa-stopwatch"></i> Book Trackday Prep Plan</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: MULTI-VEHICLE COLLECTOR GARAGE SAVINGS -->
+        <section class="package-sec" id="pkg-sec5-fleet" data-framer-section="pkg-sec5-fleet">
+            <div class="grid-2">
+                <div>
+                    <div style="display: inline-block; background: rgba(255,106,26,0.12); color: var(--accent); font-size: 0.85rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 6px; margin-bottom: 1rem;">
+                        PRIVATE GARAGE SAVINGS
+                    </div>
+                    <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1.2rem;">
+                        Private Collection &amp; Multi-Car Garage Retainer
+                    </h3>
+                    <p class="sec-p" style="margin-bottom: 1.5rem;">
+                        Collectors with 3 or more vehicles qualify for tiered package discounts, dedicated master detailer assignments, and private garage maintenance visits.
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.8rem;">
+                        <div style="padding: 1.2rem; background: var(--card-bg); border: 1px solid var(--border-light); border-radius: 14px;">
+                            <div style="font-size: 1.8rem; font-weight: 900; color: var(--accent); font-family: var(--font-heading);">15% OFF</div>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">3 to 5 Vehicle Collections</div>
+                        </div>
+
+                        <div style="padding: 1.2rem; background: var(--card-bg); border: 1px solid var(--border-light); border-radius: 14px;">
+                            <div style="font-size: 1.8rem; font-weight: 900; color: var(--accent); font-family: var(--font-heading);">25% OFF</div>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary);">6+ Vehicle Collections</div>
+                        </div>
+                    </div>
+
+                    <a href="contact.html" class="action-btn" style="padding: 0.85rem 1.8rem;">
+                        <i class="fas fa-warehouse"></i> Request Collector Consultation
+                    </a>
+                </div>
+
+                <div class="img-card">
+                    <img src="images/customer_stories.jpg" alt="Multi-Vehicle Private Supercar Collection Storage">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: CORPORATE B2B DEALERSHIP RETAINER PROGRAM -->
+        <section class="package-sec" id="pkg-sec6-b2b" data-framer-section="pkg-sec6-b2b">
+            <div class="sec-title-box">
+                <div class="sec-badge"><i class="fas fa-building-columns"></i> Dealership Concierge</div>
+                <h2 class="sec-h2">Corporate Luxury Dealership Retainer Program</h2>
+                <p class="sec-p">Partner with Car Studio for pre-delivery inspection (PDI) paint preparation and showroom ceramic topcoats.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="img-card">
+                    <img src="images/studio_showcase_5.jpg" alt="Corporate B2B Luxury Dealership Detailing Bay">
+                </div>
+
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem;">
+                        Dedicated Studio Bays &amp; 24h Turnaround
+                    </h3>
+                    <p class="sec-p" style="margin-bottom: 1.5rem;">
+                        We provide authorized exotic vehicle dealerships with dedicated cleanroom bay reservations, wholesale volume pricing structures, and co-branded digital passport certificates for new car handovers.
+                    </p>
+
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.8rem;">
+                        <li style="display: flex; align-items: center; gap: 10px; color: var(--text-primary); font-weight: 600;">
+                            <i class="fas fa-circle-check" style="color: var(--accent);"></i> Guaranteed Priority 24-Hour Express Bay Turnaround
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; color: var(--text-primary); font-weight: 600;">
+                            <i class="fas fa-circle-check" style="color: var(--accent);"></i> Co-Branded Showroom Certificate Documentation
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; color: var(--text-primary); font-weight: 600;">
+                            <i class="fas fa-circle-check" style="color: var(--accent);"></i> On-Site Dealer Preparation Support Staff
+                        </li>
+                    </ul>
+
+                    <a href="contact.html" class="action-btn btn-login"><i class="fas fa-handshake"></i> Apply for B2B Dealer Retainer</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: 100% GLOSS ASSURANCE & LIFETIME WARRANTY VAULT -->
+        <section class="package-sec" id="pkg-sec7-guarantee" data-framer-section="pkg-sec7-guarantee">
+            <div class="sec-title-box">
+                <div class="sec-badge"><i class="fas fa-award"></i> Guarantee Vault</div>
+                <h2 class="sec-h2">100% Concourse Gloss Assurance &amp; Warranty Vault</h2>
+                <p class="sec-p">Every package booking is backed by our zero-deductible coating pledge and annual inspection touchups.</p>
+            </div>
+
+            <div style="max-width: 1000px; margin: 0 auto; background: var(--card-bg); border-radius: 24px; border: 1px solid var(--border-light); padding: 3rem 2.5rem; box-shadow: var(--shadow-lg); text-align: center;">
+                <i class="fas fa-shield-halved" style="font-size: 3.8rem; color: var(--accent); margin-bottom: 1.2rem;"></i>
+                <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.8rem;">
+                    Zero-Risk Studio Quality Pledge
+                </h3>
+                <p style="color: var(--text-secondary); font-size: 1rem; max-width: 720px; margin: 0 auto 2rem; line-height: 1.7;">
+                    If you are not 100% satisfied with the clarity, gloss depth, or edge finish of your vehicle upon handover, our master detailers will re-polish and re-coat your vehicle at zero additional cost.
+                </p>
+
+                <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
+                    <a href="contact.html" class="action-btn btn-login" style="padding: 0.85rem 2rem; font-size: 1rem; border-radius: 50px;">
+                        <i class="fas fa-calendar-check"></i> Book Package Slot Now
+                    </a>
+                    <a href="why-choose-us.html" class="action-btn" style="padding: 0.85rem 2rem; font-size: 1rem; border-radius: 50px;">
+                        <i class="fas fa-award"></i> View Studio Standards
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+        <!-- ==================== FOOTER ==================== -->
+        <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <a href="index.html" class="logo-area" aria-label="Car Studio Footer Logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" class="logo-svg" height="58">
+                        <defs>
+                            <linearGradient id="logoGradFoot" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FF6A1A"/>
+                                <stop offset="100%" stop-color="#FF3800"/>
+                            </linearGradient>
+                            <linearGradient id="textGradFoot" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#FF6A1A"/>
+                                <stop offset="100%" stop-color="#FFA066"/>
+                            </linearGradient>
+                        </defs>
+                        <g transform="translate(10, 10)">
+                            <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGradFoot)"/>
+                            <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
+                            <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
+                            <circle cx="28" cy="54" r="5" fill="#12151C"/>
+                            <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                        </g>
+                        <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGradFoot)" letter-spacing="2">CAR STUDIO</text>
+                        <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
+                    </svg>
+                </a>
+                <p class="footer-desc">
+                    Premium automotive detailing, custom wrapping, ceramic coating, and precision tuning studio for luxury vehicles.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home 1</a></li>
+                    <li><a href="home2.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home 2</a></li>
+                    <li><a href="services.html" class="footer-link"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="gallery.html" class="footer-link"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                    <li><a href="packages.html" class="footer-link"><i class="fas fa-chevron-right"></i> Packages</a></li>
+                </ul>
+            </div>
+
+            <!-- Dashboards & Info -->
+            <div class="footer-col">
+                <h4>Dashboards &amp; Info</h4>
+                <ul class="footer-links">
+                    <li><a href="dashboard.html" class="footer-link"><i class="fas fa-chevron-right"></i> User Dashboard</a></li>
+                    <li><a href="admin-dashboard.html" class="footer-link"><i class="fas fa-chevron-right"></i> Admin Dashboard</a></li>
+                    <li><a href="why-choose-us.html" class="footer-link"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
+                    <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    <li><a href="#" class="footer-link" id="footerLoginTrigger"><i class="fas fa-chevron-right"></i> Login Portal</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.8rem;">
+                    Subscribe for exclusive detailing packages and car care tips.
+                </p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Car Studio. All rights reserved.</p>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#" class="footer-link" style="font-size: 0.88rem;">Privacy Policy</a>
+                <a href="#" class="footer-link" style="font-size: 0.88rem;">Terms of Service</a>
+                <a href="#" class="footer-link" style="font-size: 0.88rem;">Cookie Preferences</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== LOGIN MODAL ==================== -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-card">
+            <button class="modal-close" id="modalCloseBtn"><i class="fas fa-times"></i></button>
+            <h3>Welcome Back</h3>
+            <p>Sign in to access your Car Studio account and service history.</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="emailInput">Email Address</label>
+                    <input type="email" id="emailInput" class="form-input" placeholder="name@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <input type="password" id="passwordInput" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="login-submit">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const darkModeBtn = document.getElementById('darkModeBtn');
+            const mobileDarkBtn = document.getElementById('mobileDarkBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            const mobileThemeLabel = document.getElementById('mobileThemeLabel');
+
+            const rtlBtn = document.getElementById('rtlBtn');
+            const mobileRtlBtn = document.getElementById('mobileRtlBtn');
+            const rtlLabel = document.getElementById('rtlLabel');
+            const mobileRtlLabel = document.getElementById('mobileRtlLabel');
+
+            const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+            const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const mobilePanel = document.getElementById('mobilePanel');
+
+            const mobileHomeAcc = document.getElementById('mobileHomeAcc');
+            const mobileHomeContent = document.getElementById('mobileHomeContent');
+            const mobileDashAcc = document.getElementById('mobileDashAcc');
+            const mobileDashContent = document.getElementById('mobileDashContent');
+
+            const loginModalBtn = document.getElementById('loginModalBtn');
+            const mobileLoginModalBtn = document.getElementById('mobileLoginModalBtn');
+            const footerLoginTrigger = document.getElementById('footerLoginTrigger');
+            const loginModal = document.getElementById('loginModal');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const loginForm = document.getElementById('loginForm');
+            const newsletterForm = document.getElementById('newsletterForm');
+
+            // --- THEME SWITCHER ---
+            function updateThemeUI(isDark) {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                    if (themeIcon) themeIcon.className = 'fas fa-sun';
+                    if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-sun';
+                    if (themeLabel) themeLabel.textContent = 'Light';
+                    if (mobileThemeLabel) mobileThemeLabel.textContent = 'Light Mode';
+                    localStorage.setItem('carstudio_theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (themeIcon) themeIcon.className = 'fas fa-moon';
+                    if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-moon';
+                    if (themeLabel) themeLabel.textContent = 'Dark';
+                    if (mobileThemeLabel) mobileThemeLabel.textContent = 'Dark Mode';
+                    localStorage.setItem('carstudio_theme', 'light');
+                }
+            }
+
+            function toggleTheme() {
+                updateThemeUI(!body.classList.contains('dark-mode'));
+            }
+
+            const savedTheme = localStorage.getItem('carstudio_theme');
+            updateThemeUI(savedTheme !== 'light');
+
+            if (darkModeBtn) darkModeBtn.addEventListener('click', toggleTheme);
+            if (mobileDarkBtn) mobileDarkBtn.addEventListener('click', toggleTheme);
+
+            // --- RTL SWITCHER ---
+            
+
+            function toggleRTL() {
+                const currentDir = body.getAttribute('dir') || 'ltr';
+                updateRTLUI(currentDir === 'ltr');
+            }
+
+            const savedRtl = localStorage.getItem('carstudio_rtl');
+            if (savedRtl === 'rtl') updateRTLUI(true);
+
+            if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+            if (mobileRtlBtn) mobileRtlBtn.addEventListener('click', toggleRTL);
+
+            // --- MOBILE DRAWER & ACCORDIONS ---
+            function openMobileDrawer() {
+                if (mobileOverlay) mobileOverlay.classList.add('active');
+                if (mobilePanel) mobilePanel.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
+
+            function closeMobileDrawer() {
+                if (mobileOverlay) mobileOverlay.classList.remove('active');
+                if (mobilePanel) mobilePanel.classList.remove('active');
+                body.style.overflow = '';
+            }
+
+            if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', openMobileDrawer);
+            if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', closeMobileDrawer);
+            if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileDrawer);
+
+            if (mobileHomeAcc && mobileHomeContent) {
+                mobileHomeAcc.addEventListener('click', () => {
+                    mobileHomeContent.classList.toggle('show');
+                });
+            }
+
+            if (mobileDashAcc && mobileDashContent) {
+                mobileDashAcc.addEventListener('click', () => {
+                    mobileDashContent.classList.toggle('show');
+                });
+            }
+
+            // --- MODAL DIALOG ---
+            function openLoginModal() {
+                if (loginModal) loginModal.classList.add('active');
+                closeMobileDrawer();
+            }
+
+            function closeLoginModal() {
+                if (loginModal) loginModal.classList.remove('active');
+            }
+
+            if (loginModalBtn) loginModalBtn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
+            if (mobileLoginModalBtn) mobileLoginModalBtn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
+            if (footerLoginTrigger) footerLoginTrigger.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
+            if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeLoginModal);
+            if (loginModal) {
+                loginModal.addEventListener('click', (e) => {
+                    if (e.target === loginModal) closeLoginModal();
+                });
+            }
+
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Login submitted successfully!');
+                    closeLoginModal();
+                });
+            }
+
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for subscribing to Car Studio newsletter!');
+                    newsletterForm.reset();
+                });
+            }
+
+            // --- BILLING CYCLE TOGGLE ---
+            const cycleBtns = document.querySelectorAll('.cycle-btn');
+            const tier1Price = document.getElementById('tier1Price');
+            const tier2Price = document.getElementById('tier2Price');
+            const tier3Price = document.getElementById('tier3Price');
+
+            cycleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    cycleBtns.forEach(b => {
+                        b.classList.remove('active', 'btn-login');
+                        b.style.background = 'rgba(255,255,255,0.08)';
+                        b.style.color = '#fff';
+                    });
+                    btn.classList.add('active', 'btn-login');
+                    btn.style.background = 'var(--accent)';
+
+                    const cycle = btn.getAttribute('data-cycle');
+                    if (cycle === 'annual') {
+                        if (tier1Price) tier1Price.textContent = '$479/mo';
+                        if (tier2Price) tier2Price.textContent = '$1,199/mo';
+                        if (tier3Price) tier3Price.textContent = '$2,639/mo';
+                    } else {
+                        if (tier1Price) tier1Price.textContent = '$599';
+                        if (tier2Price) tier2Price.textContent = '$1,499';
+                        if (tier3Price) tier3Price.textContent = '$3,299';
+                    }
+                });
+            });
+
+            // --- PACKAGE SELECTION ACTION BUTTONS ---
+            const selectPkgBtns = document.querySelectorAll('.select-pkg-btn');
+            selectPkgBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const pkgName = btn.getAttribute('data-pkg');
+                    alert(`Selected Package: ${pkgName}\nReservation confirmed! Opening studio booking portal.`);
+                });
+            });
+
+            // --- FRAMER / INTERSECTION OBSERVER ANIMATION ---
+            const framerSections = document.querySelectorAll('[data-framer-section]');
+            if ('IntersectionObserver' in window) {
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('framer-animated');
+                            sectionObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.05 });
+
+                framerSections.forEach(sec => sectionObserver.observe(sec));
+            } else {
+                framerSections.forEach(sec => sec.classList.add('framer-animated'));
+            }
+
+            // Hero immediately visible
+            const heroSec = document.getElementById('pkg-sec1-hero');
+            if (heroSec) heroSec.classList.add('framer-animated');
+        });
+    
+            // --- RTL / LTR TOGGLE HANDLER ---
+            const rtlBtn = document.getElementById('rtlBtn');
+            const mobileRtlBtn = document.getElementById('mobileRtlBtn');
+            const rtlLabel = document.getElementById('rtlLabel');
+            const mobileRtlLabel = document.getElementById('mobileRtlLabel');
+
+            function updateRTLUI(isRtl) {
+                const dir = isRtl ? 'rtl' : 'ltr';
+                document.body.setAttribute('dir', dir);
+                document.documentElement.setAttribute('dir', dir);
+                if (rtlLabel) rtlLabel.textContent = isRtl ? 'LTR' : 'RTL';
+                if (mobileRtlLabel) mobileRtlLabel.textContent = isRtl ? 'LTR Layout' : 'RTL Layout';
+                localStorage.setItem('carstudio_rtl', dir);
+            }
+
+            function toggleRTL() {
+                const isRtl = (document.body.getAttribute('dir') || 'ltr') === 'ltr';
+                updateRTLUI(isRtl);
+            }
+
+            const savedRtl = localStorage.getItem('carstudio_rtl');
+            if (savedRtl === 'rtl') {
+                updateRTLUI(true);
+            } else {
+                updateRTLUI(false);
+            }
+
+            if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+            if (mobileRtlBtn) mobileRtlBtn.addEventListener('click', toggleRTL);
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
