@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="bgGradMarcus" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="skinMarcus" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd5b8"/>
+      <stop offset="100%" stop-color="#f6be96"/>
+    </linearGradient>
+    <linearGradient id="hairMarcus" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="suitMarcus" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6a1a"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Circle with Accent Border -->
+  <circle cx="60" cy="60" r="58" fill="url(#bgGradMarcus)" stroke="#ff6a1a" stroke-width="3"/>
+  <g clip-path="url(#circleClipMarcus)">
+    <clipPath id="circleClipMarcus">
+      <circle cx="60" cy="60" r="56"/>
+    </clipPath>
+    <!-- Shoulders & Coat -->
+    <path d="M 15 120 Q 25 85 60 85 Q 95 85 105 120 Z" fill="#090d16"/>
+    <!-- Collar & Shirt -->
+    <path d="M 46 86 L 60 102 L 74 86 L 66 82 L 60 84 L 54 82 Z" fill="#ffffff"/>
+    <path d="M 57 88 L 60 108 L 63 88 Z" fill="#ff6a1a"/>
+    <!-- Neck -->
+    <rect x="52" y="65" width="16" height="22" rx="4" fill="url(#skinMarcus)"/>
+    <!-- Head Base -->
+    <ellipse cx="60" cy="52" rx="20" ry="24" fill="url(#skinMarcus)"/>
+    <!-- Ears -->
+    <ellipse cx="39" cy="53" rx="4" ry="7" fill="url(#skinMarcus)"/>
+    <ellipse cx="81" cy="53" rx="4" ry="7" fill="url(#skinMarcus)"/>
+    <!-- Eyebrows & Eyes -->
+    <path d="M 47 45 Q 52 43 56 46" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <path d="M 64 46 Q 68 43 73 45" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <ellipse cx="51.5" cy="49.5" rx="2.5" ry="3" fill="#0f172a"/>
+    <ellipse cx="68.5" cy="49.5" rx="2.5" ry="3" fill="#0f172a"/>
+    <circle cx="50.5" cy="48.5" r="0.8" fill="#ffffff"/>
+    <circle cx="67.5" cy="48.5" r="0.8" fill="#ffffff"/>
+    <!-- Nose & Smile -->
+    <path d="M 59 50 L 59 58 L 63 58" stroke="#d97706" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <path d="M 53 64 Q 60 69 67 64" stroke="#991b1b" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <!-- Well-groomed Stubble / Shadow -->
+    <path d="M 46 58 Q 60 76 74 58 Q 72 73 60 76 Q 48 73 46 58 Z" fill="rgba(30, 41, 59, 0.15)"/>
+    <!-- Styled Modern Haircut -->
+    <path d="M 38 48 C 36 32 44 24 60 23 C 76 24 84 32 82 48 C 80 34 76 30 68 31 C 60 32 54 28 44 34 C 40 37 39 42 38 48 Z" fill="url(#hairMarcus)"/>
+  </g>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="bgGradElena" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="skinElena" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fee2e2"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+    <linearGradient id="hairElena" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Circle with Accent Border -->
+  <circle cx="60" cy="60" r="58" fill="url(#bgGradElena)" stroke="#ff6a1a" stroke-width="3"/>
+  <g clip-path="url(#circleClipElena)">
+    <clipPath id="circleClipElena">
+      <circle cx="60" cy="60" r="56"/>
+    </clipPath>
+    <!-- Long Hair Backing -->
+    <path d="M 32 45 Q 26 80 34 110 L 86 110 Q 94 80 88 45 Z" fill="url(#hairElena)"/>
+    <!-- Shoulders & Fashion Blazer -->
+    <path d="M 18 120 Q 28 86 60 86 Q 92 86 102 120 Z" fill="#1e293b"/>
+    <!-- Silk Top V-Neck -->
+    <path d="M 48 88 L 60 106 L 72 88 Z" fill="#ff6a1a"/>
+    <circle cx="60" cy="98" r="2.5" fill="#fef08a"/>
+    <!-- Slender Neck -->
+    <rect x="53" y="65" width="14" height="23" rx="4" fill="url(#skinElena)"/>
+    <!-- Head Base -->
+    <ellipse cx="60" cy="51" rx="18" ry="22" fill="url(#skinElena)"/>
+    <!-- Ears & Pearl Studs -->
+    <ellipse cx="41" cy="53" rx="3.5" ry="6" fill="url(#skinElena)"/>
+    <ellipse cx="79" cy="53" rx="3.5" ry="6" fill="url(#skinElena)"/>
+    <circle cx="41" cy="56" r="2" fill="#f8fafc"/>
+    <circle cx="79" cy="56" r="2" fill="#f8fafc"/>
+    <!-- Eyebrows & Eyes -->
+    <path d="M 47 43 Q 52 40 57 43" stroke="#78350f" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path d="M 63 43 Q 68 40 73 43" stroke="#78350f" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <ellipse cx="51.5" cy="48" rx="2.5" ry="3" fill="#0f172a"/>
+    <ellipse cx="68.5" cy="48" rx="2.5" ry="3" fill="#0f172a"/>
+    <circle cx="50.5" cy="47" r="0.8" fill="#ffffff"/>
+    <circle cx="67.5" cy="47" r="0.8" fill="#ffffff"/>
+    <!-- Eyeliner wings -->
+    <path d="M 46 48 Q 52 46 56 48 L 57 47" stroke="#0f172a" stroke-width="1.2" fill="none"/>
+    <path d="M 74 48 Q 68 46 64 48 L 63 47" stroke="#0f172a" stroke-width="1.2" fill="none"/>
+    <!-- Nose & Elegant Coral Lips -->
+    <path d="M 59 48 L 59 56 L 62 56" stroke="#f97316" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M 52 63 Q 60 67 68 63 Q 60 70 52 63 Z" fill="#e11d48"/>
+    <!-- Flowing Auburn Hair Foreground -->
+    <path d="M 38 48 C 36 28 46 22 60 22 C 76 22 84 28 82 48 C 76 33 68 31 58 31 C 46 31 40 37 38 48 Z" fill="url(#hairElena)"/>
+    <path d="M 37 46 Q 34 68 38 88 Q 42 70 41 52 Z" fill="url(#hairElena)"/>
+    <path d="M 83 46 Q 86 68 82 88 Q 78 70 79 52 Z" fill="url(#hairElena)"/>
+  </g>
+</svg>

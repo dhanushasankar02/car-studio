@@ -2421,6 +2421,197 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
         text-align: center !important;
     }
 }
+
+.author-avatar-img {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 2px solid var(--accent) !important;
+    box-shadow: 0 4px 12px rgba(255, 106, 26, 0.25) !important;
+    flex-shrink: 0 !important;
+}
+
+/* ==========================================================================
+   ELIMINATE EMPTY SPACE IN ALL IMAGE CARDS (NO TOP/BOTTOM LETTERBOX GAPS)
+   ========================================================================== */
+.img-frame-card,
+.img-card {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 460px !important;
+    overflow: hidden !important;
+    border-radius: 24px !important;
+    border: 1px solid var(--border-light) !important;
+    box-shadow: var(--shadow-lg) !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+}
+
+.img-frame-card img,
+.img-card img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 460px !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    border-radius: 24px !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 992px) {
+    .img-frame-card,
+    .img-card,
+    .img-frame-card img,
+    .img-card img {
+        min-height: 380px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .img-frame-card,
+    .img-card,
+    .img-frame-card img,
+    .img-card img {
+        min-height: 280px !important;
+    }
+}
+
+
+/* ==========================================================================
+   HIGH-CONTRAST FOOTER TEXT STYLING (WCAG AAA EXCELLENCE IN ALL MODES)
+   ========================================================================== */
+.footer,
+body:not(.dark-mode) .footer,
+body.dark-mode .footer {
+    background: #080a0f !important;
+    color: #f8fafc !important;
+}
+
+.footer p,
+.footer .footer-desc,
+body:not(.dark-mode) .footer p,
+body:not(.dark-mode) .footer .footer-desc,
+body.dark-mode .footer p,
+body.dark-mode .footer .footer-desc {
+    color: #cbd5e1 !important; /* High contrast silver-white text */
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+}
+
+.footer-link,
+body:not(.dark-mode) .footer .footer-link,
+body.dark-mode .footer .footer-link {
+    color: #e2e8f0 !important; /* Crisp, readable links */
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.footer-link:hover,
+body:not(.dark-mode) .footer .footer-link:hover,
+body.dark-mode .footer .footer-link:hover {
+    color: #ff6a1a !important;
+}
+
+.footer-col h4,
+body:not(.dark-mode) .footer-col h4,
+body.dark-mode .footer-col h4 {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+}
+
+.newsletter-input,
+body:not(.dark-mode) .newsletter-input,
+body.dark-mode .newsletter-input {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    color: #ffffff !important;
+}
+
+.newsletter-input::placeholder {
+    color: #cbd5e1 !important;
+}
+
+.footer-bottom,
+.footer-bottom span,
+.footer-bottom p,
+body:not(.dark-mode) .footer-bottom,
+body.dark-mode .footer-bottom {
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+}
+
+.social-btn,
+body:not(.dark-mode) .social-btn,
+body.dark-mode .social-btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    color: #ffffff !important;
+}
+
+.social-btn i {
+    color: #ffffff !important;
+}
+
+
+/* ==========================================================================
+   UNIFIED 1024px NAVBAR BREAKPOINT (STRICT ZERO-LEAK NAVIGATION)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .nav-links,
+    .navbar .nav-links,
+    .nav-container .nav-links,
+    header .nav-links,
+    ul.nav-links {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    .menu-toggle,
+    .navbar .menu-toggle,
+    header .menu-toggle,
+    #mobileToggleBtn {
+        display: inline-flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-actions .btn-login,
+    .nav-actions .action-btn.btn-login,
+    .nav-actions #loginModalBtn {
+        display: none !important;
+    }
+
+    .nav-actions {
+        gap: 0.4rem !important;
+    }
+}
+
+@media (min-width: 1025px) {
+    .nav-links,
+    .navbar .nav-links,
+    .nav-container .nav-links,
+    header .nav-links {
+        display: flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .menu-toggle,
+    .navbar .menu-toggle,
+    header .menu-toggle,
+    #mobileToggleBtn {
+        display: none !important;
+    }
+}
+
 </style>
 </head>
 <body class="dark-mode" dir="ltr">
@@ -2443,11 +2634,21 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                         </linearGradient>
                     </defs>
                     <g transform="translate(10, 10)">
-                        <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGrad)"/>
-                        <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
-                        <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
-                        <circle cx="28" cy="54" r="5" fill="#12151C"/>
-                        <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                        <rect x="0" y="0" width="80" height="80" rx="22" fill="url(#logoGrad)"/>
+                        <rect x="1.5" y="1.5" width="77" height="77" rx="21" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.45"/>
+                        <path d="M 12 43 Q 28 39, 48 39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <path d="M 16 48 Q 28 46, 44 46" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                        <path d="M 13 54 C 14 52, 17 50, 22 49 L 26 49 C 29 44, 35 37, 44 33 C 52 29, 61 31, 65 37 L 69 44 C 73 45, 75 48, 75 52 C 75 55, 73 56, 68 56 L 64 56 C 63 51, 59 48, 54 48 C 49 48, 45 51, 44 56 L 34 56 C 33 51, 29 48, 24 48 C 19 48, 15 51, 14 56 Z" fill="#FFFFFF"/>
+                        <path d="M 31 46 C 34 39, 40 34, 46 34 C 52 34, 57 37, 60 43 L 48 43 Z" fill="#11151F" opacity="0.92"/>
+                        <path d="M 50 43 L 62 43 C 60 39, 58 37, 54 36 L 50 43 Z" fill="#1A2233" opacity="0.85"/>
+                        <circle cx="24" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="24" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="24" cy="56" r="2" fill="#FFFFFF"/>
+                        <circle cx="54" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="54" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="54" cy="56" r="2" fill="#FFFFFF"/>
+                        <path d="M 64 29 L 65.5 24 L 67 29 L 72 30.5 L 67 32 L 65.5 37 L 64 32 L 59 30.5 Z" fill="#FFFFFF" opacity="0.95"/>
+                        <circle cx="65.5" cy="30.5" r="1.2" fill="#FF6A1A"/>
                     </g>
                     <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGrad)" letter-spacing="2">CAR STUDIO</text>
                     <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
@@ -2463,8 +2664,10 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                     <ul class="dropdown-menu">
                         <li><a href="index.html" class="dropdown-item"><i class="fas fa-layer-group"></i> Home 1</a></li>
                         <li><a href="home2.html" class="dropdown-item"><i class="fas fa-desktop"></i> Home 2</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
                     </ul>
                 </li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="services.html" class="nav-link ">Services</a></li>
                 <li class="nav-item"><a href="gallery.html" class="nav-link ">Gallery</a></li>
                 <li class="nav-item"><a href="packages.html" class="nav-link ">Packages</a></li>
@@ -2485,11 +2688,9 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
             <div class="nav-actions">
                 <button class="action-btn" id="darkModeBtn" aria-label="Toggle Theme">
                     <i class="fas fa-moon" id="themeIcon"></i>
-                    <span id="themeLabel">Dark</span>
                 </button>
 
                 <button class="action-btn" id="rtlBtn" aria-label="Toggle Layout Direction">
-                    <i class="fas fa-right-left" id="rtlIcon"></i>
                     <span id="rtlLabel">RTL</span>
                 </button>
 
@@ -2522,11 +2723,21 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                         </linearGradient>
                     </defs>
                     <g transform="translate(10, 10)">
-                        <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGradMob)"/>
-                        <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
-                        <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
-                        <circle cx="28" cy="54" r="5" fill="#12151C"/>
-                        <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                        <rect x="0" y="0" width="80" height="80" rx="22" fill="url(#logoGradMob)"/>
+                        <rect x="1.5" y="1.5" width="77" height="77" rx="21" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.45"/>
+                        <path d="M 12 43 Q 28 39, 48 39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <path d="M 16 48 Q 28 46, 44 46" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                        <path d="M 13 54 C 14 52, 17 50, 22 49 L 26 49 C 29 44, 35 37, 44 33 C 52 29, 61 31, 65 37 L 69 44 C 73 45, 75 48, 75 52 C 75 55, 73 56, 68 56 L 64 56 C 63 51, 59 48, 54 48 C 49 48, 45 51, 44 56 L 34 56 C 33 51, 29 48, 24 48 C 19 48, 15 51, 14 56 Z" fill="#FFFFFF"/>
+                        <path d="M 31 46 C 34 39, 40 34, 46 34 C 52 34, 57 37, 60 43 L 48 43 Z" fill="#11151F" opacity="0.92"/>
+                        <path d="M 50 43 L 62 43 C 60 39, 58 37, 54 36 L 50 43 Z" fill="#1A2233" opacity="0.85"/>
+                        <circle cx="24" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="24" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="24" cy="56" r="2" fill="#FFFFFF"/>
+                        <circle cx="54" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="54" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="54" cy="56" r="2" fill="#FFFFFF"/>
+                        <path d="M 64 29 L 65.5 24 L 67 29 L 72 30.5 L 67 32 L 65.5 37 L 64 32 L 59 30.5 Z" fill="#FFFFFF" opacity="0.95"/>
+                        <circle cx="65.5" cy="30.5" r="1.2" fill="#FF6A1A"/>
                     </g>
                     <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGradMob)" letter-spacing="2">CAR STUDIO</text>
                     <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
@@ -2892,7 +3103,7 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                             </p>
                         </div>
                         <div class="story-author">
-                            <div class="author-avatar">MV</div>
+                            <img src="images/avatar_marcus.svg" alt="Marcus Vance" class="author-avatar-img">
                             <div class="author-meta">
                                 <h4>Marcus Vance</h4>
                                 <span>Ferrari F8 Tributo</span>
@@ -2908,7 +3119,7 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                             </p>
                         </div>
                         <div class="story-author">
-                            <div class="author-avatar">ER</div>
+                            <img src="images/avatar_elena.svg" alt="Elena Rostova" class="author-avatar-img">
                             <div class="author-meta">
                                 <h4>Elena Rostova</h4>
                                 <span>Porsche 911 GT3 RS</span>
@@ -2924,7 +3135,7 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                             </p>
                         </div>
                         <div class="story-author">
-                            <div class="author-avatar">DS</div>
+                            <img src="images/avatar_david.svg" alt="David Sterling" class="author-avatar-img">
                             <div class="author-meta">
                                 <h4>David Sterling</h4>
                                 <span>Rolls-Royce Cullinan</span>
@@ -3041,11 +3252,21 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                             </linearGradient>
                         </defs>
                         <g transform="translate(10, 10)">
-                            <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGradFoot)"/>
-                            <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
-                            <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
-                            <circle cx="28" cy="54" r="5" fill="#12151C"/>
-                            <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                            <rect x="0" y="0" width="80" height="80" rx="22" fill="url(#logoGradFoot)"/>
+                        <rect x="1.5" y="1.5" width="77" height="77" rx="21" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.45"/>
+                        <path d="M 12 43 Q 28 39, 48 39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <path d="M 16 48 Q 28 46, 44 46" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                        <path d="M 13 54 C 14 52, 17 50, 22 49 L 26 49 C 29 44, 35 37, 44 33 C 52 29, 61 31, 65 37 L 69 44 C 73 45, 75 48, 75 52 C 75 55, 73 56, 68 56 L 64 56 C 63 51, 59 48, 54 48 C 49 48, 45 51, 44 56 L 34 56 C 33 51, 29 48, 24 48 C 19 48, 15 51, 14 56 Z" fill="#FFFFFF"/>
+                        <path d="M 31 46 C 34 39, 40 34, 46 34 C 52 34, 57 37, 60 43 L 48 43 Z" fill="#11151F" opacity="0.92"/>
+                        <path d="M 50 43 L 62 43 C 60 39, 58 37, 54 36 L 50 43 Z" fill="#1A2233" opacity="0.85"/>
+                        <circle cx="24" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="24" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="24" cy="56" r="2" fill="#FFFFFF"/>
+                        <circle cx="54" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="54" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="54" cy="56" r="2" fill="#FFFFFF"/>
+                        <path d="M 64 29 L 65.5 24 L 67 29 L 72 30.5 L 67 32 L 65.5 37 L 64 32 L 59 30.5 Z" fill="#FFFFFF" opacity="0.95"/>
+                        <circle cx="65.5" cy="30.5" r="1.2" fill="#FF6A1A"/>
                         </g>
                         <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGradFoot)" letter-spacing="2">CAR STUDIO</text>
                         <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
@@ -3068,6 +3289,7 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                 <ul class="footer-links">
                     <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home 1</a></li>
                     <li><a href="home2.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home 2</a></li>
+                    <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
                     <li><a href="services.html" class="footer-link"><i class="fas fa-chevron-right"></i> Services</a></li>
                     <li><a href="gallery.html" class="footer-link"><i class="fas fa-chevron-right"></i> Gallery</a></li>
                     <li><a href="packages.html" class="footer-link"><i class="fas fa-chevron-right"></i> Packages</a></li>
@@ -3403,11 +3625,21 @@ body.dark-mode #rtlBtn i, body.dark-mode #mobileRtlBtn i {
                             </linearGradient>
                         </defs>
                         <g transform="translate(10, 10)">
-                            <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#logoGradFoot)"/>
-                            <path d="M18 54 L62 54 L56 42 L24 42 Z" fill="#FFFFFF"/>
-                            <path d="M26 42 L35 26 L45 26 L54 42 Z" fill="#FFFFFF" opacity="0.88"/>
-                            <circle cx="28" cy="54" r="5" fill="#12151C"/>
-                            <circle cx="52" cy="54" r="5" fill="#12151C"/>
+                            <rect x="0" y="0" width="80" height="80" rx="22" fill="url(#logoGradFoot)"/>
+                        <rect x="1.5" y="1.5" width="77" height="77" rx="21" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.45"/>
+                        <path d="M 12 43 Q 28 39, 48 39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <path d="M 16 48 Q 28 46, 44 46" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                        <path d="M 13 54 C 14 52, 17 50, 22 49 L 26 49 C 29 44, 35 37, 44 33 C 52 29, 61 31, 65 37 L 69 44 C 73 45, 75 48, 75 52 C 75 55, 73 56, 68 56 L 64 56 C 63 51, 59 48, 54 48 C 49 48, 45 51, 44 56 L 34 56 C 33 51, 29 48, 24 48 C 19 48, 15 51, 14 56 Z" fill="#FFFFFF"/>
+                        <path d="M 31 46 C 34 39, 40 34, 46 34 C 52 34, 57 37, 60 43 L 48 43 Z" fill="#11151F" opacity="0.92"/>
+                        <path d="M 50 43 L 62 43 C 60 39, 58 37, 54 36 L 50 43 Z" fill="#1A2233" opacity="0.85"/>
+                        <circle cx="24" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="24" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="24" cy="56" r="2" fill="#FFFFFF"/>
+                        <circle cx="54" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="54" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="54" cy="56" r="2" fill="#FFFFFF"/>
+                        <path d="M 64 29 L 65.5 24 L 67 29 L 72 30.5 L 67 32 L 65.5 37 L 64 32 L 59 30.5 Z" fill="#FFFFFF" opacity="0.95"/>
+                        <circle cx="65.5" cy="30.5" r="1.2" fill="#FF6A1A"/>
                         </g>
                         <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGradFoot)" letter-spacing="2">CAR STUDIO</text>
                         <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>

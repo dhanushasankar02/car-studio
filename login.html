@@ -576,22 +576,27 @@
 
         /* FORM HEADINGS */
         .form-header {
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
+            text-align: center;
         }
         .form-title {
             font-family: var(--font-heading);
             font-size: 1.7rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.35rem;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             gap: 10px;
         }
         .form-subtitle {
             font-size: 0.88rem;
             color: var(--text-secondary);
             line-height: 1.5;
+            text-align: center;
+            margin: 0 auto;
         }
 
         /* ROLE INDICATOR BADGE */
@@ -960,8 +965,17 @@
                 grid-template-columns: 1fr;
             }
             .form-title {
-                font-size: 1.5rem;
-            }
+            font-family: var(--font-heading);
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 10px;
+        }
         }
     /* NAVBAR ACTION BUTTONS ADJUSTMENT ON MOBILE VIEW */
 @media (max-width: 1100px) {
@@ -1166,6 +1180,136 @@
             }
         }
     
+
+/* ==========================================================================
+   BUTTON CONSISTENCY, LIGHT/DARK ACCESSIBILITY CONTRAST & NON-CROPPED IMAGES
+   ========================================================================== */
+/* 1. Consistent Button Dimensions, Pill Radius & State Transitions */
+.action-btn, 
+.btn-login, 
+.submit-btn, 
+.booking-submit-btn, 
+.ctrl-btn,
+button[type="submit"] {
+    border-radius: 50px !important;
+    font-family: var(--font-main, 'Inter', sans-serif);
+    font-weight: 600;
+    transition: var(--transition-smooth, all 0.25s ease);
+    text-decoration: none !important;
+}
+
+/* Primary Button Styling */
+.btn-login, 
+.action-btn.btn-login, 
+.submit-btn, 
+.booking-submit-btn, 
+.btn-primary,
+button.btn-primary {
+    background: #ff6a1a !important;
+    color: #ffffff !important;
+    border: 1px solid #ff6a1a !important;
+    box-shadow: 0 4px 14px rgba(255, 106, 26, 0.35) !important;
+}
+
+.btn-login:hover, 
+.action-btn.btn-login:hover, 
+.submit-btn:hover, 
+.booking-submit-btn:hover, 
+.btn-primary:hover {
+    background: #e5590c !important;
+    border-color: #e5590c !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 106, 26, 0.45) !important;
+    color: #ffffff !important;
+}
+
+/* Secondary Action Buttons in Dark Theme */
+body.dark-mode .action-btn:not(.btn-login):not(.submit-btn):not(#darkModeBtn):not(#rtlBtn) {
+    background: #141a26 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .action-btn:not(.btn-login):not(.submit-btn):not(#darkModeBtn):not(#rtlBtn):hover {
+    border-color: #ff6a1a !important;
+    color: #ff6a1a !important;
+    background: rgba(255, 106, 26, 0.12) !important;
+}
+
+/* Secondary Action Buttons in Light Theme */
+body:not(.dark-mode) .action-btn:not(.btn-login):not(.submit-btn):not(#darkModeBtn):not(#rtlBtn) {
+    background: #ffffff !important;
+    border: 1px solid rgba(15, 23, 42, 0.18) !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body:not(.dark-mode) .action-btn:not(.btn-login):not(.submit-btn):not(#darkModeBtn):not(#rtlBtn):hover {
+    border-color: #ff6a1a !important;
+    color: #ff6a1a !important;
+    background: rgba(255, 106, 26, 0.08) !important;
+}
+
+/* 2. Theme & RTL Toggle Fixed Dimensions */
+#darkModeBtn {
+    width: 38px !important;
+    min-width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#rtlBtn {
+    height: 38px !important;
+    min-width: 52px !important;
+    padding: 0 0.95rem !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 3. Text Contrast & Accessibility */
+body:not(.dark-mode) {
+    color: #0f172a !important;
+}
+body:not(.dark-mode) .section-desc,
+body:not(.dark-mode) .sec-p,
+body:not(.dark-mode) p {
+    color: #334155 !important;
+}
+body:not(.dark-mode) .section-badge,
+body:not(.dark-mode) .sec-badge,
+body:not(.dark-mode) [class*="-badge"] {
+    background: rgba(255, 106, 26, 0.12) !important;
+    color: #c2410c !important;
+    font-weight: 700 !important;
+    border-color: rgba(255, 106, 26, 0.3) !important;
+}
+
+/* 4. Non-Cropped Images with Proper Aspect Ratios */
+.bento-img-wrap img,
+.service-card-img,
+.img-card img,
+.story-card img,
+.media-frame img,
+.pillar-img-box img {
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 12px;
+}
+.comparison-wrapper img {
+    object-fit: contain !important;
+    max-height: 480px !important;
+    width: 100% !important;
+    background: #080a0f;
+    border-radius: 16px;
+}
+
 </style>
 </head>
 <body class="dark-mode">
@@ -1180,11 +1324,9 @@
     <div class="top-controls-floating">
         <button class="action-btn" id="darkModeBtn" aria-label="Toggle Theme">
             <i class="fas fa-moon" id="themeIcon"></i>
-            <span id="themeLabel">Dark</span>
         </button>
 
         <button class="action-btn" id="rtlBtn" aria-label="Toggle Layout Direction">
-            <i class="fas fa-right-left" id="rtlIcon"></i>
             <span id="rtlLabel">RTL</span>
         </button>
     </div>
@@ -1880,6 +2022,20 @@
             const savedRtl = localStorage.getItem('carstudio_rtl') || localStorage.getItem('car_studio_rtl');
             const savedLang = localStorage.getItem('carstudio_lang') || (savedRtl === 'rtl' ? 'ar' : 'en');
             applyLanguage(savedLang, false);
+
+            const darkModeBtn = document.getElementById('darkModeBtn');
+            const rtlBtn = document.getElementById('rtlBtn');
+
+            if (darkModeBtn) {
+                darkModeBtn.addEventListener('click', toggleTheme);
+            }
+
+            if (rtlBtn) {
+                rtlBtn.addEventListener('click', () => {
+                    const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+                    applyLanguage(isRtl ? 'en' : 'ar', true);
+                });
+            }
 
             if (langSwitcher) {
                 langSwitcher.addEventListener('change', (e) => {

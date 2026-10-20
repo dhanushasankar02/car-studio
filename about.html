@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Us | Car Studio Luxury Detailing Atelier</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="alternate icon" href="images/favicon.svg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- RESET & SYSTEM DESIGN TOKENS ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --surface-glass: rgba(255, 255, 255, 0.94);
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent: #ff6a1a;
+            --accent-hover: #e5590c;
+            --accent-glow: rgba(255, 106, 26, 0.25);
+            --border-light: rgba(15, 23, 42, 0.12);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.12);
+            --transition-smooth: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+        }
+
+        body.dark-mode {
+            --bg-primary: #080a0f;
+            --bg-secondary: #0e121b;
+            --surface-glass: rgba(14, 18, 27, 0.94);
+            --card-bg: #141a26;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.35);
+            --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.65);
+        }
+
+        body {
+            font-family: var(--font-main);
+            font-size: 1rem;
+            line-height: 1.6;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* RTL Icon Flipping */
+        body[dir="rtl"] .fa-angle-right,
+        body[dir="rtl"] .fa-arrow-right,
+        body[dir="rtl"] .fa-chevron-right,
+        body[dir="rtl"] .fa-angle-double-right {
+            transform: scaleX(-1);
+            display: inline-block;
+        }
+
+        /* ---------- STICKY GLASS NAVBAR ---------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: var(--surface-glass);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0.65rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            flex-wrap: nowrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .logo-svg {
+            height: 58px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 2px 8px var(--accent-glow));
+            transition: var(--transition-smooth);
+        }
+
+        .logo-area:hover .logo-svg {
+            transform: scale(1.03);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            list-style: none;
+            flex-wrap: nowrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.92rem;
+            font-weight: 600;
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+            background: rgba(255, 106, 26, 0.08);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+        }
+
+        /* ---------- BUTTON STYLING (CONSISTENT CORNER RADIUS & SIZING) ---------- */
+        .action-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-weight: 600;
+            font-family: inherit;
+            padding: 0.45rem 0.95rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .action-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--accent-glow);
+        }
+
+        .action-btn.btn-login {
+            background: var(--accent) !important;
+            color: #ffffff !important;
+            border-color: var(--accent) !important;
+            box-shadow: 0 4px 14px rgba(255, 106, 26, 0.35) !important;
+        }
+
+        .action-btn.btn-login:hover {
+            background: var(--accent-hover) !important;
+            border-color: var(--accent-hover) !important;
+            color: #ffffff !important;
+        }
+
+        #darkModeBtn {
+            width: 38px !important;
+            min-width: 38px !important;
+            height: 38px !important;
+            padding: 0 !important;
+            border-radius: 50% !important;
+        }
+
+        #rtlBtn {
+            height: 38px !important;
+            min-width: 52px !important;
+            padding: 0 0.9rem !important;
+            border-radius: 50px !important;
+            font-weight: 700 !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: rgba(255, 106, 26, 0.12);
+            border: 1px solid rgba(255, 106, 26, 0.3);
+            color: var(--accent);
+            font-size: 1.3rem;
+            padding: 0.45rem 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* ---------- MOBILE DRAWER ---------- */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10000;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-panel {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100vh;
+            background: var(--surface-glass);
+            border-left: 1px solid var(--border-light);
+            z-index: 10001;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            transition: right 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            overflow-y: auto;
+        }
+
+        .mobile-panel.active {
+            right: 0;
+        }
+
+        body[dir="rtl"] .mobile-panel {
+            right: auto;
+            left: -320px;
+            border-left: none;
+            border-right: 1px solid var(--border-light);
+            transition: left 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        body[dir="rtl"] .mobile-panel.active {
+            left: 0;
+            right: auto;
+        }
+
+        /* ---------- MAIN ABOUT SECTIONS ---------- */
+        .about-main {
+            margin-top: 76px;
+            flex: 1;
+        }
+
+        /* Hero Banner */
+        .about-hero {
+            position: relative;
+            padding: 6rem 2rem 5rem;
+            background: linear-gradient(180deg, rgba(8, 10, 15, 0.78) 0%, rgba(8, 10, 15, 0.92) 100%), url('images/hero_showroom_clear.jpg') center/cover no-repeat;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .about-hero-content {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .sec-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 106, 26, 0.16);
+            color: #ff8542;
+            border: 1px solid rgba(255, 106, 26, 0.3);
+            padding: 0.4rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.25rem;
+        }
+
+        .about-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, #ffffff 40%, #ff8542 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-hero p {
+            font-size: 1.12rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding-top: 1rem;
+        }
+
+        .stat-card {
+            background: rgba(20, 26, 38, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+
+        /* Story 2-Col Section */
+        .content-section {
+            padding: 5rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .section-h2 {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .media-frame {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            background: var(--card-bg);
+            aspect-ratio: 16/10;
+        }
+
+        .media-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* Pillars Bento Grid */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pillar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pillar-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pillar-img-box {
+            width: 100%;
+            height: 220px;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .pillar-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .pillar-card:hover .pillar-img-box img {
+            transform: scale(1.04);
+        }
+
+        .pillar-body {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pillar-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 106, 26, 0.12);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+        }
+
+        .pillar-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Team Certification Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .team-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-avatar-box {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff9e66 100%);
+            color: #ffffff;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            box-shadow: 0 6px 18px var(--accent-glow);
+        }
+
+        .team-name {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .team-role {
+            font-size: 0.88rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Timeline Section */
+        .timeline-wrap {
+            max-width: 900px;
+            margin: 3rem auto 0;
+            position: relative;
+        }
+
+        .timeline-wrap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px;
+            width: 3px;
+            background: var(--border-light);
+        }
+
+        body[dir="rtl"] .timeline-wrap::before {
+            left: auto;
+            right: 24px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 2.5rem;
+        }
+
+        body[dir="rtl"] .timeline-item {
+            padding-left: 0;
+            padding-right: 60px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 14px;
+            top: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 4px solid var(--bg-primary);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        body[dir="rtl"] .timeline-dot {
+            left: auto;
+            right: 14px;
+        }
+
+        .timeline-year {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Bottom CTA Banner */
+        .about-cta-banner {
+            background: linear-gradient(135deg, rgba(255, 106, 26, 0.12) 0%, rgba(20, 26, 38, 0.6) 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-light);
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        body[dir="rtl"] .footer-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2col { grid-template-columns: 1fr; gap: 2.5rem; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-actions .action-btn { display: none !important; }
+            .menu-toggle { display: block !important; }
+            .about-hero h1 { font-size: 2.4rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; }
+        }
+    
+/* ==========================================================================
+   BUTTON CONSISTENCY, LIGHT/DARK ACCESSIBILITY CONTRAST & NON-CROPPED IMAGES
+   ========================================================================== */
+/* 1. Consistent Button Dimensions, Pill Radius & State Transitions */
+.action-btn, 
+.btn-login, 
+.submit-btn, 
+.booking-submit-btn, 
+.ctrl-btn,
+button[type="submit"] {
+    border-radius: 50px !important;
+    font-family: var(--font-main, 'Inter', sans-serif);
+    font-weight: 600;
+    transition: var(--transition-smooth, all 0.25s ease);
+    text-decoration: none !important;
+}
+
+/* Primary Button Styling */
+.btn-login, 
+.action-btn.btn-login, 
+.submit-btn, 
+.booking-submit-btn, 
+.btn-primary,
+button.btn-primary {
+    background: #ff6a1a !important;
+    color: #ffffff !important;
+    border: 1px solid #ff6a1a !important;
+    box-shadow: 0 4px 14px rgba(255, 106, 26, 0.35) !important;
+}
+
+.btn-login:hover, 
+.action-btn.btn-login:hover, 
+.submit-btn:hover, 
+.booking-submit-btn:hover, 
+.btn-primary:hover {
+    background: #e5590c !important;
+    border-color: #e5590c !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 106, 26, 0.45) !important;
+    color: #ffffff !important;
+}
+
+/* Secondary Action Buttons in Dark Theme */
+body.dark-mode .action-btn:not(.btn-login):not(.submit-btn):not(#darkModeBtn):not(#rtlBtn) {
+    background: #141a26 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    color: #f8fafc !important;
+}
+
+body.dark-mode .action-btn:not(.btn-login):not(.submit-btn):not(#darkModeBtn):not(#rtlBtn):hover {
+    border-color: #ff6a1a !important;
+    color: #ff6a1a !important;
+    background: rgba(255, 106, 26, 0.12) !important;
+}
+
+/* Secondary Action Buttons in Light Theme */
+body:not(.dark-mode) .action-btn:not(.btn-login):not(.submit-btn):not(#darkModeBtn):not(#rtlBtn) {
+    background: #ffffff !important;
+    border: 1px solid rgba(15, 23, 42, 0.18) !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body:not(.dark-mode) .action-btn:not(.btn-login):not(.submit-btn):not(#darkModeBtn):not(#rtlBtn):hover {
+    border-color: #ff6a1a !important;
+    color: #ff6a1a !important;
+    background: rgba(255, 106, 26, 0.08) !important;
+}
+
+/* 2. Theme & RTL Toggle Fixed Dimensions */
+#darkModeBtn {
+    width: 38px !important;
+    min-width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#rtlBtn {
+    height: 38px !important;
+    min-width: 52px !important;
+    padding: 0 0.95rem !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 3. Text Contrast & Accessibility */
+body:not(.dark-mode) {
+    color: #0f172a !important;
+}
+body:not(.dark-mode) .section-desc,
+body:not(.dark-mode) .sec-p,
+body:not(.dark-mode) p {
+    color: #334155 !important;
+}
+body:not(.dark-mode) .section-badge,
+body:not(.dark-mode) .sec-badge,
+body:not(.dark-mode) [class*="-badge"] {
+    background: rgba(255, 106, 26, 0.12) !important;
+    color: #c2410c !important;
+    font-weight: 700 !important;
+    border-color: rgba(255, 106, 26, 0.3) !important;
+}
+
+/* 4. Non-Cropped Images with Proper Aspect Ratios */
+.bento-img-wrap img,
+.service-card-img,
+.img-card img,
+.story-card img,
+.media-frame img,
+.pillar-img-box img {
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 12px;
+}
+.comparison-wrapper img {
+    object-fit: contain !important;
+    max-height: 480px !important;
+    width: 100% !important;
+    background: #080a0f;
+    border-radius: 16px;
+}
+
+
+/* ==========================================================================
+   ELIMINATE EMPTY SPACE IN ALL IMAGE CARDS (NO TOP/BOTTOM LETTERBOX GAPS)
+   ========================================================================== */
+.img-frame-card,
+.img-card {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 460px !important;
+    overflow: hidden !important;
+    border-radius: 24px !important;
+    border: 1px solid var(--border-light) !important;
+    box-shadow: var(--shadow-lg) !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+}
+
+.img-frame-card img,
+.img-card img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 460px !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    border-radius: 24px !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 992px) {
+    .img-frame-card,
+    .img-card,
+    .img-frame-card img,
+    .img-card img {
+        min-height: 380px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .img-frame-card,
+    .img-card,
+    .img-frame-card img,
+    .img-card img {
+        min-height: 280px !important;
+    }
+}
+
+
+/* ==========================================================================
+   HIGH-CONTRAST FOOTER TEXT STYLING (WCAG AAA EXCELLENCE IN ALL MODES)
+   ========================================================================== */
+.footer,
+body:not(.dark-mode) .footer,
+body.dark-mode .footer {
+    background: #080a0f !important;
+    color: #f8fafc !important;
+}
+
+.footer p,
+.footer .footer-desc,
+body:not(.dark-mode) .footer p,
+body:not(.dark-mode) .footer .footer-desc,
+body.dark-mode .footer p,
+body.dark-mode .footer .footer-desc {
+    color: #cbd5e1 !important; /* High contrast silver-white text */
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+}
+
+.footer-link,
+body:not(.dark-mode) .footer .footer-link,
+body.dark-mode .footer .footer-link {
+    color: #e2e8f0 !important; /* Crisp, readable links */
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.footer-link:hover,
+body:not(.dark-mode) .footer .footer-link:hover,
+body.dark-mode .footer .footer-link:hover {
+    color: #ff6a1a !important;
+}
+
+.footer-col h4,
+body:not(.dark-mode) .footer-col h4,
+body.dark-mode .footer-col h4 {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+}
+
+.newsletter-input,
+body:not(.dark-mode) .newsletter-input,
+body.dark-mode .newsletter-input {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    color: #ffffff !important;
+}
+
+.newsletter-input::placeholder {
+    color: #cbd5e1 !important;
+}
+
+.footer-bottom,
+.footer-bottom span,
+.footer-bottom p,
+body:not(.dark-mode) .footer-bottom,
+body.dark-mode .footer-bottom {
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+}
+
+.social-btn,
+body:not(.dark-mode) .social-btn,
+body.dark-mode .social-btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    color: #ffffff !important;
+}
+
+.social-btn i {
+    color: #ffffff !important;
+}
+
+
+/* ==========================================================================
+   UNIFIED 1024px NAVBAR BREAKPOINT (STRICT ZERO-LEAK NAVIGATION)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .nav-links,
+    .navbar .nav-links,
+    .nav-container .nav-links,
+    header .nav-links,
+    ul.nav-links {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    .menu-toggle,
+    .navbar .menu-toggle,
+    header .menu-toggle,
+    #mobileToggleBtn {
+        display: inline-flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-actions .btn-login,
+    .nav-actions .action-btn.btn-login,
+    .nav-actions #loginModalBtn {
+        display: none !important;
+    }
+
+    .nav-actions {
+        gap: 0.4rem !important;
+    }
+}
+
+@media (min-width: 1025px) {
+    .nav-links,
+    .navbar .nav-links,
+    .nav-container .nav-links,
+    header .nav-links {
+        display: flex !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .menu-toggle,
+    .navbar .menu-toggle,
+    header .menu-toggle,
+    #mobileToggleBtn {
+        display: none !important;
+    }
+}
+
+</style>
+</head>
+<body class="dark-mode" dir="ltr">
+
+    <!-- ==================== STICKY GLASS NAVBAR ==================== -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Refined Supercar Logo -->
+            <a href="index.html" class="logo-area" aria-label="Car Studio Home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" class="logo-svg" height="58">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FF3800"/>
+                        </linearGradient>
+                        <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#FF6A1A"/>
+                            <stop offset="100%" stop-color="#FFA066"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(10, 10)">
+                        <rect x="0" y="0" width="80" height="80" rx="22" fill="url(#logoGrad)"/>
+                        <rect x="1.5" y="1.5" width="77" height="77" rx="21" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.45"/>
+                        <path d="M 12 43 Q 28 39, 48 39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="3,3"/>
+                        <path d="M 16 48 Q 28 46, 44 46" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                        <path d="M 13 54 C 14 52, 17 50, 22 49 L 26 49 C 29 44, 35 37, 44 33 C 52 29, 61 31, 65 37 L 69 44 C 73 45, 75 48, 75 52 C 75 55, 73 56, 68 56 L 64 56 C 63 51, 59 48, 54 48 C 49 48, 45 51, 44 56 L 34 56 C 33 51, 29 48, 24 48 C 19 48, 15 51, 14 56 Z" fill="#FFFFFF"/>
+                        <path d="M 31 46 C 34 39, 40 34, 46 34 C 52 34, 57 37, 60 43 L 48 43 Z" fill="#11151F" opacity="0.92"/>
+                        <path d="M 50 43 L 62 43 C 60 39, 58 37, 54 36 L 50 43 Z" fill="#1A2233" opacity="0.85"/>
+                        <circle cx="24" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="24" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="24" cy="56" r="2" fill="#FFFFFF"/>
+                        <circle cx="54" cy="56" r="6.5" fill="#0D111A"/>
+                        <circle cx="54" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                        <circle cx="54" cy="56" r="2" fill="#FFFFFF"/>
+                        <path d="M 64 29 L 65.5 24 L 67 29 L 72 30.5 L 67 32 L 65.5 37 L 64 32 L 59 30.5 Z" fill="#FFFFFF" opacity="0.95"/>
+                        <circle cx="65.5" cy="30.5" r="1.2" fill="#FF6A1A"/>
+                    </g>
+                    <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGrad)" letter-spacing="2">CAR STUDIO</text>
+                    <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
+                </svg>
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li class="nav-item dropdown">
+                    <a href="index.html" class="nav-link">
+                        Home <i class="fas fa-chevron-down chevron"></i>
+                    </a>
+                    <ul class="dropdown-menu" style="display: none;">
+                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="home2.html" class="dropdown-item">Home 2</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="packages.html" class="nav-link">Packages</a></li>
+                <li class="nav-item"><a href="why-choose-us.html" class="nav-link">Why Choose Us</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+
+            <!-- Controls (Theme Icon only, RTL text only, Login) -->
+            <div class="nav-actions">
+                <button class="action-btn" id="darkModeBtn" aria-label="Toggle Theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+
+                <button class="action-btn" id="rtlBtn" aria-label="Toggle Layout Direction">
+                    <span id="rtlLabel">RTL</span>
+                </button>
+
+                <a href="login.html" class="action-btn btn-login" id="loginModalBtn">
+                    <i class="fas fa-lock"></i>
+                    <span>Login</span>
+                </a>
+
+                <button class="menu-toggle" id="mobileToggleBtn" aria-label="Open Mobile Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Slideout -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-panel" id="mobilePanel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: var(--accent);">MENU</span>
+            <button id="mobileCloseBtn" style="background: none; border: none; color: var(--text-primary); font-size: 1.3rem; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem;">
+            <li><a href="index.html" class="nav-link">Home 1</a></li>
+            <li><a href="home2.html" class="nav-link">Home 2</a></li>
+            <li><a href="about.html" class="nav-link active">About Us</a></li>
+            <li><a href="services.html" class="nav-link">Services</a></li>
+            <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+            <li><a href="packages.html" class="nav-link">Packages</a></li>
+            <li><a href="why-choose-us.html" class="nav-link">Why Choose Us</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        </ul>
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+            <a href="login.html" class="action-btn btn-login" style="width: 100%; text-align: center;">Login</a>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN ABOUT PAGE CONTENT ==================== -->
+    <main class="about-main">
+
+        <!-- 1. Hero Overview -->
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <div class="sec-badge"><i class="fas fa-crown"></i> The Atelier Story</div>
+                <h1>The Art of Surgical Detailing &amp; Surface Engineering</h1>
+                <p>Founded by lifelong concourse detailers and certified chemical engineers, Car Studio represents the ultimate destination for luxury, exotic, and collector automotive surface preservation.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-num">15,000+</div>
+                        <div class="stat-label">Exotics Handcrafted</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">99.8%</div>
+                        <div class="stat-label">Mirror Gloss Index</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">100-Pt</div>
+                        <div class="stat-label">Cleanroom Audit</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">10-Year</div>
+                        <div class="stat-label">Ceramic &amp; PPF Warranty</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Heritage & The Atelier Philosophy -->
+        <section class="content-section">
+            <div class="grid-2col">
+                <div>
+                    <div class="sec-badge"><i class="fas fa-award"></i> Concourse Heritage</div>
+                    <h2 class="section-h2">Craftsmanship Without Compromise</h2>
+                    <p class="section-desc">
+                        Car Studio began in 2016 with a singular, uncompromising vision: to liberate automotive care from high-volume dealership washes and establish a true cleanroom atelier where vehicles are treated as irreplaceable mechanical art.
+                    </p>
+                    <p class="section-desc">
+                        Our technicians view clear coat not simply as paint, but as an optical substrate requiring scientific diagnosis. Before any rotary tool touches a panel, we perform ultrasonic digital depth readings across 50+ body points to map clear coat density to the single micrometer.
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+                        <a href="services.html" class="action-btn btn-login"><i class="fas fa-cubes"></i> Explore Divisions</a>
+                        <a href="contact.html" class="action-btn"><i class="fas fa-envelope"></i> Speak With A Detailer</a>
+                    </div>
+                </div>
+
+                <div class="media-frame">
+                    <img src="images/facility_climate_bay.jpg" alt="Car Studio High-Tech Detailing Cleanroom Facility">
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Four Pillars of Studio Excellence -->
+        <section style="background: var(--bg-secondary); padding: 5rem 2rem;">
+            <div style="max-width: 1300px; margin: 0 auto;">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <div class="sec-badge"><i class="fas fa-layer-group"></i> Studio Standards</div>
+                    <h2 class="section-h2">The Four Pillars of Studio Excellence</h2>
+                    <p class="section-desc">Every vehicle undergoes rigorous cleanroom protocols backed by German laboratory chemistry and precision engineering.</p>
+                </div>
+
+                <div class="pillars-grid">
+                    <!-- Pillar 1 -->
+                    <div class="pillar-card">
+                        <div class="pillar-img-box">
+                            <img src="images/facility_climate_bay.jpg" alt="Dust-Free Climate Controlled Cleanroom Bay">
+                        </div>
+                        <div class="pillar-body">
+                            <div class="pillar-icon"><i class="fas fa-wind"></i></div>
+                            <h3 class="pillar-title">Dust-Free Climate Cleanroom</h3>
+                            <p class="pillar-desc">Positive-pressure HEPA ventilation guarantees zero airborne particulates during 9H ceramic coating infusion and self-healing film installations.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="pillar-card">
+                        <div class="pillar-img-box">
+                            <img src="images/facility_inspection_array.jpg" alt="5000K Daylight LED Inspection Array">
+                        </div>
+                        <div class="pillar-body">
+                            <div class="pillar-icon"><i class="fas fa-lightbulb"></i></div>
+                            <h3 class="pillar-title">5000K Daylight Inspection Light Tunnel</h3>
+                            <p class="pillar-desc">Simulates full European noon solar rays with high-CRI illumination to expose and eliminate microscopic spiderweb swirls, buffer trails, and sanding marks.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="pillar-card">
+                        <div class="pillar-img-box">
+                            <img src="images/facility_hydraulic_lift.jpg" alt="In-Ground Low-Profile Hydraulic Lift">
+                        </div>
+                        <div class="pillar-body">
+                            <div class="pillar-icon"><i class="fas fa-car-side"></i></div>
+                            <h3 class="pillar-title">In-Ground Low-Profile Lifts</h3>
+                            <p class="pillar-desc">Precision hydraulic lifts engineered for ultra-low ground clearance supercars, providing ergonomic 360° access to rocker panels, diffusers, and brake calipers.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 4 -->
+                    <div class="pillar-card">
+                        <div class="pillar-img-box">
+                            <img src="images/studio_showcase_3.jpg" alt="Shortwave Infrared Ceramic Curing Array">
+                        </div>
+                        <div class="pillar-body">
+                            <div class="pillar-icon"><i class="fas fa-fire"></i></div>
+                            <h3 class="pillar-title">Infrared Thermal Curing Array</h3>
+                            <p class="pillar-desc">Shortwave IR lamps accelerate covalent cross-linking at 60°C, transforming liquid silica quartz into an impenetrable solid glass shield in minutes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Leadership & Master Craftsmen -->
+        <section class="content-section">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <div class="sec-badge"><i class="fas fa-users-gear"></i> Master Detailers</div>
+                <h2 class="section-h2">Meet Our Certified Leadership</h2>
+                <p class="section-desc">Our master technicians carry certifications from the International Detailing Association (IDA), XPEL, and Gyeon Quartz laboratories.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Team 1 -->
+                <div class="team-card">
+                    <img src="images/avatar_marcus.svg" alt="Marcus Vance" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); margin: 0 auto 1.2rem; display: block; box-shadow: 0 4px 14px rgba(255,106,26,0.3);">
+                    <h3 class="team-name">Marcus Vance</h3>
+                    <div class="team-role">Founder &amp; Chief Master Detailer</div>
+                    <p class="team-bio">IDA Recognized Master Craftsman with 14+ years preserving concourse-winning Ferraris, Porsches, and historic vintage motorcars.</p>
+                </div>
+
+                <!-- Team 2 -->
+                <div class="team-card">
+                    <img src="images/avatar_elena.svg" alt="Elena Rostova" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); margin: 0 auto 1.2rem; display: block; box-shadow: 0 4px 14px rgba(255,106,26,0.3);">
+                    <h3 class="team-name">Elena Rostova</h3>
+                    <div class="team-role">Head of PPF &amp; Color Transformations</div>
+                    <p class="team-bio">Factory-certified XPEL &amp; 3M master wrapper specializing in bulk custom templating, wrapped edges, and invisible paint protection.</p>
+                </div>
+
+                <!-- Team 3 -->
+                <div class="team-card">
+                    <img src="images/avatar_david.svg" alt="David Sterling" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); margin: 0 auto 1.2rem; display: block; box-shadow: 0 4px 14px rgba(255,106,26,0.3);">
+                    <h3 class="team-name">David Sterling</h3>
+                    <div class="team-role">Technical Director &amp; Nanotech Chemist</div>
+                    <p class="team-bio">Former aerospace coating technician directing our liquid crystal cross-linking protocols and ultrasonic clear coat diagnostic audits.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Studio Timeline / Milestones -->
+        <section style="background: var(--bg-secondary); padding: 5rem 2rem;">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div class="sec-badge"><i class="fas fa-timeline"></i> The Journey</div>
+                    <h2 class="section-h2">Studio Heritage &amp; Milestones</h2>
+                </div>
+
+                <div class="timeline-wrap">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2016</div>
+                        <h4 class="timeline-title">The Private Concourse Garage</h4>
+                        <p class="timeline-desc">Car Studio opens its first private garage dedicated exclusively to single-car multi-stage paint restorations for exotic car collectors.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2019</div>
+                        <h4 class="timeline-title">ISO Cleanroom Construction</h4>
+                        <p class="timeline-desc">Engineered our state-of-the-art climate-controlled positive-pressure detailing cleanroom to eliminate all airborne dust during ceramic applications.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2022</div>
+                        <h4 class="timeline-title">Enclosed Transport Fleet &amp; Digital Passport</h4>
+                        <p class="timeline-desc">Launched white-glove enclosed vehicle pickup logistics and integrated official Carfax Digital Service Passport verification for all client vehicles.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-year">2026</div>
+                        <h4 class="timeline-title">15,000+ Supercars Preserved</h4>
+                        <p class="timeline-desc">Recognized as the premier destination for concourse detailing, self-healing PPF wraps, and molecular ceramic armor in the region.</p>
+                    </div>
+                </div>
+
+                <!-- Call to action card -->
+                <div class="about-cta-banner">
+                    <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.8rem;">Ready For The Ultimate Studio Finish?</h3>
+                    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 1.8rem; font-size: 1rem;">Reserve your studio appointment today or request an enclosed flatbed transport consultation.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="packages.html" class="action-btn btn-login" style="padding: 0.85rem 2rem;"><i class="fas fa-calendar-check"></i> View Pricing &amp; Reserve</a>
+                        <a href="contact.html" class="action-btn" style="padding: 0.85rem 2rem;"><i class="fas fa-location-dot"></i> Visit Our Cleanroom</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div>
+                <a href="index.html" class="logo-area" aria-label="Car Studio Footer Logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" class="logo-svg" height="52">
+                        <defs>
+                            <linearGradient id="logoGradFoot" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FF6A1A"/>
+                                <stop offset="100%" stop-color="#FF3800"/>
+                            </linearGradient>
+                            <linearGradient id="textGradFoot" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#FF6A1A"/>
+                                <stop offset="100%" stop-color="#FFA066"/>
+                            </linearGradient>
+                        </defs>
+                        <g transform="translate(10, 10)">
+                            <rect x="0" y="0" width="80" height="80" rx="22" fill="url(#logoGradFoot)"/>
+                            <rect x="1.5" y="1.5" width="77" height="77" rx="21" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.45"/>
+                            <path d="M 12 43 Q 28 39, 48 39" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="3,3"/>
+                            <path d="M 16 48 Q 28 46, 44 46" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+                            <path d="M 13 54 C 14 52, 17 50, 22 49 L 26 49 C 29 44, 35 37, 44 33 C 52 29, 61 31, 65 37 L 69 44 C 73 45, 75 48, 75 52 C 75 55, 73 56, 68 56 L 64 56 C 63 51, 59 48, 54 48 C 49 48, 45 51, 44 56 L 34 56 C 33 51, 29 48, 24 48 C 19 48, 15 51, 14 56 Z" fill="#FFFFFF"/>
+                            <path d="M 31 46 C 34 39, 40 34, 46 34 C 52 34, 57 37, 60 43 L 48 43 Z" fill="#11151F" opacity="0.92"/>
+                            <path d="M 50 43 L 62 43 C 60 39, 58 37, 54 36 L 50 43 Z" fill="#1A2233" opacity="0.85"/>
+                            <circle cx="24" cy="56" r="6.5" fill="#0D111A"/>
+                            <circle cx="24" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                            <circle cx="24" cy="56" r="2" fill="#FFFFFF"/>
+                            <circle cx="54" cy="56" r="6.5" fill="#0D111A"/>
+                            <circle cx="54" cy="56" r="4.5" fill="none" stroke="#FF6A1A" stroke-width="1.5"/>
+                            <circle cx="54" cy="56" r="2" fill="#FFFFFF"/>
+                            <path d="M 64 29 L 65.5 24 L 67 29 L 72 30.5 L 67 32 L 65.5 37 L 64 32 L 59 30.5 Z" fill="#FFFFFF" opacity="0.95"/>
+                            <circle cx="65.5" cy="30.5" r="1.2" fill="#FF6A1A"/>
+                        </g>
+                        <text x="106" y="52" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="32" fill="url(#textGradFoot)" letter-spacing="2">CAR STUDIO</text>
+                        <text x="108" y="74" font-family="'Inter', sans-serif" font-weight="700" font-size="12" fill="var(--text-secondary)" letter-spacing="3.5">DETAILED &amp; CUSTOMS</text>
+                    </svg>
+                </a>
+                <p class="footer-desc">
+                    Flagship automotive atelier specializing in 9H liquid crystal ceramic coatings, self-healing PPF installations, and surgical concourse paint correction.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home 1</a></li>
+                    <li><a href="home2.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home 2</a></li>
+                    <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="services.html" class="footer-link"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="gallery.html" class="footer-link"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="packages.html" class="footer-link"><i class="fas fa-chevron-right"></i> Ceramic Armor</a></li>
+                    <li><a href="packages.html" class="footer-link"><i class="fas fa-chevron-right"></i> PPF Wrapping</a></li>
+                    <li><a href="packages.html" class="footer-link"><i class="fas fa-chevron-right"></i> Paint Correction</a></li>
+                    <li><a href="why-choose-us.html" class="footer-link"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
+                    <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hours &amp; Location</h4>
+                <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; margin-bottom: 0.8rem;">
+                    Mon - Sat: 8:00 AM - 7:00 PM<br>
+                    Enclosed Trailer Concierge Service Available 24/7
+                </p>
+                <div style="font-weight: 700; color: var(--accent); font-size: 0.95rem;">
+                    <i class="fas fa-phone"></i> +1 (800) 555-AUTO
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; 2026 Car Studio Detailed &amp; Customs. All Rights Reserved.</span>
+            <span>Mastercraft Concourse Detailing &amp; Surface Engineering</span>
+        </div>
+    </footer>
+
+    <!-- Scripts for Theme, RTL, and Navigation -->
+    <script>
+        // 1. Theme Engine
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const savedTheme = localStorage.getItem('cs_theme');
+
+        if (savedTheme === 'light') {
+            document.body.classList.remove('dark-mode');
+            if (themeIcon) themeIcon.className = 'fas fa-sun';
+        } else {
+            document.body.classList.add('dark-mode');
+            if (themeIcon) themeIcon.className = 'fas fa-moon';
+        }
+
+        if (darkModeBtn) {
+            darkModeBtn.addEventListener('click', () => {
+                const isDark = document.body.classList.toggle('dark-mode');
+                localStorage.setItem('cs_theme', isDark ? 'dark' : 'light');
+                if (themeIcon) themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+            });
+        }
+
+        // 2. RTL Engine
+        const rtlBtn = document.getElementById('rtlBtn');
+        const rtlLabel = document.getElementById('rtlLabel');
+        const savedDir = localStorage.getItem('cs_dir') || 'ltr';
+
+        document.documentElement.setAttribute('dir', savedDir);
+        document.body.setAttribute('dir', savedDir);
+        if (rtlLabel) rtlLabel.textContent = savedDir === 'rtl' ? 'LTR' : 'RTL';
+
+        if (rtlBtn) {
+            rtlBtn.addEventListener('click', () => {
+                const currentDir = document.documentElement.getAttribute('dir') || 'ltr';
+                const nextDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+                document.documentElement.setAttribute('dir', nextDir);
+                document.body.setAttribute('dir', nextDir);
+                localStorage.setItem('cs_dir', nextDir);
+                if (rtlLabel) rtlLabel.textContent = nextDir === 'rtl' ? 'LTR' : 'RTL';
+            });
+        }
+
+        // 3. Mobile Navigation
+        const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        const mobilePanel = document.getElementById('mobilePanel');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function toggleMobile(open) {
+            if (mobilePanel) mobilePanel.classList.toggle('active', open);
+            if (mobileOverlay) mobileOverlay.classList.toggle('active', open);
+        }
+
+        if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', () => toggleMobile(true));
+        if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', () => toggleMobile(false));
+        if (mobileOverlay) mobileOverlay.addEventListener('click', () => toggleMobile(false));
+    </script>
+</body>
+</html>
