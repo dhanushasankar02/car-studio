@@ -2559,6 +2559,56 @@ body.dark-mode .social-btn {
     color: #ffffff !important;
 }
 
+/* ==========================================================================
+   HIGH-CONTRAST HERO & DARK SECTION TEXT STYLING (WCAG AAA VISIBILITY IN ALL MODES)
+   ========================================================================== */
+.hero-section,
+#hero {
+    color: #ffffff !important;
+}
+
+.hero-text,
+.hero-section p,
+.hero-section .hero-text,
+#hero p,
+#hero .hero-text,
+body:not(.dark-mode) .hero-section p,
+body:not(.dark-mode) .hero-text,
+body:not(.dark-mode) #hero p,
+body:not(.dark-mode) #hero .hero-text,
+body.dark-mode .hero-section p,
+body.dark-mode .hero-text,
+body.dark-mode #hero p,
+body.dark-mode #hero .hero-text {
+    color: #f1f5f9 !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.9) !important;
+    opacity: 1 !important;
+}
+
+.hero-section .hero-title,
+#hero .hero-title {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
+}
+
+.hero-section .section-badge,
+#hero .section-badge,
+body:not(.dark-mode) .hero-section .section-badge,
+body.dark-mode .hero-section .section-badge {
+    background: rgba(255, 106, 26, 0.22) !important;
+    border: 1px solid rgba(255, 106, 26, 0.6) !important;
+    color: #ff9e42 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+.hero-section .stat-label,
+#hero .stat-label,
+body:not(.dark-mode) .hero-section .stat-label,
+body.dark-mode .hero-section .stat-label {
+    color: #e2e8f0 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
 
 /* ==========================================================================
    UNIFIED 1024px NAVBAR BREAKPOINT (STRICT ZERO-LEAK NAVIGATION)
@@ -2801,7 +2851,7 @@ body.dark-mode .social-btn {
                     <i class="fas fa-crown"></i> Premier Automotive Studio
                 </div>
                 <h1 class="hero-title">Showroom-Finish Perfection Redefined</h1>
-                <p class="hero-text">
+                <p class="hero-text" style="color: #f1f5f9 !important; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.9) !important;">
                     Experience state-of-the-art precision detailing, multi-stage swirl elimination, 9H ceramic glass coatings, 
                     and bespoke paint restoration crafted exclusively for exotic and luxury vehicles.
                 </p>

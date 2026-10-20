@@ -2766,6 +2766,40 @@ body.dark-mode .social-btn {
     color: #ffffff !important;
 }
 
+/* ==========================================================================
+   HIGH-CONTRAST HERO & DARK SECTION TEXT STYLING (WCAG AAA VISIBILITY IN ALL MODES)
+   ========================================================================== */
+#gal-sec1-hero,
+.gallery-sec[style*="car_without_tree"] {
+    color: #ffffff !important;
+}
+
+#gal-sec1-hero p,
+.gallery-sec[style*="car_without_tree"] p,
+body:not(.dark-mode) #gal-sec1-hero p,
+body:not(.dark-mode) .gallery-sec[style*="car_without_tree"] p,
+body.dark-mode #gal-sec1-hero p,
+body.dark-mode .gallery-sec[style*="car_without_tree"] p {
+    color: #f1f5f9 !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.9) !important;
+    opacity: 1 !important;
+}
+
+#gal-sec1-hero h1,
+.gallery-sec[style*="car_without_tree"] h1 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
+}
+
+#gal-sec1-hero .sec-badge,
+body:not(.dark-mode) #gal-sec1-hero .sec-badge,
+body.dark-mode #gal-sec1-hero .sec-badge {
+    background: rgba(255, 106, 26, 0.25) !important;
+    border: 1px solid rgba(255, 106, 26, 0.6) !important;
+    color: #ff9e42 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
 
 /* ==========================================================================
    UNIFIED 1024px NAVBAR BREAKPOINT (STRICT ZERO-LEAK NAVIGATION)
@@ -3010,7 +3044,7 @@ body.dark-mode .social-btn {
                 <h1 style="font-family: var(--font-heading); font-size: 3.6rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem; background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                     Exotic Supercar Media Gallery &amp; Concourse Archive
                 </h1>
-                <p style="font-size: 1.15rem; color: #cbd5e1; max-width: 780px; margin: 0 auto 2rem; line-height: 1.7;">
+                <p style="font-size: 1.15rem; color: #f1f5f9 !important; max-width: 780px; margin: 0 auto 2rem; line-height: 1.7; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.9) !important;">
                     Explore studio photography capturing zero-defect clear coat optics, hydrophobic liquid bead geometry, and hand-stitched interior craftsmanship under 5000K LED sunlight arrays.
                 </p>
 

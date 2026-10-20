@@ -3530,6 +3530,48 @@ body.dark-mode .social-btn {
     color: #ffffff !important;
 }
 
+/* ==========================================================================
+   HIGH-CONTRAST HERO & DARK SECTION TEXT STYLING (WCAG AAA VISIBILITY IN ALL MODES)
+   ========================================================================== */
+#why-hero,
+.why-hero-section {
+    color: #ffffff !important;
+}
+
+#why-hero p,
+.why-hero-section p,
+body:not(.dark-mode) #why-hero p,
+body:not(.dark-mode) .why-hero-section p,
+body.dark-mode #why-hero p,
+body.dark-mode .why-hero-section p {
+    color: #f1f5f9 !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.9) !important;
+    opacity: 1 !important;
+}
+
+#why-hero h1,
+.why-hero-section h1,
+.hero-main-title {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
+}
+
+.hero-badge-tag,
+#why-hero .hero-badge-tag,
+body:not(.dark-mode) #why-hero .hero-badge-tag,
+body.dark-mode #why-hero .hero-badge-tag {
+    background: rgba(255, 106, 26, 0.25) !important;
+    border: 1px solid rgba(255, 106, 26, 0.6) !important;
+    color: #ff9e42 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+.stat-banner-box .stat-label,
+#why-hero .stat-label {
+    color: #e2e8f0 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
 
 /* ==========================================================================
    UNIFIED 1024px NAVBAR BREAKPOINT (STRICT ZERO-LEAK NAVIGATION)
@@ -3769,7 +3811,7 @@ body.dark-mode .social-btn {
             <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
                 <span class="hero-badge-tag"><i class="fas fa-award"></i> The Benchmark of Car Care</span>
                 <h1 class="hero-main-title">Why Choose Car Studio? Engineering Perfection in Every Micron</h1>
-                <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9); max-width: 780px; margin: 0 auto;">We combine certified master craftsmanship, German chemical technology, and cleanroom precision to preserve your vehicle's peak aesthetic value.</p>
+                <p style="font-size: 1.25rem; color: #f1f5f9 !important; max-width: 780px; margin: 0 auto; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.9) !important;">We combine certified master craftsmanship, German chemical technology, and cleanroom precision to preserve your vehicle's peak aesthetic value.</p>
                 
                 <div class="hero-stats-banner">
                     <div class="stat-banner-box">
