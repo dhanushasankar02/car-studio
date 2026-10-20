@@ -3342,6 +3342,7 @@ body.dark-mode .social-btn {
                     <ul class="dropdown-menu">
                         <li><a href="dashboard.html" class="dropdown-item"><i class="fas fa-user-circle"></i> User Dashboard</a></li>
                         <li><a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-shield-alt"></i> Admin Dashboard</a></li>
+                        <li><a href="login.html" class="dropdown-item"><i class="fas fa-arrow-right-to-bracket"></i> Login Portal</a></li>
                     </ul>
                 </li>
             </ul>
@@ -3356,10 +3357,10 @@ body.dark-mode .social-btn {
                     <span id="rtlLabel">RTL</span>
                 </button>
 
-                <button class="action-btn btn-login" id="loginModalBtn">
+                <a href="login.html" class="action-btn btn-login" id="loginModalBtn">
                     <i class="fas fa-lock"></i>
                     <span>Login</span>
-                </button>
+                </a>
 
                 <button class="menu-toggle" id="mobileToggleBtn" aria-label="Open Mobile Menu">
                     <i class="fas fa-bars"></i>
@@ -3431,7 +3432,8 @@ body.dark-mode .social-btn {
                 </div>
                 <ul class="mobile-accordion-content " id="mobileDashContent">
                     <li><a href="dashboard.html" class="mobile-sublink "><i class="fas fa-user-circle"></i> User Dashboard</a></li>
-                    <li><a href="admin-dashboard.html" class="mobile-sublink "><i class="fas fa-shield-alt"></i> Admin Dashboard</a></li>
+                    <li><a href="admin-dashboard.html" class="mobile-sublink"><i class="fas fa-shield-alt"></i> Admin Dashboard</a></li>
+                    <li><a href="login.html" class="mobile-sublink"><i class="fas fa-arrow-right-to-bracket"></i> Login Portal</a></li>
                 </ul>
             </li>
         </ul>
@@ -3445,10 +3447,10 @@ body.dark-mode .social-btn {
                 <i class="fas fa-right-left" id="mobileRtlIcon"></i>
                 <span id="mobileRtlLabel">RTL Layout</span>
             </button>
-            <button class="action-btn btn-login" id="mobileLoginModalBtn">
+            <a href="login.html" class="action-btn btn-login" id="mobileLoginModalBtn">
                 <i class="fas fa-lock"></i>
                 <span>Login</span>
-            </button>
+            </a>
         </div>
     </div>
 
@@ -3773,7 +3775,7 @@ body.dark-mode .social-btn {
                     <li><a href="admin-dashboard.html" class="footer-link"><i class="fas fa-chevron-right"></i> Admin Dashboard</a></li>
                     <li><a href="why-choose-us.html" class="footer-link"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
                     <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-                    <li><a href="#" class="footer-link" id="footerLoginTrigger"><i class="fas fa-chevron-right"></i> Login Portal</a></li>
+                    <li><a href="login.html" class="footer-link" id="footerLoginTrigger"><i class="fas fa-chevron-right"></i> Login Portal</a></li>
                 </ul>
             </div>
 
@@ -3950,9 +3952,9 @@ body.dark-mode .social-btn {
                 if (loginModal) loginModal.classList.remove('active');
             }
 
-            if (loginModalBtn) loginModalBtn.addEventListener('click', openLoginModal);
-            if (mobileLoginModalBtn) mobileLoginModalBtn.addEventListener('click', openLoginModal);
-            if (footerLoginTrigger) footerLoginTrigger.addEventListener('click', openLoginModal);
+            if (loginModalBtn) loginModalBtn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
+            if (mobileLoginModalBtn) mobileLoginModalBtn.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
+            if (footerLoginTrigger) footerLoginTrigger.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'login.html'; });
             if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeLoginModal);
             if (loginModal) {
                 loginModal.addEventListener('click', (e) => {
